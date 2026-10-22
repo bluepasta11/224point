@@ -743,7 +743,7 @@ function normalize(s) {
     reward:{ minRate:clampInt(r.minRate, 0, 100, 0), needNotice:r.needNotice !== false },
     demote:{ rate:clampInt(dm.rate, 0, 100, 50), excused: dm.excused === 'count' ? 'count' : 'skip', trial: dm.trial !== false },
     draws: s.draws && typeof s.draws === 'object' ? s.draws : {},
-    drawLog: Array.isArray(s.drawLog) ? s.drawLog.filter(x => x && x.id).slice(0, 100).map(x => ({ id:String(x.id), at:Number(x.at) || 0, by:String(x.by || '').slice(0, 80), tool:String(x.tool || ''), title:String(x.title || '').slice(0, 60), entries:Array.isArray(x.entries) ? x.entries.map(String).slice(0, 100) : [], summary:String(x.summary || '').slice(0, 800) })) : [],
+    drawLog: Array.isArray(s.drawLog) ? s.drawLog.filter(x => x && x.id).slice(0, 100).map(x => ({ id:String(x.id), at:Number(x.at) || 0, by:String(x.by || '').slice(0, 80), tool:String(x.tool || ''), title:String(x.title || '').slice(0, 60), entries:Array.isArray(x.entries) ? x.entries.map(String).slice(0, 100) : [], summary:String(x.summary || '').slice(0, 800), tieKey:String(x.tieKey || '') })) : [],
     updated: Number(s.updated) || 0
   };
 }
@@ -869,6 +869,7 @@ function logout() { if (!FB) return; if (dirty && mode === 'fbadmin') fbSave(); 
 // ---------- profile (photo) ----------
 function linkValid(memberId) { const l = PROF.links[memberId]; if (!l || !l.uid) return ''; const pr = PROF.profiles[l.uid]; return pr && pr.memberId === memberId ? l.uid : ''; }
 function photoOf(memberId) { const uid = linkValid(memberId); if (!uid) return ''; const ph = PROF.profiles[uid].photo; return typeof ph === 'string' && ph.indexOf('data:image/') === 0 ? ph : ''; }
+const hostName = () => { if (!FB || !FB.user) return ''; const m = myMember(); return m ? nameOf(m) : '운영진'; };
 function myMember() { if (!FB || !FB.user) return ''; const pr = PROF.profiles[FB.user.uid]; if (!pr || !pr.memberId) return ''; return linkValid(pr.memberId) === FB.user.uid ? pr.memberId : ''; }
 function myPhoto() { if (!FB || !FB.user) return ''; const pr = PROF.profiles[FB.user.uid]; return pr && typeof pr.photo === 'string' && pr.photo.indexOf('data:image/') === 0 ? pr.photo : ''; }
 function meBtn() {
@@ -966,7 +967,7 @@ async function fbSave() {
   if (!FB || !dirty || mode !== 'fbadmin') return;
   clearTimeout(timer);
   status = 'saving'; paintStatus();
-  const stamp = S.updated, payload = { data:JSON.stringify(S), updated:stamp, by:(FB.user && FB.user.email) || '' }, base = FB.base;
+  const stamp = S.updated, payload = { data:JSON.stringify(S), updated:stamp, by:hostName() }, base = FB.base;
   FB.pending = stamp;
   try {
     await FB.db.runTransaction(async tx => {
@@ -1774,7 +1775,7 @@ function drawLogHTML() {
   const all = S.drawLog || [], L = all.slice().sort((a, b) => b.at - a.at).slice(0, 30);
   let h = '<h3 class="sub-h">공식 추첨 기록 <span>' + all.length + '건</span></h3>';
   if (!L.length) return h + '<p style="color:var(--muted);margin:0">아직 공식 추첨이 없어요. 동점 추첨과 운영진의 공식 추첨은 여기에 그대로 남아요.</p>';
-  return h + '<ul class="evs dlog">' + L.map(x => '<li><div class="dl-top"><b>' + esc(x.title) + '</b><span>' + esc(toolName(x.tool)) + ', ' + whenFull(x.at) + '</span></div><div class="dl-res">' + esc(x.summary) + '</div><div class="dl-sub">참가 ' + x.entries.length + '명: ' + esc(x.entries.join(', ')) + (x.by ? '. 진행: ' + esc(x.by) : '') + '</div></li>').join('') + '</ul>';
+  return h + '<ul class="evs dlog">' + L.map(x => '<li><div class="dl-top"><b>' + esc(x.title) + '</b><span>' + esc(toolName(x.tool)) + ', ' + whenFull(x.at) + '</span></div><div class="dl-res">' + esc(x.summary) + '</div><div class="dl-sub">참가 ' + x.entries.length + '명: ' + esc(x.entries.join(', ')) + (x.by ? '. 진행: ' + esc(x.by.includes('@') ? '운영진' : x.by) : '') + '</div>' + (mode !== 'ro' ? '<div style="display:flex;margin-top:6px"><button class="del" data-act="dlDel" data-id="' + esc(x.id) + '">' + (UI.armed === 'dl:' + x.id ? (x.tieKey ? '동점 순위도 풀려요. 한 번 더' : '한 번 더 누르면 삭제') : '기록 삭제') + '</button></div>' : '') + '</li>').join('') + '</ul>';
 }
 function firstUniform(labels) { let k = labels.length - 1; while (k > 0 && labels[k - 1] === labels[labels.length - 1]) k--; return k; }
 function prepareRun(run) {
@@ -1799,7 +1800,7 @@ function logRun(run) {
     summary = '당첨: ' + run.order.slice(0, run.N).map(i => run.entries[i].name).join(', ');
     if (run.sim) summary += ' (' + (run.rule === 'last' ? '마지막 도착' : '먼저 도착') + ')';
   }
-  const item = { id:uid(), at:Date.now(), by:(FB && FB.user && FB.user.email) || '', tool:run.tool, title:run.title, entries:names, summary };
+  const item = { id:uid(), at:Date.now(), by:hostName(), tool:run.tool, title:run.title, entries:names, summary, tieKey:run.kind === 'tie' ? run.tieKey : '' };
   S.drawLog = [item].concat(S.drawLog || []).slice(0, 100);
   if (run.kind === 'tie') S.draws[run.tieKey] = { order:run.order.map(i => run.ids[i]), at:item.at, tool:run.tool };
   changed(false);
@@ -2686,6 +2687,12 @@ app.addEventListener('click', e => {
     case 'noticeOk': closeNoticePop(); break;
     case 'absence': UI.sheet = 'absence'; UI.afInfo = null; if (!UI.af) UI.af = { member:'', type:S.priority, date:today(), note:'' }; render(); break;
     case 'absSubmit': submitAbsence(); break;
+    case 'dlDel': {
+      if (mode === 'ro' || !arm('dl:' + id)) return;
+      const x = (S.drawLog || []).find(y => y.id === id); if (!x) return;
+      if (x.tieKey && S.draws[x.tieKey] && S.draws[x.tieKey].at === x.at) delete S.draws[x.tieKey]; // tie result goes back to undrawn
+      S.drawLog = S.drawLog.filter(y => y.id !== id); UI.msg = '공식 추첨 기록을 삭제했어요.'; changed(); break;
+    }
     case 'absDel': { if (mode === 'ro') return; if (!arm('abs:' + id)) return; deleteAbsence(id); break; }
     case 'saveImage': saveImage(); break;
     case 'rTool': UI.rnd.tool = b.dataset.v; render(); break;
