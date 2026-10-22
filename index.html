@@ -548,6 +548,62 @@ details.adv .in{margin-top:8px;width:auto}
 .ltop{color:var(--muted)}
 .ltop-box{fill:var(--gold)}
 
+/* schedule, seasons, graph, streak, history, appeals */
+.sched{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin:0 0 14px}
+.sched-h{display:flex;align-items:center;gap:6px;font-weight:700;margin-bottom:4px}
+.sched-h svg.i{width:20px;height:20px;color:var(--blue)}
+.sc-row{display:grid;grid-template-columns:1fr auto;gap:2px 10px;align-items:center;padding:8px 0;border-top:1px solid var(--line)}
+.sc-row:first-of-type{border-top:0}
+.sc-main b{display:block;font-size:1rem}
+.sc-main span{font-size:.85rem;color:var(--muted)}
+.sc-left{font-weight:700;color:var(--blue);font-size:.92rem;text-align:right;white-space:nowrap}
+.sc-row.first .sc-left{color:var(--gold)}
+.sc-abs{grid-column:1 / -1;justify-self:start;min-height:34px;padding:5px 12px;font-size:.82rem}
+.chip.streak{background:var(--gold-soft);color:var(--gold)}
+.mc-acts{display:flex;gap:4px 12px;flex-wrap:wrap;margin-top:4px}
+.mc-acts .textbtn{padding:2px 0;min-height:30px;color:var(--blue);font-size:.85rem}
+.mc-graph{grid-column:1 / -1;border-top:1px dashed var(--line);padding-top:8px}
+.gr{margin:4px 0 10px}
+.gr-h{display:flex;justify-content:space-between;font-size:.8rem;color:var(--muted);margin-top:4px}
+.gr-h b{color:var(--ink)}
+.gr-svg{width:100%;height:56px;display:block}
+.gr-l{fill:none;stroke-width:2.5;vector-effect:non-scaling-stroke;stroke-linejoin:round;stroke-linecap:round}
+.gr-l.pts{stroke:var(--gold-fill)}
+.gr-l.rk{stroke:var(--blue-fill)}
+.gr-x{display:flex;justify-content:space-between;font-size:.75rem;color:var(--muted)}
+.gr-empty{font-size:.85rem;color:var(--muted);margin:4px 0 10px}
+.seg2.seg4{grid-template-columns:1fr 1fr}
+.hlist{list-style:none;margin:0;padding:0}
+.hlist li{padding:10px 0;border-top:1px solid var(--line);font-size:.9rem}
+.hlist li:first-child{border-top:0}
+.hlist .h-top{display:flex;justify-content:space-between;gap:8px;color:var(--muted);font-size:.8rem}
+.hlist .h-top b{color:var(--ink)}
+.ap{padding:12px 0;border-top:1px solid var(--line)}
+.ap:first-child{border-top:0}
+.ap-top{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.ap-ev{font-size:.85rem;color:var(--muted)}
+.ap-text{margin:6px 0;white-space:pre-wrap;word-break:keep-all}
+.ap-reply{background:var(--surface2);border-radius:10px;padding:8px 10px;font-size:.9rem;margin-top:6px}
+.ap-st{font-size:.75rem;font-weight:700;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.ap-st.open{background:var(--amber-soft);color:var(--amber)}
+.ap-st.done{background:var(--green-soft);color:var(--green)}
+.ap-st.rejected{background:var(--surface2);color:var(--muted)}
+.ap-acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.ss-list{list-style:none;margin:10px 0 0;padding:0}
+.ss-list li+li{border-top:1px solid var(--line)}
+.ss-btn{font:inherit;color:inherit;background:none;border:0;width:100%;text-align:left;padding:12px 2px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.ss-btn b{display:block}
+.ss-btn span{font-size:.85rem;color:var(--muted)}
+.ss-group{margin-top:12px}
+.ss-group h3{font-size:.95rem;margin:0 0 4px}
+.ss-row{display:grid;grid-template-columns:2.2rem 1fr auto;gap:8px;padding:5px 0;border-top:1px dashed var(--line);font-size:.92rem}
+.ss-row .r{font-family:var(--display);color:var(--muted)}
+.ss-row .p{font-weight:700;font-variant-numeric:tabular-nums}
+.sf-weeks{display:flex;flex-wrap:wrap;gap:6px}
+.pick[hidden]{display:none !important}
+.wz-q{margin:0 0 12px}
+.wz-note{background:var(--blue-soft);color:var(--blue);border-radius:10px;padding:8px 12px;font-size:.9rem;font-weight:600;margin:0 0 12px}
+
 /* tiers */
 .tier-0{--tf:var(--gold-fill);--ts:var(--gold-soft);--tt:var(--gold);--tfo:#2B1E00;--th:#F7C553}
 .tier-1{--tf:var(--blue-fill);--ts:var(--blue-soft);--tt:var(--blue);--tfo:#fff;--th:#A3C0FF}
@@ -694,6 +750,8 @@ const ICON = {
   sndOn: svg('<path d="M4 10v4h3.5L12 18V6L7.5 10H4Z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/>'),
   sndOff: svg('<path d="M4 10v4h3.5L12 18V6L7.5 10H4Z"/><path d="m16 9.5 5 5M21 9.5l-5 5"/>'),
   search: svg('<circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/>'),
+  cal: svg('<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/>'),
+  archive: svg('<rect x="3.5" y="4" width="17" height="4.5" rx="1"/><path d="M5 8.5V19a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8.5M10 12h4"/>'),
   user: svg('<circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/>'),
   manage: svg('<circle cx="9" cy="8" r="3.2"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0M16 5.3a3 3 0 0 1 0 5.6M17.5 14.3A5.5 5.5 0 0 1 20.5 19"/>'),
   chev: svg('<path d="m7 10 5 5 5-5"/>'),
@@ -724,7 +782,7 @@ function defaults() {
     tiers:[{id:'k1',name:'핵심',slots:10},{id:'k2',name:'주력',slots:10}],
     reward:{minRate:0,needNotice:true},
     demote:{rate:50,excused:'skip',trial:true},
-    draws:{}, drawLog:[], updated:0 };
+    draws:{}, drawLog:[], schedules:[], seasons:[], history:[], updated:0 };
 }
 function normalize(s) {
   const d = defaults();
@@ -753,6 +811,9 @@ function normalize(s) {
     absences: Array.isArray(s.absences) ? s.absences.filter(a => a && a.id && a.member && a.type && isDate(a.date)).slice(0, 300).map(a => ({ id:String(a.id), member:String(a.member), name:String(a.name || '').slice(0, 30), type:String(a.type), date:a.date, note:String(a.note || '').slice(0, 100), at:Number(a.at) || 0 })) : [],
     types, priority: types.some(t => t.id === s.priority) ? s.priority : (types[0] ? types[0].id : ''),
     members, events,
+    schedules: Array.isArray(s.schedules) ? s.schedules.filter(x => x && x.id && isDate(x.date)).slice(0, 30).map(x => ({ id:String(x.id), title:String(x.title || '').slice(0, 30), type:String(x.type || ''), date:x.date, time:/^\d{2}:\d{2}$/.test(x.time || '') ? x.time : '21:00', every:clampInt(x.every, 0, 12, 0) })) : [],
+    seasons: Array.isArray(s.seasons) ? s.seasons.filter(x => x && x.id).slice(0, 30) : [],
+    history: Array.isArray(s.history) ? s.history.filter(x => x && x.id).slice(0, 300) : [],
     tiers: (() => { const ts = Array.isArray(s.tiers) ? s.tiers.filter(t => t && t.id).map(t => ({ id:String(t.id), name:String(t.name || '').slice(0, 12) || '등급', slots:clampInt(t.slots, 0, 999, 0) })) : [];
       return ts.length ? ts : [{id:'k1',name:'핵심',slots:clampInt(r.core, 0, 999, 10)},{id:'k2',name:'주력',slots:clampInt(r.main, 0, 999, 10)}]; })(),
     reward:{ minRate:clampInt(r.minRate, 0, 100, 0), needNotice:r.needNotice !== false },
@@ -826,6 +887,7 @@ function initFirebase() {
       ABS = snap.docs.map(d => { const x = d.data() || {}; return { id:d.id, member:String(x.member || ''), name:String(x.name || ''), type:String(x.type || ''), date:String(x.date || ''), note:String(x.note || ''), at:(x.createdAt && x.createdAt.toMillis) ? x.createdAt.toMillis() : Date.now() }; });
       if (!focusedField() && !UI.wiz) render();
     }, () => {});
+    db.collection('seasons').orderBy('at', 'desc').limit(50).onSnapshot(snap => { SEASONS = snap.docs.map(d => Object.assign({}, d.data() || {}, { id:d.id })); softRender(); }, () => {});
     db.collection('links').onSnapshot(snap => { const o = {}; snap.docs.forEach(d => { o[d.id] = d.data() || {}; }); PROF.links = o; softRender(); }, () => {});
     db.collection('profiles').onSnapshot(snap => { const o = {}; snap.docs.forEach(d => { o[d.id] = d.data() || {}; }); PROF.profiles = o; softRender(); }, () => {});
     auth.onAuthStateChanged(async user => {
@@ -836,6 +898,7 @@ function initFirebase() {
         try { FB.admin = FB.owner || (await db.collection('admins').doc(user.uid).get()).exists; } catch (e) { FB.admin = FB.owner; }
         if (FB.owner) FB.adminUnsub = db.collection('admins').onSnapshot(snap => { ADMINS = snap.docs.map(d => Object.assign({ uid:d.id }, d.data() || {})); softRender(); }, () => {});
       }
+      fbRoleListeners();
       applyRole();
     });
     auth.getRedirectResult().catch(loginFail);
@@ -972,6 +1035,7 @@ function adminCardHTML() {
   return h;
 }
 function adminAdd() {
+  { const sel0 = document.getElementById('adminPick'); if (sel0 && sel0.value && memOf(sel0.value)) hist('관리자 지정', memOf(sel0.value).name); }
   const sel = document.getElementById('adminPick'), mid = sel ? sel.value : '', uid = mid ? linkValid(mid) : '';
   if (!uid) { UI.msg = '관리자로 지정할 연맹원을 골라 주세요.'; render(); return; }
   FB.db.collection('admins').doc(uid).set({ memberId:mid, name:memOf(mid).name, at:Date.now() })
@@ -1079,10 +1143,10 @@ const tierName = id => { const t = S.tiers.find(x => x.id === id); return t ? t.
 const tierCls = id => { const i = tierIdx(id); return i < 0 ? '' : 'tier tier-' + (i % 6); };
 const seasonCounts = () => S.types.map(t => t.name + ' ' + S.events.filter(e => e.type === t.id).length + '회').join(', ');
 
-function stats(skipDate) {
-  const evs = sortedEvents().filter(e => !skipDate || e.date !== skipDate);
+function stats(skipDate, until) {
+  const evs = sortedEvents().filter(e => (!skipDate || e.date !== skipDate) && (!until || e.date <= until));
   return S.members.map(m => {
-    const x = { m, pts:0, inN:0, exN:0, abN:0, prio:0, opp:0, rin:0, rate:null, hist:[] };
+    const x = { m, pts:0, inN:0, exN:0, abN:0, prio:0, opp:0, rin:0, rate:null, hist:[] }, cur = {};
     for (const e of evs) {
       if (!eligibleFor(m, e.date)) continue;
       const t = typeOf(e.type), s = e.st[m.id] || 'ab';
@@ -1095,6 +1159,7 @@ function stats(skipDate) {
       } else if (s === 'ex') { p = -t.exPen; x.exN++; }
       else { p = -t.pen; x.abN++; }
       x.pts += p;
+      if (s === 'in') cur[t.id] = (cur[t.id] || 0) + 1; else if (s === 'ab') cur[t.id] = 0;
       if (t.rate) {
         if (s === 'in') { x.opp++; x.rin++; }
         else if (s === 'ex') { if (S.demote.excused === 'count') x.opp++; }
@@ -1102,6 +1167,8 @@ function stats(skipDate) {
       }
       x.hist.push({ e, t, s, p, bn });
     }
+    let bs = 0, bt = null; Object.keys(cur).forEach(k => { if (cur[k] > bs) { bs = cur[k]; bt = k; } });
+    x.streak = bs >= 3 && typeOf(bt) ? { n:bs, name:typeOf(bt).name } : null;
     x.exact = x.opp ? x.rin * 100 / x.opp : null;
     x.rate = x.exact === null ? null : Math.floor(x.exact);
     x.below = x.exact !== null && x.exact < S.demote.rate;
@@ -1114,9 +1181,9 @@ function stats(skipDate) {
     return x;
   });
 }
-function compute(skipDate) {
-  const xs = stats(skipDate);
-  const active = skipDate ? S.events.some(e => e.date !== skipDate) : S.events.length > 0;
+function compute(skipDate, until) {
+  const xs = stats(skipDate, until);
+  const active = S.events.some(e => (!skipDate || e.date !== skipDate) && (!until || e.date <= until));
   const cmp = (a, b) => b.pts - a.pts || b.prio - a.prio || a.abN - b.abN;
   xs.sort((a, b) => cmp(a, b) || a.m.name.localeCompare(b.m.name, 'ko'));
   xs.forEach((x, i) => { x.rank = (i > 0 && cmp(x, xs[i - 1]) === 0) ? xs[i - 1].rank : i + 1; });
@@ -1188,6 +1255,8 @@ function render() {
   if (UI.sheet === 'noticePop') h += noticePopHTML();
   if (UI.sheet === 'absence') h += absenceSheet();
   if (UI.sheet === 'image' && UI.capUrl) h += imageSheet();
+  if (UI.sheet === 'seasons') h += seasonsSheet();
+  if (UI.sheet === 'appeal' && FB) h += appealSheet();
   if (UI.sheet === 'tieTool' && mode !== 'ro') h += tieToolSheet();
   if (UI.ladder) h += ladderHTML();
   if (UI.copyText != null) h += copyHTML();
@@ -1218,15 +1287,15 @@ function rankPage(ro) {
       '<button class="tile warn" data-act="jump" data-v="g-warn"><b>' + below.length + '</b><span>참여율 미달</span></button></div>';
   }
   h += '</header><div class="body">' + toastHTML();
-  h += noticeHTML(ro);
+  h += noticeHTML(ro) + scheduleCardHTML();
   RD = C.active ? rankDeltas(C) : {};
   if (C.active) h += podiumHTML(C) + myCardHTML(C);
   if (canReport()) h += '<button class="btn primary abs-btn" data-act="absence">불참 신고하기</button>';
   if (S.demo && !ro) h += '<div class="note demo"><span>지금은 <b>예시 데이터</b>예요.</span><button class="btn" data-act="clearDemo">' + (UI.armed === 'demo' ? '한 번 더 누르면 삭제' : '지우고 시작하기') + '</button></div>';
   if (!S.members.length) return h + '<div class="empty"><b>연맹원이 없어요</b><p>관리 화면에서 연맹원부터 추가해 주세요.</p>' + (ro ? '' : '<button class="btn primary" data-act="goto" data-v="manage">연맹원 추가하기</button>') + '</div>' + acctHTML() + '</div>';
-  if (!C.active) return h + '<div class="empty"><b>아직 기록이 없어요</b><p>첫 회차를 기록하면 순위가 바로 나타나요.</p>' + (ro ? '' : '<button class="btn primary" data-act="tab" data-v="record">첫 기록 하기</button>') + '</div>' + acctHTML() + '</div>';
+  if (!C.active) return h + '<div class="empty"><b>아직 기록이 없어요</b><p>첫 회차를 기록하면 순위가 바로 나타나요.</p>' + (ro ? '' : '<button class="btn primary" data-act="tab" data-v="record">첫 기록 하기</button>') + '</div>' + (seasonList().length ? '<div class="acts" style="margin-top:14px"><button class="btn" data-act="seasons">' + ICON.archive + '지난 시즌 보기</button></div>' : '') + acctHTML() + '</div>';
 
-  h += '<div class="acts">' + (ro ? '' : '<button class="btn" data-act="copy">' + ICON.copy + '글 복사</button><button class="btn" data-act="saveImage">' + ICON.image + '이미지 저장</button>') + '<button class="btn" data-act="rules">' + ICON.book + '점수 규칙</button></div>';
+  h += '<div class="acts">' + (ro ? '' : '<button class="btn" data-act="copy">' + ICON.copy + '글 복사</button><button class="btn" data-act="saveImage">' + ICON.image + '이미지 저장</button>') + '<button class="btn" data-act="rules">' + ICON.book + '점수 규칙</button><button class="btn" data-act="seasons">' + ICON.archive + '지난 시즌</button></div>';
   if (S.demote.trial) h += '<div class="note">시범 운영 중이라 참여율 미달은 <b>표시만</b> 하고 강등에는 쓰지 않아요.</div>';
 
   h += '<div class="rsearch">' + ICON.search + '<input class="in" id="rq" type="search" placeholder="닉네임 찾기" value="' + esc(UI.rq || '') + '" aria-label="닉네임 찾기"></div><div id="rankGroups">' + groupsHTML(C, ro) + '</div>';
@@ -1262,6 +1331,7 @@ function rowHTML(x) {
   const cls = 'm' + (x.tier && x.tier !== 'pending' ? ' ' + tierCls(x.tier) : '');
   let chips = '';
   if (x.drawn) chips += '<span class="chip">사다리</span>';
+  if (x.streak) chips += '<span class="chip streak">' + esc(x.streak.name) + ' ' + x.streak.n + '연속</span>';
   if (x.below && x.elig) chips += '<span class="chip bad">참여율 미달</span>';
   x.reasons.forEach(r => { chips += '<span class="chip' + (r === '강등 대상' ? ' bad' : '') + '">' + esc(r) + '</span>'; });
   const bad = x.below ? ' bad' : '';
@@ -1272,7 +1342,7 @@ function rowHTML(x) {
     '<span class="m-rate"><span class="rbar' + bad + '"><i style="width:' + (x.rate || 0) + '%"></i></span><span class="pct' + bad + '">' + (x.rate === null ? '참여율 없음' : '참여율 ' + x.rate + '%') + '</span></span></span>' +
     '<span class="m-pts">' + fmt(x.pts) + '<small>점</small></span><span class="chev">' + ICON.chev + '</span></button>';
   if (open) {
-    h += '<div class="m-detail">' + (photoOf(x.m.id) ? '<img class="av lg" src="' + photoOf(x.m.id) + '" alt="" style="margin-bottom:8px">' : '') + '<div class="kv"><span>' + esc(prioName()) + ' <b>' + x.prio + '회</b></span><span>무단 불참 <b>' + x.abN + '회</b></span><span>사전 불참 <b>' + x.exN + '회</b></span></div>' +
+    h += '<div class="m-detail">' + (photoOf(x.m.id) ? '<img class="av lg" src="' + photoOf(x.m.id) + '" alt="" style="margin-bottom:8px">' : '') + '<div class="kv"><span>' + esc(prioName()) + ' <b>' + x.prio + '회</b></span><span>무단 불참 <b>' + x.abN + '회</b></span><span>사전 불참 <b>' + x.exN + '회</b></span></div>' + graphHTML(x.m.id) +
       (x.hist.length ? '<ul class="hist">' + x.hist.slice().reverse().map(r =>
         '<li><span class="d">' + md(r.e.date) + '</span><span>' + esc(r.t.name) + (r.bn.length ? ' + ' + esc(r.bn.join(', ')) : '') + '</span><span class="pill ' + r.s + '">' + ST[r.s] + '</span><span class="p">' + sign(r.p) + '</span></li>').join('') + '</ul>'
         : '<p style="margin:0;color:var(--muted)">집계된 회차가 없어요.</p>') + '</div>';
@@ -1298,7 +1368,7 @@ function rulesSheet() {
 
 // ---------- record page ----------
 function recordPage() {
-  let h = barHTML('기록하기') + '<div class="body">' + toastHTML();
+  let h = barHTML('기록하기') + '<div class="body">' + toastHTML() + appealsNoticeHTML();
   if (!S.members.length) return h + '<div class="empty"><b>연맹원이 없어요</b><p>기록하려면 연맹원부터 추가해 주세요.</p><button class="btn primary" data-act="goto" data-v="manage">연맹원 추가하기</button></div></div>';
   if (!S.types.length) return h + '<div class="empty"><b>콘텐츠가 없어요</b><p>관리의 규칙과 설정에서 콘텐츠를 만들어 주세요.</p></div></div>';
   h += '<h2 class="q">어떤 콘텐츠를 기록할까요?</h2>';
@@ -1329,16 +1399,20 @@ function wizardHTML() {
   const w = UI.wiz, t = typeOf(w.type);
   if (!t) { UI.wiz = null; return ''; }
   const steps = wizSteps(w), idx = Math.max(0, steps.indexOf(w.step));
-  const elig = wizElig(w);
+  const elig = wizElig(w).slice().sort((a, b) => a.name.localeCompare(b.name, 'ko'));
+  if (UI.wzqStep !== w.step) { UI.wzq = ''; UI.wzqStep = w.step; }
   const ins = elig.filter(m => w.in.includes(m.id)), outs = elig.filter(m => !w.in.includes(m.id));
   let h = '<div class="wz"><header class="wz-head"><button class="icon-btn" data-act="wizBack" aria-label="' + (idx ? '이전 단계' : '나가기') + '">' + ICON.back + '</button><div class="wz-title"><b>' + md(w.date) + ' ' + esc(t.name) + (w.eid ? ' 고치기' : '') + '</b><span>' + (idx + 1) + ' / ' + steps.length + ' 단계</span></div><button class="textbtn" data-act="wizCancel">취소</button></header>';
   h += '<div class="wz-prog"><i style="width:' + Math.round((idx + 1) / steps.length * 100) + '%"></i></div>';
-  const pick = (m, on, kind, tags) => '<button class="pick ' + kind + '" data-act="wizPick" data-kind="' + kind + '" data-id="' + esc(m.id) + '" aria-pressed="' + on + '">' + ICON.check + '<span>' + esc(m.name) + (tags && tags.length ? '<small class="ptag">' + esc(tags.join(', ')) + '</small>' : '') + '</span></button>';
+  const pick = (m, on, kind, tags) => '<button class="pick ' + kind + '"' + (UI.wzq && m.name.indexOf(UI.wzq) < 0 ? ' hidden' : '') + ' data-name="' + esc(m.name) + '" data-act="wizPick" data-kind="' + kind + '" data-id="' + esc(m.id) + '" aria-pressed="' + on + '">' + ICON.check + '<span>' + esc(m.name) + (tags && tags.length ? '<small class="ptag">' + esc(tags.join(', ')) + '</small>' : '') + '</span></button>';
   let cta = '다음';
+  if (w.step !== 'confirm' && elig.length > 12) h += '<input class="in wz-q" id="wzq" type="search" placeholder="닉네임 찾기" value="' + esc(UI.wzq || '') + '" aria-label="닉네임 찾기">';
   const rep = reportedFor(w), rtag = m => rep.includes(m.id) ? ['불참 신고'] : [];
   if (w.step === 'in') {
     h += '<h2 class="q">참여한 사람을 모두 눌러 주세요</h2><p class="q-sub"><b>' + ins.length + '명</b> 선택, 대상 ' + elig.length + '명' + (rep.length ? '. 불참 신고한 ' + rep.length + '명은 전원 선택에서 빠져요.' : '') + '</p>';
-    h += '<div class="tools"><button class="pill-btn" data-act="wizAll">전원 선택</button><button class="pill-btn" data-act="wizNone">선택 해제</button></div>';
+    const prevEv = S.events.filter(e => e.type === w.type && e.id !== w.eid && e.date <= w.date).sort((a, b) => a.date < b.date ? 1 : a.date > b.date ? -1 : 0)[0];
+    h += '<div class="tools"><button class="pill-btn" data-act="wizAll">전원 선택</button><button class="pill-btn" data-act="wizNone">선택 해제</button>' + (prevEv ? '<button class="pill-btn" data-act="wizPrev">지난 ' + esc(t.name) + ' 참여자</button>' : '') + '</div>';
+    if (w.note) h += '<p class="wz-note">' + esc(w.note) + '</p>';
     h += elig.length ? '<div class="picks">' + elig.map(m => pick(m, w.in.includes(m.id), 'in', rtag(m))).join('') + '</div>' : '<div class="all-done">기록할 연맹원이 없어요. 관리에서 먼저 추가해 주세요.</div>';
   } else if (w.step === 'ex') {
     if (!outs.length) h += '<h2 class="q">전원 참여했어요</h2><div class="all-done">빠진 사람이 없어요. 다음으로 넘어가세요.</div>';
@@ -1396,6 +1470,7 @@ function wizSave() {
   w.ex.forEach(id => { st[id] = 'ex'; });
   w.na.forEach(id => { st[id] = 'na'; });
   const bonus = JSON.parse(JSON.stringify(w.bonus));
+  hist(w.eid ? '회차 수정' : '회차 기록', md(w.date) + ' ' + t.name + ' (참여 ' + w.in.length + '명, 사전 불참 ' + w.ex.length + '명)');
   if (w.eid && evOf(w.eid)) { const e = evOf(w.eid); e.type = w.type; e.date = w.date; e.st = st; e.bonus = bonus; }
   else S.events.push({ id:uid(), type:w.type, date:w.date, st, bonus });
   UI.msg = md(w.date) + ' ' + t.name + ' 기록을 저장했어요.';
@@ -1407,9 +1482,10 @@ function wizSave() {
 
 // ---------- manage page ----------
 function managePage() {
-  let h = barHTML('관리') + '<div class="seg2" role="group" aria-label="관리 메뉴"><button data-act="mseg" data-v="members" aria-pressed="' + (UI.mseg === 'members') + '">연맹원 ' + S.members.length + '명</button><button data-act="mseg" data-v="rules" aria-pressed="' + (UI.mseg === 'rules') + '">규칙과 설정</button></div><div class="body">' + toastHTML();
+  const segs = [['members', '연맹원 ' + S.members.length + '명'], ['rules', '규칙과 설정'], ['history', '변경 이력']].concat(FB ? [['appeals', '이의 신청' + (openAppeals() ? ' ' + openAppeals() + '건' : '')]] : []);
+  let h = barHTML('관리') + '<div class="seg2 seg4" role="group" aria-label="관리 메뉴">' + segs.map(([k, l]) => '<button data-act="mseg" data-v="' + k + '" aria-pressed="' + (UI.mseg === k) + '">' + l + '</button>').join('') + '</div><div class="body">' + toastHTML();
   if (FB && mode === 'fbadmin') h += '<div class="card acct-card"><span><b>' + (FB.owner ? '최고 관리자' : '관리자') + '</b>로 로그인 중</span><button class="btn" data-act="logout" style="min-height:40px;padding:8px 14px">로그아웃</button></div>';
-  h += UI.mseg === 'rules' ? rulesPage() : membersPage();
+  h += UI.mseg === 'rules' ? rulesPage() : UI.mseg === 'history' ? historyPage() : (UI.mseg === 'appeals' && FB) ? appealsPage() : membersPage();
   return h + '</div>';
 }
 const sw = (f, checked, label, id) => '<label class="switch"><input type="checkbox" data-f="' + f + '"' + (id ? ' data-id="' + esc(id) + '"' : '') + (checked ? ' checked' : '') + '><span class="track"></span><span>' + label + '</span></label>';
@@ -1441,7 +1517,7 @@ function bonusListHTML(t) {
   '<button class="pill-btn" data-act="addBonus" data-id="' + esc(t.id) + '">+ 보너스 추가</button></div>';
 }
 function rulesPage() {
-  let h = adminCardHTML() + '<div class="card"><h2 class="card-h">콘텐츠별 점수</h2><p class="card-sub">점수를 바꾸면 지난 기록에도 바로 반영돼요. 보너스를 여러 개 받으면 모두 더해지니, TOP20과 TOP21~40처럼 구간이 겹치지 않게 만들면 헷갈리지 않아요.</p>';
+  let h = adminCardHTML() + scheduleSettingsHTML() + '<div class="card"><h2 class="card-h">콘텐츠별 점수</h2><p class="card-sub">점수를 바꾸면 지난 기록에도 바로 반영돼요. 보너스를 여러 개 받으면 모두 더해지니, TOP20과 TOP21~40처럼 구간이 겹치지 않게 만들면 헷갈리지 않아요.</p>';
   for (const t of S.types) {
     const used = S.events.filter(e => e.type === t.id).length;
     h += '<div class="tcard"><label class="field">콘텐츠 이름<input class="in" id="tn-' + esc(t.id) + '" data-f="tName" data-id="' + esc(t.id) + '" value="' + esc(t.name) + '" maxlength="30"></label><div class="fgrid" style="margin-top:10px">' +
@@ -1473,8 +1549,10 @@ function rulesPage() {
   if (mode === 'local' || mode === 'fbadmin') {
     h += '<div class="card"><h2 class="card-h">' + (mode === 'fbadmin' ? '백업' : '백업 (다른 기기로 옮기기)') + '</h2><p class="card-sub">' + (mode === 'fbadmin' ? '점수판 전체를 파일로 내려받아 보관할 수 있어요. 그 파일을 불러오면 모든 연맹원이 보는 점수판이 파일 내용으로 바뀌니 조심해서 쓰세요.' : '이 주소에서는 기록이 지금 쓰는 브라우저에만 저장돼요. 백업 파일을 내보낸 뒤 다른 기기에서 불러오면 그대로 옮겨져요.') + '</p><div class="acts" style="margin:0"><button class="btn" data-act="exportData">내보내기</button><label class="btn" for="importFile" tabindex="0" role="button" id="importLbl">불러오기</label><input type="file" id="importFile" accept=".json,application/json" hidden></div></div>';
   }
-  h += '<div class="card"><h2 class="card-h">시즌</h2><p class="card-sub">새 시즌은 기록만 비우고 연맹원과 규칙은 남겨요. 지우기 전에 순위에서 공지용 복사로 결과를 남겨 두세요.</p><div class="stack">' +
-    '<button class="btn danger" data-act="newSeason">' + (UI.armed === 'season' ? '한 번 더 누르면 기록 전체 삭제' : '새 시즌 시작') + '</button>' +
+  const ds = S.events.map(e => e.date).sort(), defName = ds.length ? (+ds[ds.length - 1].split('-')[1]) + '월 시즌' : '';
+  h += '<div class="card"><h2 class="card-h">시즌 마감</h2><p class="card-sub">지금 순위, 점수, 참여율, 보상 등급, 공식 추첨 기록을 지난 시즌으로 저장한 뒤 회차 기록을 비우고 새로 시작해요. 연맹원과 규칙은 그대로예요. 지난 시즌은 순위 화면의 지난 시즌에서 누구나 볼 수 있어요.</p><div class="stack">' +
+    '<input class="in" id="seasonName" maxlength="30" placeholder="시즌 이름 (예: 10월 시즌)" value="' + esc(UI.seasonName != null ? UI.seasonName : defName) + '" aria-label="시즌 이름">' +
+    '<button class="btn danger" data-act="closeSeason"' + (S.events.length ? '' : ' disabled') + '>' + (S.events.length ? (UI.armed === 'season' ? '한 번 더 누르면 마감하고 새로 시작' : '시즌 마감하고 새로 시작') : '마감할 기록이 없어요') + '</button>' +
     '<button class="btn" data-act="resetAll">' + (UI.armed === 'reset' ? '한 번 더 누르면 전부 삭제' : '연맹원과 기록 모두 지우기') + '</button></div></div>';
   return h;
 }
@@ -1525,7 +1603,7 @@ function myCardHTML(C) {
   const ru = rankUpCheck(x), up = ru.up;
   if (up && ru.fresh) UI.pendingConfetti = '.my-card';
   return '<div class="my-card' + (up && ru.fresh ? ' up' : '') + '"><span class="mc-label">내 순위</span><div class="mc-av">' + avatarInner(mid, x.m.name) + '</div><div class="mc-mid"><div class="mc-top"><b>' + esc(x.m.name) + '</b>' + dltHTML(mid) + '</div><div class="mc-sub">' + esc(sub) + (x.rate === null ? '' : ', 참여율 ' + x.rate + '%') + '</div>' +
-    (up ? '<div class="mc-up">지난번보다 ' + up + '계단 올랐어요!</div>' : goal ? '<div class="mc-goal">' + goal + '</div>' : '') + '</div><div class="mc-rank"><b>' + x.rank + '</b><span>위</span><small>' + fmt(x.pts) + '점</small></div></div>';
+    (up ? '<div class="mc-up">지난번보다 ' + up + '계단 올랐어요!</div>' : goal ? '<div class="mc-goal">' + goal + '</div>' : '') + '<div class="mc-acts"><button class="textbtn" data-act="myGraph">' + (UI.myGraph ? '그래프 닫기' : '내 기록 그래프') + '</button>' + (FB ? '<button class="textbtn" data-act="appeal">이의 신청</button>' : '') + '</div></div><div class="mc-rank"><b>' + x.rank + '</b><span>위</span><small>' + fmt(x.pts) + '점</small></div>' + (UI.myGraph ? '<div class="mc-graph">' + graphHTML(mid) + '</div>' : '') + '</div>';
 }
 function rankUpCheck(x) {
   try {
@@ -1592,6 +1670,231 @@ function confetti(el) {
   requestAnimationFrame(tick);
 }
 
+// ---------- history (admin change log) ----------
+let HIST = [], APPEALS = [], SEASONS = [];
+function hist(action, detail) {
+  if (mode === 'ro') return;
+  const e = { at:Date.now(), by:hostName() || '운영진', action:String(action).slice(0, 40), detail:String(detail || '').slice(0, 300) };
+  if (FB && mode === 'fbadmin') { FB.db.collection('history').add(e).catch(() => {}); return; }
+  S.history = [Object.assign({ id:uid() }, e)].concat(S.history || []).slice(0, 300);
+}
+function histField(f, id, b) {
+  const t = id ? typeOf(id) : null, m = id ? memOf(id) : null, tr = id ? S.tiers.find(x => x.id === id) : null, bo = t && b ? t.bonuses.find(x => x.id === b) : null;
+  switch (f) {
+    case 'title': return ['점수판 이름', S.title];
+    case 'tName': return t ? ['콘텐츠 이름', t.name] : null;
+    case 'tPts': return t ? [t.name + ' 참여 점수', t.pts] : null;
+    case 'tPen': return t ? [t.name + ' 무단 불참 감점', t.pen] : null;
+    case 'tExPen': return t ? [t.name + ' 사전 불참 감점', t.exPen] : null;
+    case 'tRate': return t ? [t.name + ' 참여율 반영', t.rate ? '켬' : '끔'] : null;
+    case 'bName': return bo ? ['보너스 이름', bo.name] : null;
+    case 'bPts': return bo ? [bo.name + ' 점수', bo.pts] : null;
+    case 'priority': return ['동점 비교 콘텐츠', (typeOf(S.priority) || {}).name || ''];
+    case 'tierName': return tr ? ['등급 이름', tr.name] : null;
+    case 'tierSlots': return tr ? [tr.name + ' 인원', tr.slots] : null;
+    case 'rMin': return ['보상 최소 참여율', S.reward.minRate + '%'];
+    case 'rNotice': return ['공지방 조건', S.reward.needNotice ? '켬' : '끔'];
+    case 'dRate': return ['강등 기준', S.demote.rate + '%'];
+    case 'dExcused': return ['사전 불참 계산', S.demote.excused === 'skip' ? '빼고 계산' : '불참으로 계산'];
+    case 'dTrial': return ['시범 운영', S.demote.trial ? '켬' : '끔'];
+    case 'memName': return m ? ['닉네임', m.name] : null;
+    case 'memNotice': return m ? [m.name + ' 공지방', m.notice ? '참여' : '미참여'] : null;
+  }
+  return null;
+}
+function historyPage() {
+  const L = (FB ? HIST : (S.history || [])).slice(0, 150);
+  let h = '<div class="card"><h2 class="card-h">변경 이력</h2><p class="card-sub">운영진만 볼 수 있어요. 누가 언제 무엇을 바꿨는지 최근 것부터 보여요.</p>';
+  if (!L.length) return h + '<p style="color:var(--muted);margin:0">아직 남은 이력이 없어요.</p></div>';
+  return h + '<ul class="hlist">' + L.map(x => '<li><div class="h-top"><span><b>' + esc(x.by || '운영진') + '</b> ' + esc(x.action) + '</span><span>' + whenFull(x.at) + '</span></div><div>' + esc(x.detail) + '</div></li>').join('') + '</ul></div>';
+}
+function fbRoleListeners() {
+  if (!FB) return;
+  (FB.roleUnsubs || []).forEach(u => { try { u(); } catch (e) {} });
+  FB.roleUnsubs = []; HIST = []; APPEALS = [];
+  if (!FB.user) return;
+  const db = FB.db;
+  if (FB.admin) {
+    FB.roleUnsubs.push(db.collection('history').orderBy('at', 'desc').limit(200).onSnapshot(snap => { HIST = snap.docs.map(d => Object.assign({ id:d.id }, d.data() || {})); softRender(); }, () => {}));
+    FB.roleUnsubs.push(db.collection('appeals').orderBy('createdAt', 'desc').limit(200).onSnapshot(snap => { APPEALS = snap.docs.map(apDoc); softRender(); }, () => {}));
+  } else {
+    FB.roleUnsubs.push(db.collection('appeals').where('uid', '==', FB.user.uid).onSnapshot(snap => { APPEALS = snap.docs.map(apDoc).sort((a, b) => b.at - a.at); softRender(); }, () => {}));
+  }
+}
+
+// ---------- my record graph ----------
+let SERIES = { key:null, data:null };
+function seriesAll() {
+  if (SERIES.key === S.updated + ':' + S.events.length && SERIES.data) return SERIES.data;
+  const dates = [...new Set(S.events.map(e => e.date))].sort(), data = {};
+  S.members.forEach(m => { data[m.id] = []; });
+  dates.forEach(d => { compute(null, d).xs.forEach(x => { if (data[x.m.id] && x.hist.length) data[x.m.id].push({ d, pts:x.pts, rank:x.rank }); }); });
+  SERIES = { key:S.updated + ':' + S.events.length, data };
+  return data;
+}
+function graphHTML(mid) {
+  const ser = seriesAll()[mid] || [];
+  if (ser.length < 2) return '<p class="gr-empty">기록이 두 번 이상 쌓이면 점수와 순위 그래프가 보여요.</p>';
+  const W = 300, H = 56, pad = 6;
+  const pts = (vals, high) => { const mn = Math.min.apply(null, vals), mx = Math.max.apply(null, vals), rg = mx - mn || 1; return vals.map((v, i) => { const x = pad + i * (W - 2 * pad) / (vals.length - 1); const n = (v - mn) / rg; return x.toFixed(1) + ',' + (pad + (high ? 1 - n : n) * (H - 2 * pad)).toFixed(1); }).join(' '); };
+  const last = ser[ser.length - 1];
+  return '<div class="gr"><div class="gr-h"><span>점수</span><b>' + fmt(last.pts) + '점</b></div><svg class="gr-svg" viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none" aria-hidden="true"><polyline class="gr-l pts" points="' + pts(ser.map(x => x.pts), true) + '"/></svg>' +
+    '<div class="gr-h"><span>순위 (위쪽이 높은 순위)</span><b>' + last.rank + '위</b></div><svg class="gr-svg" viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none" aria-hidden="true"><polyline class="gr-l rk" points="' + pts(ser.map(x => x.rank), false) + '"/></svg>' +
+    '<div class="gr-x"><span>' + md(ser[0].d) + '</span><span>' + md(last.d) + '</span></div></div>';
+}
+
+// ---------- schedules ----------
+const WD = ['일', '월', '화', '수', '목', '금', '토'];
+const everyText = n => n === 1 ? '매주' : n === 2 ? '격주' : n + '주마다';
+function nextOcc(sc, now) {
+  const dp = sc.date.split('-').map(Number), tp = sc.time.split(':').map(Number);
+  let t = new Date(dp[0], dp[1] - 1, dp[2], tp[0], tp[1]).getTime();
+  if (!sc.every) return t >= now ? t : null;
+  const P = sc.every * 7 * 86400000;
+  if (t < now) t += Math.ceil((now - t) / P) * P;
+  return t;
+}
+function upcoming(limit) {
+  const now = Date.now();
+  return S.schedules.map(sc => ({ sc, t:nextOcc(sc, now) })).filter(x => x.t != null).sort((a, b) => a.t - b.t).slice(0, limit || 3);
+}
+function leftText(t) {
+  const m = Math.round((t - Date.now()) / 60000);
+  if (m <= 1) return '곧 시작';
+  if (m < 60) return m + '분 남음';
+  const h = Math.floor(m / 60), d = Math.floor(h / 24);
+  if (d >= 1) return d + '일 ' + (h % 24) + '시간 남음';
+  return h + '시간 ' + (m % 60) + '분 남음';
+}
+function whenSched(t) { const d = new Date(t); return (d.getMonth() + 1) + '/' + d.getDate() + '(' + WD[d.getDay()] + ') ' + String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0'); }
+function scheduleCardHTML() {
+  const up = upcoming(3);
+  if (!up.length) return '';
+  return '<div class="sched"><div class="sched-h">' + ICON.cal + '다음 일정</div>' + up.map((x, i) =>
+    '<div class="sc-row' + (i ? '' : ' first') + '"><div class="sc-main"><b>' + esc(x.sc.title || typeName(x.sc.type)) + '</b><span>' + whenSched(x.t) + (x.sc.every ? ', ' + everyText(x.sc.every) : '') + '</span></div><div class="sc-left">' + leftText(x.t) + '</div>' +
+    (x.sc.type && typeOf(x.sc.type) && canReport() ? '<button class="pill-btn sc-abs" data-act="schedAbs" data-id="' + esc(x.sc.id) + '" data-t="' + x.t + '">이 일정 불참 신고</button>' : '') + '</div>').join('') + '</div>';
+}
+function scheduleSettingsHTML() {
+  const f = UI.sf || {};
+  const rep = f.rep || '0', date = f.date || today(), time = f.time || '21:00';
+  let h = '<div class="card"><h2 class="card-h">일정</h2><p class="card-sub">순위 화면 위에 다가오는 일정이 남은 시간과 함께 보여요. 콘텐츠를 고르면 그 일정으로 바로 불참 신고를 할 수 있어요.</p>';
+  if (S.schedules.length) h += '<ul class="hlist" style="margin-bottom:12px">' + S.schedules.map(sc => { const nx = nextOcc(sc, Date.now()); return '<li style="display:flex;justify-content:space-between;align-items:center;gap:8px"><div><b>' + esc(sc.title || typeName(sc.type)) + '</b><div style="font-size:.85rem;color:var(--muted)">' + (sc.every ? everyText(sc.every) + ', ' : '') + (nx ? '다음 ' + whenSched(nx) : '지난 일정') + '</div></div><button class="del" data-act="schedDel" data-id="' + esc(sc.id) + '">' + (UI.armed === 'sch:' + sc.id ? '한 번 더' : '삭제') + '</button></li>'; }).join('') + '</ul>';
+  h += '<div class="stack"><div class="fgrid"><label class="field">제목<input class="in" data-sf="title" maxlength="30" value="' + esc(f.title || '') + '" placeholder="비우면 콘텐츠 이름"></label>' +
+    '<label class="field">콘텐츠<select class="in" data-sf="type"><option value="">없음</option>' + S.types.map(t => '<option value="' + esc(t.id) + '"' + ((f.type == null ? S.priority : f.type) === t.id ? ' selected' : '') + '>' + esc(t.name) + '</option>').join('') + '</select></label>' +
+    '<label class="field">날짜<input class="in" type="date" data-sf="date" value="' + esc(date) + '"></label>' +
+    '<label class="field">시간<input class="in" type="time" data-sf="time" value="' + esc(time) + '"></label></div>' +
+    '<div class="sf-weeks"><button class="pill-btn" data-act="sfWeeks" data-v="0">오늘</button><button class="pill-btn" data-act="sfWeeks" data-v="1">1주 뒤</button><button class="pill-btn" data-act="sfWeeks" data-v="2">2주 뒤</button><button class="pill-btn" data-act="sfWeeks" data-v="3">3주 뒤</button><button class="pill-btn" data-act="sfWeeks" data-v="4">4주 뒤</button></div>' +
+    '<div class="line">반복<select class="in" data-sf="rep" aria-label="반복"><option value="0"' + (rep === '0' ? ' selected' : '') + '>반복 안 함</option><option value="1"' + (rep === '1' ? ' selected' : '') + '>매주</option><option value="2"' + (rep === '2' ? ' selected' : '') + '>격주</option><option value="n"' + (rep === 'n' ? ' selected' : '') + '>몇 주마다</option></select>' +
+    (rep === 'n' ? '<input class="in num" type="number" min="3" max="12" data-sf="n" value="' + esc(f.n || '3') + '" aria-label="몇 주마다">주마다' : '') + '</div>' +
+    '<button class="btn" data-act="schedAdd">일정 추가</button></div></div>';
+  return h;
+}
+function addSchedule() {
+  const f = UI.sf || {}, type = f.type == null ? S.priority : f.type, date = f.date || today(), time = /^\d{2}:\d{2}$/.test(f.time || '') ? f.time : '21:00';
+  const every = f.rep === '1' ? 1 : f.rep === '2' ? 2 : f.rep === 'n' ? clampInt(f.n, 3, 12, 3) : 0;
+  if (!isDate(date)) { UI.msg = '날짜를 골라 주세요.'; render(); return; }
+  const sc = { id:uid(), title:String(f.title || '').trim().slice(0, 30), type:typeOf(type) ? type : '', date, time, every };
+  S.schedules.push(sc); hist('일정 추가', (sc.title || typeName(sc.type)) + ' ' + date + ' ' + time + (every ? ' ' + everyText(every) : ''));
+  UI.sf = { type:f.type, time, rep:f.rep, n:f.n }; UI.msg = '일정을 추가했어요.'; changed();
+}
+setInterval(() => { if (UI.tab === 'rank' && !UI.wiz && !UI.sheet && !STAGE && !focusedField() && S.schedules.length) render(); }, 60000);
+
+// ---------- seasons ----------
+function seasonList() { return FB ? SEASONS : (S.seasons || []); }
+async function closeSeason() {
+  const name = String((document.getElementById('seasonName') || {}).value || UI.seasonName || '').trim().slice(0, 30) || '이름 없는 시즌';
+  const C = compute(), ds = S.events.map(e => e.date).sort();
+  const rows = C.rows.map(x => ({ rank:x.rank, name:x.m.name, pts:x.pts, rate:x.rate, tier:x.tier === 'pending' ? '동점 대기' : (x.tier ? tierName(x.tier) : ''), ti:x.tier && x.tier !== 'pending' ? tierIdx(x.tier) : -1, out:x.reasons.join(', '), below:!!x.below }));
+  const doc = { name, at:Date.now(), from:ds[0] || '', to:ds[ds.length - 1] || '', counts:seasonCounts(), tiers:S.tiers.map(t => ({ name:t.name, slots:t.slots })), demote:{ rate:S.demote.rate, trial:S.demote.trial }, rows, draws:(S.drawLog || []).slice(0, 50).map(d => ({ title:d.title, summary:d.summary, at:d.at })) };
+  if (FB) {
+    try { await FB.db.collection('seasons').add(doc); }
+    catch (e) { UI.msg = '시즌을 저장하지 못해서 기록을 지우지 않았어요. 규칙에 seasons 부분이 있는지 확인해 주세요.'; render(); return; }
+  } else S.seasons = [Object.assign({ id:uid() }, doc)].concat(S.seasons || []).slice(0, 30);
+  hist('시즌 마감', name + ' (' + seasonCounts() + ')');
+  S.events = []; S.draws = {}; S.drawLog = []; UI.seasonName = null;
+  UI.msg = name + '을 저장하고 새 시즌을 시작했어요. 순위 화면의 지난 시즌에서 볼 수 있어요.';
+  changed();
+}
+function deleteSeason(id) {
+  const ss = seasonList().find(x => x.id === id); if (ss) hist('지난 시즌 삭제', ss.name);
+  if (FB) { FB.db.collection('seasons').doc(id).delete().then(() => { UI.seasonId = null; render(); }).catch(() => { UI.msg = '지우지 못했어요.'; render(); }); return; }
+  S.seasons = (S.seasons || []).filter(x => x.id !== id); UI.seasonId = null; changed();
+}
+function seasonsSheet() {
+  const L = seasonList(), cur = UI.seasonId ? L.find(x => x.id === UI.seasonId) : null;
+  let h = '<div class="overlay" role="dialog" aria-modal="true" aria-labelledby="ssT"><div class="sheet">';
+  if (!cur) {
+    h += '<h2 class="sheet-title" id="ssT">지난 시즌</h2>';
+    h += L.length ? '<ul class="ss-list">' + L.map(x => { const top = (x.rows || []).filter(r => r.ti === 0).slice(0, 3).map(r => r.name).join(', '); return '<li><button class="ss-btn" data-act="seasonOpen" data-id="' + esc(x.id) + '"><div><b>' + esc(x.name) + '</b><span>' + (x.from ? md(x.from) + ' ~ ' + md(x.to) + ', ' : '') + esc(x.counts || '') + (top ? '. ' + esc(x.tiers && x.tiers[0] ? x.tiers[0].name : '') + ': ' + esc(top) + (((x.rows || []).filter(r => r.ti === 0).length > 3) ? ' 외' : '') : '') + '</span></div><span class="chev">' + ICON.chev + '</span></button></li>'; }).join('') + '</ul>'
+      : '<p style="color:var(--muted);margin-top:8px">아직 마감한 시즌이 없어요. 운영진이 시즌을 마감하면 여기에 순위가 남아요.</p>';
+    return h + '<div class="sheet-actions"><button class="btn primary" data-act="closeSheet">닫기</button></div></div></div>';
+  }
+  h += '<h2 class="sheet-title" id="ssT">' + esc(cur.name) + '</h2><p style="color:var(--muted)">' + (cur.from ? md(cur.from) + ' ~ ' + md(cur.to) + ', ' : '') + esc(cur.counts || '') + ' 집계</p>';
+  const rows = cur.rows || [], tiers = cur.tiers || [];
+  const row = r => '<div class="ss-row"><span class="r">' + r.rank + '</span><span>' + esc(r.name) + (r.out ? ' <small style="color:var(--muted)">(' + esc(r.out) + ')</small>' : '') + '</span><span class="p">' + fmt(r.pts) + '점</span></div>';
+  tiers.forEach((t, k) => { const rs = rows.filter(r => r.ti === k); if (rs.length) h += '<div class="ss-group tier tier-' + (k % 6) + '"><h3 style="color:var(--tt)">' + esc(t.name) + ' 보상 ' + rs.length + '명</h3>' + rs.map(row).join('') + '</div>'; });
+  const pend = rows.filter(r => r.tier === '동점 대기'); if (pend.length) h += '<div class="ss-group"><h3>동점 추첨 대기</h3>' + pend.map(row).join('') + '</div>';
+  const rest = rows.filter(r => r.ti < 0 && r.tier !== '동점 대기' && !r.out); if (rest.length) h += '<div class="ss-group"><h3>그 외 순위</h3>' + rest.map(row).join('') + '</div>';
+  const out = rows.filter(r => r.ti < 0 && r.out); if (out.length) h += '<div class="ss-group"><h3>보상 제외</h3>' + out.map(row).join('') + '</div>';
+  const below = rows.filter(r => r.below); if (below.length) h += '<div class="ss-group"><h3 style="color:var(--red)">참여율 ' + (cur.demote ? cur.demote.rate : '') + '% 미만' + (cur.demote && cur.demote.trial ? ' (시범 운영)' : '') + '</h3>' + below.map(r => '<div class="ss-row"><span class="r">' + r.rank + '</span><span>' + esc(r.name) + '</span><span class="p">' + (r.rate == null ? '-' : r.rate + '%') + '</span></div>').join('') + '</div>';
+  if ((cur.draws || []).length) h += '<div class="ss-group"><h3>공식 추첨</h3>' + cur.draws.map(d => '<div class="ss-row" style="grid-template-columns:1fr"><span><b>' + esc(d.title) + '</b> ' + esc(d.summary) + '</span></div>').join('') + '</div>';
+  return h + '<div class="sheet-actions">' + (mode !== 'ro' ? '<button class="btn danger" data-act="seasonDel" data-id="' + esc(cur.id) + '">' + (UI.armed === 'ssd:' + cur.id ? '한 번 더 누르면 삭제' : '이 시즌 삭제') + '</button>' : '') + '<button class="btn" data-act="seasonBack">목록</button><button class="btn primary" data-act="closeSheet">닫기</button></div></div></div>';
+}
+
+// ---------- appeals (member -> admins) ----------
+const AP_ST = { open:'검토 중', done:'반영됨', rejected:'반려됨' };
+function apDoc(d) { const x = d.data() || {}; return { id:d.id, uid:x.uid, memberId:x.memberId, name:x.name || '', eventLabel:x.eventLabel || '', text:x.text || '', status:x.status || 'open', reply:x.reply || '', repliedBy:x.repliedBy || '', at:(x.createdAt && x.createdAt.toMillis) ? x.createdAt.toMillis() : Date.now() }; }
+const openAppeals = () => FB && FB.admin ? APPEALS.filter(a => a.status === 'open').length : 0;
+function appealsNoticeHTML() { const n = openAppeals(); return n ? '<div class="note demo"><span>처리할 이의 신청이 <b>' + n + '건</b> 있어요.</span><button class="btn" data-act="gotoAppeals">보러 가기</button></div>' : ''; }
+function myEventsForAppeal(mid) {
+  const m = memOf(mid); if (!m) return [];
+  return sortedEvents().filter(e => eligibleFor(m, e.date)).reverse().slice(0, 40).map(e => {
+    const t = typeOf(e.type), s0 = e.st[mid] || 'ab';
+    return { id:e.id, label:md(e.date) + ' ' + t.name + ', ' + ST[s0] };
+  });
+}
+function appealSheet() {
+  const mid = myMember(), f = UI.ap || {};
+  let h = '<div class="overlay" role="dialog" aria-modal="true" aria-labelledby="apT"><div class="sheet" style="max-width:480px"><h2 class="sheet-title" id="apT">이의 신청</h2><p style="color:var(--muted)">내 기록 중 잘못된 회차가 있으면 알려 주세요. 나와 운영진만 볼 수 있어요.</p>';
+  if (!mid) h += '<p class="abs-info err" style="margin-top:12px">내 프로필에서 닉네임을 먼저 연결해 주세요.</p>';
+  else {
+    const evs = myEventsForAppeal(mid);
+    h += '<div class="abs-form"><label class="field">회차<select class="in" data-ap="event"><option value="">회차를 골라 주세요</option>' + evs.map(e => '<option value="' + esc(e.id) + '"' + (f.event === e.id ? ' selected' : '') + '>' + esc(e.label) + '</option>').join('') + '</select></label>' +
+      '<label class="field">내용<textarea class="in" data-ap="text" rows="3" maxlength="500" placeholder="예: 이날 참여했는데 무단 불참으로 돼 있어요">' + esc(f.text || '') + '</textarea></label>' +
+      (UI.apInfo ? '<p class="abs-info ' + UI.apInfo.kind + '" role="status">' + esc(UI.apInfo.text) + '</p>' : '') +
+      '<button class="btn primary" data-act="apSubmit"' + (UI.apBusy ? ' disabled' : '') + '>' + (UI.apBusy ? '보내는 중...' : '보내기') + '</button></div>';
+    const mine = APPEALS.filter(a => FB.user && a.uid === FB.user.uid);
+    h += '<h3 class="abs-h">내 이의 신청</h3>' + (mine.length ? mine.map(a => '<div class="ap"><div class="ap-top"><span class="ap-ev">' + esc(a.eventLabel) + ', ' + whenFull(a.at) + '</span><span class="ap-st ' + a.status + '">' + AP_ST[a.status] + '</span></div><div class="ap-text">' + esc(a.text) + '</div>' + (a.reply ? '<div class="ap-reply"><b>운영진 답변</b> ' + esc(a.reply) + '</div>' : '') + '</div>').join('') : '<p style="color:var(--muted);margin:6px 0 0">아직 보낸 이의 신청이 없어요.</p>');
+  }
+  return h + '<div class="sheet-actions"><button class="btn" data-act="closeSheet">닫기</button></div></div></div>';
+}
+function submitAppeal() {
+  const mid = myMember(), f = UI.ap || {}, m = memOf(mid);
+  if (!FB || !FB.user || !m) return;
+  const ev = myEventsForAppeal(mid).find(e => e.id === f.event), text = String(f.text || '').trim().slice(0, 500);
+  if (!ev) { UI.apInfo = { kind:'err', text:'회차를 골라 주세요.' }; render(); return; }
+  if (!text) { UI.apInfo = { kind:'err', text:'내용을 적어 주세요.' }; render(); return; }
+  UI.apBusy = true; UI.apInfo = null; render();
+  FB.db.collection('appeals').add({ uid:FB.user.uid, memberId:mid, name:m.name, eventId:ev.id, eventLabel:ev.label, text, status:'open', reply:'', createdAt:firebase.firestore.FieldValue.serverTimestamp() })
+    .then(() => { UI.apBusy = false; UI.ap = { event:'', text:'' }; UI.apInfo = { kind:'ok', text:'이의 신청을 보냈어요. 운영진이 확인하면 여기에 답변이 보여요.' }; render(); })
+    .catch(() => { UI.apBusy = false; UI.apInfo = { kind:'err', text:'보내지 못했어요. 잠시 뒤에 다시 해 주세요.' }; render(); });
+}
+function appealsPage() {
+  const L = APPEALS.slice().sort((a, b) => (a.status === 'open' ? 0 : 1) - (b.status === 'open' ? 0 : 1) || b.at - a.at);
+  let h = '<div class="card"><h2 class="card-h">이의 신청</h2><p class="card-sub">연맹원이 자기 기록에 대해 보낸 이의 신청이에요. 신청한 본인과 운영진만 볼 수 있어요. 기록을 고쳐야 하면 회차 기록에서 고친 뒤 반영함을 눌러 주세요.</p>';
+  if (!L.length) return h + '<p style="color:var(--muted);margin:0">아직 들어온 이의 신청이 없어요.</p></div>';
+  return h + L.map(a => '<div class="ap"><div class="ap-top"><b>' + esc(a.name) + '</b><span class="ap-st ' + a.status + '">' + AP_ST[a.status] + '</span></div><div class="ap-ev">' + esc(a.eventLabel) + ', ' + whenFull(a.at) + '</div><div class="ap-text">' + esc(a.text) + '</div>' +
+    (a.status === 'open' ? '<textarea class="in" id="apr-' + esc(a.id) + '" rows="2" maxlength="300" placeholder="답변 (선택)"></textarea><div class="ap-acts"><button class="btn primary" data-act="apResolve" data-id="' + esc(a.id) + '" data-v="done">반영함</button><button class="btn" data-act="apResolve" data-id="' + esc(a.id) + '" data-v="rejected">반려</button></div>'
+      : (a.reply ? '<div class="ap-reply"><b>답변</b> ' + esc(a.reply) + (a.repliedBy ? ' (' + esc(a.repliedBy) + ')' : '') + '</div>' : '') + '<div class="ap-acts"><button class="del" data-act="apDel" data-id="' + esc(a.id) + '">' + (UI.armed === 'apd:' + a.id ? '한 번 더 누르면 삭제' : '삭제') + '</button></div>') + '</div>').join('') + '</div>';
+}
+function resolveAppeal(id, st) {
+  if (!FB || mode !== 'fbadmin') return;
+  const a = APPEALS.find(x => x.id === id), reply = String((document.getElementById('apr-' + id) || {}).value || '').trim().slice(0, 300);
+  FB.db.collection('appeals').doc(id).update({ status:st === 'done' ? 'done' : 'rejected', reply, repliedAt:Date.now(), repliedBy:hostName() || '운영진' })
+    .then(() => { if (a) hist('이의 신청 ' + (st === 'done' ? '반영' : '반려'), a.name + ' ' + a.eventLabel); UI.msg = '이의 신청을 처리했어요.'; render(); })
+    .catch(() => { UI.msg = '처리하지 못했어요.'; render(); });
+}
+
 // ---------- notice popup / absence reports / image ----------
 const NOTICE_KEY = 'guild-scoreboard-notice-seen';
 const typeName = id => { const t = typeOf(id); return t ? t.name : '삭제된 콘텐츠'; };
@@ -1650,6 +1953,7 @@ function submitAbsence() {
   }
 }
 function deleteAbsence(id) {
+  { const a = absList().find(x => x.id === id); if (a) hist('불참 신고 삭제', a.name + ' ' + md(a.date) + ' ' + typeName(a.type)); }
   if (FB) { FB.db.collection('absences').doc(id).delete().then(() => { UI.msg = '불참 신고를 지웠어요.'; render(); }).catch(() => { UI.msg = '지우지 못했어요. 관리자로 로그인했는지 확인해 주세요.'; render(); }); return; }
   S.absences = (S.absences || []).filter(a => a.id !== id); changed();
 }
@@ -1815,6 +2119,7 @@ function logRun(run) {
     summary = '당첨: ' + run.order.slice(0, run.N).map(i => run.entries[i].name).join(', ');
     if (run.sim) summary += ' (' + (run.rule === 'last' ? '마지막 도착' : '먼저 도착') + ')';
   }
+  hist('공식 추첨', run.title + ' (' + toolName(run.tool) + ')');
   const item = { id:uid(), at:Date.now(), by:hostName(), tool:run.tool, title:run.title, entries:names, summary, tieKey:run.kind === 'tie' ? run.tieKey : '' };
   S.drawLog = [item].concat(S.drawLog || []).slice(0, 100);
   if (run.kind === 'tie') S.draws[run.tieKey] = { order:run.order.map(i => run.ids[i]), at:item.at, tool:run.tool };
@@ -2650,6 +2955,7 @@ function addMembers() {
   let added = 0;
   for (const n of names) { if (existing.has(n)) continue; existing.add(n); S.members.push({ id:uid(), name:n, notice:true }); added++; }
   UI.draft = '';
+  if (added) hist('연맹원 추가', names.filter((n, i) => i < 20).join(', ') + (names.length > 20 ? ' 외' : ''));
   UI.msg = added + '명을 추가했어요.' + (added < names.length ? ' 이미 있는 닉네임 ' + (names.length - added) + '개는 건너뛰었어요.' : '');
   changed();
 }
@@ -2659,7 +2965,7 @@ app.addEventListener('click', e => {
   const b = e.target.closest('[data-act]');
   if (!b || b.disabled) return;
   const act = b.dataset.act, id = b.dataset.id, w = UI.wiz;
-  if (mode === 'ro' && !['open','copy','closeCopy','closeMsg','rules','closeSheet','jump','guideOpen','guideNext','guidePrev','guideGo','guideClose','login','doLogin','logout','noticeOk','absence','absSubmit','tab','rTool','rPick','rAll','rNone','rAdd','rDel','rN','rRule','rStart','profile','googleLogin','copyLink','pfLink','pfUnlink','pfPhotoDel','grpToggle'].includes(act)) return;
+  if (mode === 'ro' && !['open','copy','closeCopy','closeMsg','rules','closeSheet','jump','guideOpen','guideNext','guidePrev','guideGo','guideClose','login','doLogin','logout','noticeOk','absence','absSubmit','tab','rTool','rPick','rAll','rNone','rAdd','rDel','rN','rRule','rStart','profile','googleLogin','copyLink','pfLink','pfUnlink','pfPhotoDel','grpToggle','seasons','seasonOpen','seasonBack','myGraph','appeal','apSubmit','schedAbs'].includes(act)) return;
   switch (act) {
     case 'tab': case 'goto':
       if (mode === 'ro' && !['rank','random'].includes(b.dataset.v)) return;
@@ -2710,10 +3016,12 @@ app.addEventListener('click', e => {
     case 'wizDelete':
       if (!w || !w.eid) return;
       if (!arm('wdel')) return;
+      { const de = evOf(w.eid); if (de) hist('회차 삭제', md(de.date) + ' ' + typeName(de.type)); }
       S.events = S.events.filter(x => x.id !== w.eid); UI.wiz = null; UI.msg = '기록을 삭제했어요.'; changed(); if (mode === 'shared') schedule(800); break;
     case 'addMembers': addMembers(); break;
     case 'delMember':
       if (!arm('mem:' + id)) return;
+      hist('연맹원 삭제', nameOf(id));
       S.members = S.members.filter(m => m.id !== id);
       if (FB && PROF.links[id]) FB.db.collection('links').doc(id).delete().catch(() => {});
       S.events.forEach(x => { delete x.st[id]; Object.keys(x.bonus).forEach(k => { x.bonus[k] = x.bonus[k].filter(y => y !== id); if (!x.bonus[k].length) delete x.bonus[k]; }); });
@@ -2727,7 +3035,7 @@ app.addEventListener('click', e => {
       if (S.priority === id) S.priority = S.types[0].id;
       changed(); break;
     case 'newSeason': if (!arm('season')) return; S.events = []; S.draws = {}; S.drawLog = []; UI.msg = '새 시즌을 시작했어요.'; changed(); break;
-    case 'resetAll': if (!arm('reset')) return; wipeData(); S.drawLog = []; S.demo = false; UI.msg = '연맹원과 기록을 모두 지웠어요.'; changed(); break;
+    case 'resetAll': if (UI.armed === 'reset') hist('전체 삭제', '연맹원과 기록 모두 지우기'); if (!arm('reset')) return; wipeData(); S.drawLog = []; S.demo = false; UI.msg = '연맹원과 기록을 모두 지웠어요.'; changed(); break;
     case 'clearDemo': if (!arm('demo')) return; wipeData(); S.demo = false; UI.tab = 'manage'; UI.mseg = 'members'; UI.msg = '예시를 지웠어요. 연맹원부터 추가하고, 보상 등급 인원은 규칙과 설정에서 실제에 맞게 바꿔 주세요.'; changed(); break;
     case 'openLadder': openLadder(b.dataset.key); break;
     case 'runLadder': runLadder(); break;
@@ -2745,6 +3053,7 @@ app.addEventListener('click', e => {
       if (mode === 'ro' || !arm('dl:' + id)) return;
       const x = (S.drawLog || []).find(y => y.id === id); if (!x) return;
       if (x.tieKey && S.draws[x.tieKey] && S.draws[x.tieKey].at === x.at) delete S.draws[x.tieKey]; // tie result goes back to undrawn
+      hist('추첨 기록 삭제', x.title);
       S.drawLog = S.drawLog.filter(y => y.id !== id); UI.msg = '공식 추첨 기록을 삭제했어요.'; changed(); break;
     }
     case 'absDel': { if (mode === 'ro') return; if (!arm('abs:' + id)) return; deleteAbsence(id); break; }
@@ -2759,6 +3068,30 @@ app.addEventListener('click', e => {
     case 'rRule': UI.rnd.rule = b.dataset.v === 'last' ? 'last' : 'first'; render(); break;
     case 'rStart': startRandom(); break;
     case 'tieDraw': UI.tieKey = b.dataset.key; UI.sheet = 'tieTool'; render(); break;
+    case 'seasons': UI.sheet = 'seasons'; UI.seasonId = null; render(); break;
+    case 'seasonOpen': UI.seasonId = id; render(); break;
+    case 'seasonBack': UI.seasonId = null; render(); break;
+    case 'seasonDel': if (mode === 'ro' || !arm('ssd:' + id)) return; deleteSeason(id); break;
+    case 'closeSeason': if (!arm('season')) return; closeSeason(); break;
+    case 'gotoAppeals': UI.tab = 'manage'; UI.mseg = 'appeals'; UI.msg = null; render(); window.scrollTo(0, 0); break;
+    case 'myGraph': UI.myGraph = !UI.myGraph; render(); break;
+    case 'appeal': UI.sheet = 'appeal'; UI.apInfo = null; if (!UI.ap) UI.ap = { event:'', text:'' }; render(); break;
+    case 'apSubmit': submitAppeal(); break;
+    case 'apResolve': resolveAppeal(id, b.dataset.v); break;
+    case 'apDel': if (mode === 'ro' || !arm('apd:' + id)) return; FB.db.collection('appeals').doc(id).delete().then(() => { UI.msg = '이의 신청을 지웠어요.'; render(); }).catch(() => {}); break;
+    case 'schedAdd': addSchedule(); break;
+    case 'schedDel': { if (mode === 'ro' || !arm('sch:' + id)) return; const sc = S.schedules.find(x => x.id === id); if (sc) hist('일정 삭제', sc.title || typeName(sc.type)); S.schedules = S.schedules.filter(x => x.id !== id); changed(); break; }
+    case 'sfWeeks': UI.sf = UI.sf || {}; UI.sf.date = addDays(today(), 7 * (+b.dataset.v)); render(); break;
+    case 'schedAbs': { const sc = S.schedules.find(x => x.id === id), d0 = new Date(+b.dataset.t); UI.af = { member:myMember() || '', type:sc ? sc.type : S.priority, date:d0.getFullYear() + '-' + String(d0.getMonth() + 1).padStart(2, '0') + '-' + String(d0.getDate()).padStart(2, '0'), note:'' }; UI.afInfo = null; UI.sheet = 'absence'; render(); break; }
+    case 'wizPrev': {
+      if (!w) return;
+      const prev = S.events.filter(e => e.type === w.type && e.id !== w.eid && e.date <= w.date).sort((a, b) => a.date < b.date ? 1 : a.date > b.date ? -1 : 0)[0];
+      if (!prev) return;
+      const ids = new Set(wizElig(w).map(m => m.id)), rp = reportedFor(w);
+      w.in = Object.keys(prev.st).filter(k => prev.st[k] === 'in' && ids.has(k) && !rp.includes(k));
+      w.note = md(prev.date) + ' ' + typeName(prev.type) + ' 참여자 ' + w.in.length + '명을 불러왔어요. 바뀐 사람만 고쳐 주세요.';
+      render(); break;
+    }
     case 'tieStart': startTie(UI.tieKey, b.dataset.v); break;
     case 'login': login(); break;
     case 'grpToggle': { const g = b.dataset.v; UI.col = UI.col.includes(g) ? UI.col.filter(x => x !== g) : UI.col.concat(g); try { localStorage.setItem('guild-scoreboard-collapsed', JSON.stringify(UI.col)); } catch (e) {} render(); break; }
@@ -2769,13 +3102,13 @@ app.addEventListener('click', e => {
     case 'pfUnlink': if (!arm('unlink')) return; pfUnlink(); break;
     case 'pfPhotoDel': savePhoto(''); break;
     case 'adminAdd': adminAdd(); break;
-    case 'adminDel': if (!FB || !FB.owner) return; if (!arm('adm:' + id)) return; FB.db.collection('admins').doc(id).delete().then(() => { UI.msg = '관리자를 해제했어요.'; render(); }).catch(() => { UI.msg = '해제하지 못했어요.'; render(); }); break;
-    case 'mUnlink': if (!FB || mode !== 'fbadmin') return; if (!arm('mul:' + id)) return; FB.db.collection('links').doc(id).delete().then(() => { UI.msg = nameOf(id) + ' 닉네임의 계정 연결을 풀었어요. 진짜 주인이 다시 연결하면 돼요.'; render(); }).catch(() => { UI.msg = '연결을 풀지 못했어요.'; render(); }); break;
-    case 'mPhotoDel': { if (!FB || mode !== 'fbadmin') return; const lu = PROF.links[id] && PROF.links[id].uid; if (!lu) return; if (!arm('mph:' + id)) return; FB.db.collection('profiles').doc(lu).update({ photo:'', updatedAt:Date.now() }).then(() => { UI.msg = nameOf(id) + '님의 사진을 지웠어요.'; render(); }).catch(() => { UI.msg = '사진을 지우지 못했어요.'; render(); }); break; }
+    case 'adminDel': if (UI.armed === 'adm:' + id) { const ad = ADMINS.find(a => a.uid === id); hist('관리자 해제', ad ? (ad.name || '') : ''); } if (!FB || !FB.owner) return; if (!arm('adm:' + id)) return; FB.db.collection('admins').doc(id).delete().then(() => { UI.msg = '관리자를 해제했어요.'; render(); }).catch(() => { UI.msg = '해제하지 못했어요.'; render(); }); break;
+    case 'mUnlink': if (UI.armed === 'mul:' + id) hist('계정 연결 해제', nameOf(id)); if (!FB || mode !== 'fbadmin') return; if (!arm('mul:' + id)) return; FB.db.collection('links').doc(id).delete().then(() => { UI.msg = nameOf(id) + ' 닉네임의 계정 연결을 풀었어요. 진짜 주인이 다시 연결하면 돼요.'; render(); }).catch(() => { UI.msg = '연결을 풀지 못했어요.'; render(); }); break;
+    case 'mPhotoDel': if (UI.armed === 'mph:' + id) hist('사진 삭제', nameOf(id)); { if (!FB || mode !== 'fbadmin') return; const lu = PROF.links[id] && PROF.links[id].uid; if (!lu) return; if (!arm('mph:' + id)) return; FB.db.collection('profiles').doc(lu).update({ photo:'', updatedAt:Date.now() }).then(() => { UI.msg = nameOf(id) + '님의 사진을 지웠어요.'; render(); }).catch(() => { UI.msg = '사진을 지우지 못했어요.'; render(); }); break; }
     case 'doLogin': doLogin(); break;
     case 'logout': logout(); break;
     case 'editNotice': UI.sheet = 'notice'; UI.focus = 'noticeText'; render(); break;
-    case 'saveNotice': { const ta = document.getElementById('noticeText'), nv = ta ? ta.value.trim().slice(0, 1000) : S.notice; if (nv !== S.notice) { S.notice = nv; S.noticeAt = Date.now(); try { localStorage.setItem(NOTICE_KEY, String(S.noticeAt)); } catch (e) {} } UI.sheet = null; UI.msg = S.notice ? '공지를 저장했어요. 연맹원이 다음에 열 때 팝업으로 한 번 보여요.' : '공지를 내렸어요.'; changed(); break; }
+    case 'saveNotice': hist('공지 수정', ((document.getElementById('noticeText') || {}).value || '공지 내림').slice(0, 60)); { const ta = document.getElementById('noticeText'), nv = ta ? ta.value.trim().slice(0, 1000) : S.notice; if (nv !== S.notice) { S.notice = nv; S.noticeAt = Date.now(); try { localStorage.setItem(NOTICE_KEY, String(S.noticeAt)); } catch (e) {} } UI.sheet = null; UI.msg = S.notice ? '공지를 저장했어요. 연맹원이 다음에 열 때 팝업으로 한 번 보여요.' : '공지를 내렸어요.'; changed(); break; }
     case 'addBonus': { const t = typeOf(id); if (!t) return; const bo = { id:uid(), name:'새 보너스', pts:5 }; t.bonuses.push(bo); UI.focus = 'bn-' + bo.id; changed(); break; }
     case 'delBonus': {
       const t = typeOf(id), bid = b.dataset.b; if (!t) return;
@@ -2801,6 +3134,8 @@ app.addEventListener('click', e => {
   }
 });
 app.addEventListener('change', e => {
+  if (e.target.dataset && e.target.dataset.sf) { UI.sf = UI.sf || {}; UI.sf[e.target.dataset.sf] = e.target.value; if (e.target.dataset.sf === 'rep') render(); return; }
+  if (e.target.dataset && e.target.dataset.ap) { UI.ap = UI.ap || {}; UI.ap[e.target.dataset.ap] = e.target.value; return; }
   if (e.target.id === 'pfFile') { pfPhoto(e.target.files && e.target.files[0]); e.target.value = ''; return; }
   if (e.target.id === 'importFile') { if (mode !== 'ro') importData(e.target); return; }
   if (e.target.dataset && e.target.dataset.af) { if (UI.af) UI.af[e.target.dataset.af] = e.target.value; return; }
@@ -2809,6 +3144,7 @@ app.addEventListener('change', e => {
   const el = e.target.closest('[data-f]');
   if (!el || mode === 'ro') return;
   const f = el.dataset.f, id = el.dataset.id, v = el.value;
+  const hb = histField(f, id, el.dataset.b);
   if (f === 'rOfficial') { UI.rnd.official = el.checked; render(); if (el.checked) UI.focus = 'rTitle'; return; }
   const t = id ? typeOf(id) : null, m = id ? memOf(id) : null;
   switch (f) {
@@ -2832,9 +3168,14 @@ app.addEventListener('change', e => {
     case 'memNotice': if (!m) return; m.notice = el.checked; break;
     default: return;
   }
+  { const ha = histField(f, id, el.dataset.b); if (hb && ha && String(hb[1]) !== String(ha[1])) hist('설정 변경', (['tName', 'bName', 'tierName', 'memName'].includes(f) ? hb[0] : ha[0]) + ': ' + hb[1] + ' → ' + ha[1]); }
   changed(false);
 });
-app.addEventListener('input', e => { if (e.target.id === 'rq') { UI.rq = e.target.value; const g = document.getElementById('rankGroups'); if (g) { const C = compute(); RD = rankDeltas(C); g.innerHTML = groupsHTML(C, mode === 'ro'); } return; } if (e.target.id === 'pfSearch') { UI.pfq = e.target.value; const ul = document.querySelector('.pick-list'); if (ul) ul.outerHTML = pickListHTML(); return; } if (e.target.id === 'rTitle') UI.rnd.title = e.target.value; if (e.target.id === 'rAddIn') UI.rnd.draft = e.target.value; if (e.target.id === 'addNames') UI.draft = e.target.value; if (e.target.dataset && e.target.dataset.af && UI.af) UI.af[e.target.dataset.af] = e.target.value; });
+app.addEventListener('input', e => {
+  if (e.target.id === 'wzq') { UI.wzq = e.target.value.trim(); app.querySelectorAll('.picks .pick').forEach(b => { b.hidden = !!UI.wzq && (b.dataset.name || '').indexOf(UI.wzq) < 0; }); return; }
+  if (e.target.id === 'seasonName') { UI.seasonName = e.target.value; return; }
+  if (e.target.dataset && e.target.dataset.sf) { UI.sf = UI.sf || {}; UI.sf[e.target.dataset.sf] = e.target.value; return; }
+  if (e.target.dataset && e.target.dataset.ap) { UI.ap = UI.ap || {}; UI.ap[e.target.dataset.ap] = e.target.value; return; } if (e.target.id === 'rq') { UI.rq = e.target.value; const g = document.getElementById('rankGroups'); if (g) { const C = compute(); RD = rankDeltas(C); g.innerHTML = groupsHTML(C, mode === 'ro'); } return; } if (e.target.id === 'pfSearch') { UI.pfq = e.target.value; const ul = document.querySelector('.pick-list'); if (ul) ul.outerHTML = pickListHTML(); return; } if (e.target.id === 'rTitle') UI.rnd.title = e.target.value; if (e.target.id === 'rAddIn') UI.rnd.draft = e.target.value; if (e.target.id === 'addNames') UI.draft = e.target.value; if (e.target.dataset && e.target.dataset.af && UI.af) UI.af[e.target.dataset.af] = e.target.value; });
 app.addEventListener('focusin', e => { if (e.target.id === 'copyBox') e.target.select(); });
 document.addEventListener('keydown', e => {
   if (e.key === 'Enter' && (e.target.id === 'lgPw' || e.target.id === 'lgEmail')) { e.preventDefault(); doLogin(); return; }
