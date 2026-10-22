@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>길드 점수판</title>
+<title>&lt;Z3RO&gt; No Mercy</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
@@ -533,6 +533,21 @@ details.adv .in{margin-top:8px;width:auto}
 @keyframes ptr-flick{0%{transform:translateX(-50%) rotate(-14deg)}100%{transform:translateX(-50%) rotate(0)}}
 .wheel-ptr.flick{animation:ptr-flick .12s ease-out}
 
+/* roulette name box, reverse ladder */
+.wheel-now{margin-top:12px;min-width:200px;text-align:center;background:var(--gold-soft);border:2px solid var(--gold-fill);border-radius:12px;padding:6px 14px 8px}
+.wheel-now small{display:block;font-size:.75rem;font-weight:700;color:var(--gold)}
+.wheel-now .wn{display:flex;align-items:center;justify-content:center;gap:8px;min-height:34px}
+.wheel-now .wn b{font-family:var(--display);font-weight:400;font-size:1.5rem;line-height:1.1;color:var(--ink)}
+.wheel-now .wn img,.wheel-now .wn i{width:28px;height:28px;border-radius:50%;object-fit:cover;flex:none}
+.lslots{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin:0 0 10px}
+.lslots .pill-btn:disabled{opacity:.6;cursor:default}
+.lslot{cursor:pointer}
+.lslot rect{fill:var(--gold-fill)}
+.lslot text{fill:#2B1E00;font:700 12px var(--body)}
+.lslot.done{cursor:default;opacity:.55}
+.ltop{color:var(--muted)}
+.ltop-box{fill:var(--gold)}
+
 /* tiers */
 .tier-0{--tf:var(--gold-fill);--ts:var(--gold-soft);--tt:var(--gold);--tfo:#2B1E00;--th:#F7C553}
 .tier-1{--tf:var(--blue-fill);--ts:var(--blue-soft);--tt:var(--blue);--tfo:#fff;--th:#A3C0FF}
@@ -643,7 +658,7 @@ details.adv .in{margin-top:8px;width:auto}
 </head>
 <body>
 <div id="app"></div>
-<script type="application/json" id="state">{"v":2,"title":"길드 점수판","demo":true,"types":[{"id":"t1","name":"메인전쟁","pts":20,"pen":5,"rate":true,"bonuses":[{"id":"b1","name":"상자 풀오픈","pts":5},{"id":"b2","name":"포인트 TOP20","pts":10},{"id":"b3","name":"포인트 TOP21~40","pts":5}],"exPen":2},{"id":"t2","name":"상회","pts":10,"pen":0,"rate":true,"bonuses":[],"exPen":0}],"priority":"t1","members":[{"id":"m1","name":"갱스터","notice":true},{"id":"m2","name":"가을","notice":true},{"id":"m3","name":"하늘","notice":true},{"id":"m4","name":"철벽","notice":true},{"id":"m5","name":"새벽","notice":true},{"id":"m6","name":"별빛","notice":true},{"id":"m7","name":"바람돌이","notice":true},{"id":"m8","name":"호랑이","notice":true},{"id":"m9","name":"메롱","notice":true},{"id":"m10","name":"도토리","notice":false},{"id":"m11","name":"루나","notice":true},{"id":"m12","name":"은하수","notice":true}],"events":[{"id":"e1","type":"t1","date":"2026-10-04","st":{"m1":"in","m2":"in","m3":"in","m4":"in","m5":"in","m6":"in","m7":"in","m9":"ex","m10":"in","m11":"na","m12":"na"},"bonus":{"b1":["m1","m2","m10"]}},{"id":"e2","type":"t2","date":"2026-10-08","st":{"m1":"in","m2":"in","m3":"in","m5":"in","m6":"in","m7":"in","m10":"in","m11":"na","m12":"na"},"bonus":{}},{"id":"e3","type":"t1","date":"2026-10-11","st":{"m1":"in","m2":"in","m3":"in","m4":"in","m5":"in","m6":"in","m8":"in","m10":"in","m11":"na","m12":"na"},"bonus":{"b1":["m1","m3"]}},{"id":"e4","type":"t2","date":"2026-10-15","st":{"m1":"in","m2":"in","m5":"in","m6":"in","m7":"in","m9":"in","m10":"in","m11":"in","m12":"na"},"bonus":{}},{"id":"e5","type":"t1","date":"2026-10-18","st":{"m1":"in","m2":"in","m3":"in","m4":"in","m5":"ex","m7":"in","m10":"in","m11":"in","m12":"in"},"bonus":{"b1":["m1","m10","m11"],"b2":["m1","m2"],"b3":["m3"]}}],"reward":{"minRate":0,"needNotice":true},"demote":{"rate":50,"excused":"skip","trial":true},"draws":{},"updated":0,"tiers":[{"id":"k1","name":"핵심","slots":3},{"id":"k2","name":"주력","slots":3},{"id":"k3","name":"일반","slots":3}]}</script>
+<script type="application/json" id="state">{"v":2,"title":"\u003cZ3RO> No Mercy","demo":true,"types":[{"id":"t1","name":"메인전쟁","pts":20,"pen":5,"rate":true,"bonuses":[{"id":"b1","name":"상자 풀오픈","pts":5},{"id":"b2","name":"포인트 TOP20","pts":10},{"id":"b3","name":"포인트 TOP21~40","pts":5}],"exPen":2},{"id":"t2","name":"상회","pts":10,"pen":0,"rate":true,"bonuses":[],"exPen":0}],"priority":"t1","members":[{"id":"m1","name":"갱스터","notice":true},{"id":"m2","name":"가을","notice":true},{"id":"m3","name":"하늘","notice":true},{"id":"m4","name":"철벽","notice":true},{"id":"m5","name":"새벽","notice":true},{"id":"m6","name":"별빛","notice":true},{"id":"m7","name":"바람돌이","notice":true},{"id":"m8","name":"호랑이","notice":true},{"id":"m9","name":"메롱","notice":true},{"id":"m10","name":"도토리","notice":false},{"id":"m11","name":"루나","notice":true},{"id":"m12","name":"은하수","notice":true}],"events":[{"id":"e1","type":"t1","date":"2026-10-04","st":{"m1":"in","m2":"in","m3":"in","m4":"in","m5":"in","m6":"in","m7":"in","m9":"ex","m10":"in","m11":"na","m12":"na"},"bonus":{"b1":["m1","m2","m10"]}},{"id":"e2","type":"t2","date":"2026-10-08","st":{"m1":"in","m2":"in","m3":"in","m5":"in","m6":"in","m7":"in","m10":"in","m11":"na","m12":"na"},"bonus":{}},{"id":"e3","type":"t1","date":"2026-10-11","st":{"m1":"in","m2":"in","m3":"in","m4":"in","m5":"in","m6":"in","m8":"in","m10":"in","m11":"na","m12":"na"},"bonus":{"b1":["m1","m3"]}},{"id":"e4","type":"t2","date":"2026-10-15","st":{"m1":"in","m2":"in","m5":"in","m6":"in","m7":"in","m9":"in","m10":"in","m11":"in","m12":"na"},"bonus":{}},{"id":"e5","type":"t1","date":"2026-10-18","st":{"m1":"in","m2":"in","m3":"in","m4":"in","m5":"ex","m7":"in","m10":"in","m11":"in","m12":"in"},"bonus":{"b1":["m1","m10","m11"],"b2":["m1","m2"],"b3":["m3"]}}],"reward":{"minRate":0,"needNotice":true},"demote":{"rate":50,"excused":"skip","trial":true},"draws":{},"updated":0,"tiers":[{"id":"k1","name":"핵심","slots":3},{"id":"k2","name":"주력","slots":3},{"id":"k3","name":"일반","slots":3}]}</script>
 <!-- Firebase SDK (Firebase에 올릴 때 사용) -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
@@ -703,7 +718,7 @@ const today = () => { const d = new Date(); return d.getFullYear() + '-' + Strin
 const md = s => { const p = s.split('-'); return (+p[1]) + '/' + (+p[2]); };
 
 function defaults() {
-  return { v:2, title:'길드 점수판', demo:false, notice:'', noticeAt:0, absences:[],
+  return { v:2, title:'<Z3RO> No Mercy', demo:false, notice:'', noticeAt:0, absences:[],
     types:[{id:'t1',name:'메인전쟁',pts:20,pen:5,exPen:0,rate:true,bonuses:[{id:'b1',name:'상자 풀오픈',pts:5},{id:'b2',name:'포인트 TOP20',pts:10},{id:'b3',name:'포인트 TOP21~40',pts:5}]},{id:'t2',name:'상회',pts:10,pen:0,exPen:0,rate:true,bonuses:[]}],
     priority:'t1', members:[], events:[],
     tiers:[{id:'k1',name:'핵심',slots:10},{id:'k2',name:'주력',slots:10}],
@@ -732,7 +747,7 @@ function normalize(s) {
       return o;
     })() })) : [];
   return {
-    v:2, title: typeof s.title === 'string' && s.title.trim() ? s.title.trim().slice(0, 40) : d.title, demo: !!s.demo,
+    v:2, title: typeof s.title === 'string' && s.title.trim() && !['길드 점수판', '연맹 점수판'].includes(s.title.trim()) ? s.title.trim().slice(0, 40) : d.title, demo: !!s.demo,
     notice: typeof s.notice === 'string' ? s.notice.slice(0, 1000) : '',
     noticeAt: Number(s.noticeAt) || 0,
     absences: Array.isArray(s.absences) ? s.absences.filter(a => a && a.id && a.member && a.type && isDate(a.date)).slice(0, 300).map(a => ({ id:String(a.id), member:String(a.member), name:String(a.name || '').slice(0, 30), type:String(a.type), date:a.date, note:String(a.note || '').slice(0, 100), at:Number(a.at) || 0 })) : [],
@@ -880,7 +895,7 @@ function meBtn() {
 function pickListHTML() {
   const q = (UI.pfq || '').trim();
   const list = S.members.filter(m => !q || m.name.indexOf(q) >= 0).sort((a, b) => a.name.localeCompare(b.name, 'ko'));
-  return '<ul class="pick-list">' + (list.length ? list.map(m => { const taken = !!PROF.links[m.id]; return '<li><button data-act="pfLink" data-id="' + esc(m.id) + '"' + (taken ? ' disabled' : '') + '><span>' + esc(m.name) + '</span><small>' + (taken ? '이미 연결됨' : '이 닉네임이 나예요') + '</small></button></li>'; }).join('') : '<li style="padding:12px 14px;color:var(--muted)">' + (S.members.length ? '맞는 닉네임이 없어요.' : '아직 길드원 명단이 없어요.') + '</li>') + '</ul>';
+  return '<ul class="pick-list">' + (list.length ? list.map(m => { const taken = !!PROF.links[m.id]; return '<li><button data-act="pfLink" data-id="' + esc(m.id) + '"' + (taken ? ' disabled' : '') + '><span>' + esc(m.name) + '</span><small>' + (taken ? '이미 연결됨' : '이 닉네임이 나예요') + '</small></button></li>'; }).join('') : '<li style="padding:12px 14px;color:var(--muted)">' + (S.members.length ? '맞는 닉네임이 없어요.' : '아직 연맹원 명단이 없어요.') + '</li>') + '</ul>';
 }
 function profileSheet() {
   let h = '<div class="overlay" role="dialog" aria-modal="true" aria-labelledby="pfT"><div class="sheet" style="max-width:460px"><h2 class="sheet-title" id="pfT">내 프로필</h2>';
@@ -892,7 +907,7 @@ function profileSheet() {
     return h + '<div class="sheet-actions"><button class="btn" data-act="closeSheet">닫기</button></div></div></div>';
   }
   const mid = myMember(), mem = mid ? memOf(mid) : null, ph = myPhoto();
-  const role = FB.owner ? '최고 관리자' : FB.admin ? '관리자' : '길드원';
+  const role = FB.owner ? '최고 관리자' : FB.admin ? '관리자' : '연맹원';
   h += '<div class="pf-top"><div class="pf-ph">' + (ph ? '<img src="' + ph + '" alt="">' : esc(mem ? mem.name.slice(0, 1) : '?')) + '</div><div><b>' + esc(mem ? mem.name : '닉네임 연결 전') + '</b><span>' + role + '</span></div></div>';
   if (!mem) {
     h += '<p style="margin:0 0 4px;font-weight:600">내 게임 닉네임을 골라 주세요. 누르면 바로 연결돼요.</p><p style="color:var(--muted);font-size:.88rem;margin:0">잘못 골랐으면 연결 풀기로 바로 다시 고를 수 있어요. 내 닉네임이 이미 연결돼 있다면 운영진에게 연결을 풀어 달라고 해 주세요.</p>';
@@ -950,15 +965,15 @@ async function savePhoto(data) {
 function adminCardHTML() {
   if (!FB || !FB.owner) return '';
   const adminUids = new Set(ADMINS.map(a => a.uid));
-  let h = '<div class="card"><h2 class="card-h">관리자 관리</h2><p class="card-sub">최고 관리자에게만 보여요. 구글로 로그인해서 닉네임을 연결한 길드원만 관리자로 지정할 수 있어요.</p>';
+  let h = '<div class="card"><h2 class="card-h">관리자 관리</h2><p class="card-sub">최고 관리자에게만 보여요. 구글로 로그인해서 닉네임을 연결한 연맹원만 관리자로 지정할 수 있어요.</p>';
   h += ADMINS.length ? ADMINS.map(a => { const pm = photoOf(a.memberId), mm = memOf(a.memberId); return '<div class="admin-row">' + (pm ? '<img class="av" src="' + pm + '" alt="">' : '') + '<span class="n">' + esc(mm ? mm.name : (a.name || '알 수 없음')) + '</span><button class="del" data-act="adminDel" data-id="' + esc(a.uid) + '">' + (UI.armed === 'adm:' + a.uid ? '한 번 더 누르면 해제' : '해제') + '</button></div>'; }).join('') : '<p style="color:var(--muted);margin:0">아직 지정한 관리자가 없어요.</p>';
   const cands = S.members.filter(m => { const u = linkValid(m.id); return u && !adminUids.has(u) && u !== FB.user.uid; });
-  h += '<div class="line" style="margin-top:12px"><select class="in" id="adminPick" aria-label="관리자로 지정할 길드원" style="flex:1;width:auto"><option value="">' + (cands.length ? '관리자로 지정할 길드원' : '지정할 수 있는 길드원이 없어요') + '</option>' + cands.map(m => '<option value="' + esc(m.id) + '">' + esc(m.name) + '</option>').join('') + '</select><button class="btn" data-act="adminAdd">지정</button></div></div>';
+  h += '<div class="line" style="margin-top:12px"><select class="in" id="adminPick" aria-label="관리자로 지정할 연맹원" style="flex:1;width:auto"><option value="">' + (cands.length ? '관리자로 지정할 연맹원' : '지정할 수 있는 연맹원이 없어요') + '</option>' + cands.map(m => '<option value="' + esc(m.id) + '">' + esc(m.name) + '</option>').join('') + '</select><button class="btn" data-act="adminAdd">지정</button></div></div>';
   return h;
 }
 function adminAdd() {
   const sel = document.getElementById('adminPick'), mid = sel ? sel.value : '', uid = mid ? linkValid(mid) : '';
-  if (!uid) { UI.msg = '관리자로 지정할 길드원을 골라 주세요.'; render(); return; }
+  if (!uid) { UI.msg = '관리자로 지정할 연맹원을 골라 주세요.'; render(); return; }
   FB.db.collection('admins').doc(uid).set({ memberId:mid, name:memOf(mid).name, at:Date.now() })
     .then(() => { UI.msg = memOf(mid).name + '님을 관리자로 지정했어요. 그 사람이 다시 열면 관리 메뉴가 보여요.'; render(); })
     .catch(() => { UI.msg = '지정하지 못했어요. 최고 관리자로 로그인했는지 확인해 주세요.'; render(); });
@@ -1208,10 +1223,10 @@ function rankPage(ro) {
   if (C.active) h += podiumHTML(C) + myCardHTML(C);
   if (canReport()) h += '<button class="btn primary abs-btn" data-act="absence">불참 신고하기</button>';
   if (S.demo && !ro) h += '<div class="note demo"><span>지금은 <b>예시 데이터</b>예요.</span><button class="btn" data-act="clearDemo">' + (UI.armed === 'demo' ? '한 번 더 누르면 삭제' : '지우고 시작하기') + '</button></div>';
-  if (!S.members.length) return h + '<div class="empty"><b>길드원이 없어요</b><p>관리 화면에서 길드원부터 추가해 주세요.</p>' + (ro ? '' : '<button class="btn primary" data-act="goto" data-v="manage">길드원 추가하기</button>') + '</div>' + acctHTML() + '</div>';
+  if (!S.members.length) return h + '<div class="empty"><b>연맹원이 없어요</b><p>관리 화면에서 연맹원부터 추가해 주세요.</p>' + (ro ? '' : '<button class="btn primary" data-act="goto" data-v="manage">연맹원 추가하기</button>') + '</div>' + acctHTML() + '</div>';
   if (!C.active) return h + '<div class="empty"><b>아직 기록이 없어요</b><p>첫 회차를 기록하면 순위가 바로 나타나요.</p>' + (ro ? '' : '<button class="btn primary" data-act="tab" data-v="record">첫 기록 하기</button>') + '</div>' + acctHTML() + '</div>';
 
-  h += '<div class="acts"><button class="btn" data-act="copy">' + ICON.copy + '글 복사</button><button class="btn" data-act="saveImage">' + ICON.image + '이미지 저장</button><button class="btn" data-act="rules">' + ICON.book + '점수 규칙</button></div>';
+  h += '<div class="acts">' + (ro ? '' : '<button class="btn" data-act="copy">' + ICON.copy + '글 복사</button><button class="btn" data-act="saveImage">' + ICON.image + '이미지 저장</button>') + '<button class="btn" data-act="rules">' + ICON.book + '점수 규칙</button></div>';
   if (S.demote.trial) h += '<div class="note">시범 운영 중이라 참여율 미달은 <b>표시만</b> 하고 강등에는 쓰지 않아요.</div>';
 
   h += '<div class="rsearch">' + ICON.search + '<input class="in" id="rq" type="search" placeholder="닉네임 찾기" value="' + esc(UI.rq || '') + '" aria-label="닉네임 찾기"></div><div id="rankGroups">' + groupsHTML(C, ro) + '</div>';
@@ -1219,8 +1234,8 @@ function rankPage(ro) {
 }
 function noticeHTML(ro) {
   const can = !ro;
-  if (!S.notice) return can ? '<div class="ncard empty-n"><div class="ncard-h"><span>' + ICON.bell + '길드 공지</span><button class="textbtn" data-act="editNotice">공지 쓰기</button></div><p>아직 공지가 없어요. 공지를 쓰면 모든 길드원에게 맨 위에 보여요.</p></div>' : '';
-  return '<div class="ncard"><div class="ncard-h"><span>' + ICON.bell + '길드 공지</span>' + (can ? '<button class="textbtn" data-act="editNotice">수정</button>' : '') + '</div><p>' + esc(S.notice) + '</p></div>';
+  if (!S.notice) return can ? '<div class="ncard empty-n"><div class="ncard-h"><span>' + ICON.bell + '연맹 공지</span><button class="textbtn" data-act="editNotice">공지 쓰기</button></div><p>아직 공지가 없어요. 공지를 쓰면 모든 연맹원에게 맨 위에 보여요.</p></div>' : '';
+  return '<div class="ncard"><div class="ncard-h"><span>' + ICON.bell + '연맹 공지</span>' + (can ? '<button class="textbtn" data-act="editNotice">수정</button>' : '') + '</div><p>' + esc(S.notice) + '</p></div>';
 }
 function acctHTML() {
   if (!FB) return '';
@@ -1229,7 +1244,7 @@ function acctHTML() {
   return '<div class="acct"><button class="textbtn" data-act="login">구글로 로그인</button><span>프로필 사진을 올리거나 운영진이 관리할 때 로그인해요</span></div>';
 }
 function noticeSheet() {
-  return '<div class="overlay" role="dialog" aria-modal="true" aria-labelledby="ntT"><div class="sheet"><h2 class="sheet-title" id="ntT">길드 공지</h2><p style="color:var(--muted)">순위 화면 맨 위에 모든 길드원에게 보여요. 비우고 저장하면 공지가 내려가요.</p>' +
+  return '<div class="overlay" role="dialog" aria-modal="true" aria-labelledby="ntT"><div class="sheet"><h2 class="sheet-title" id="ntT">연맹 공지</h2><p style="color:var(--muted)">순위 화면 맨 위에 모든 연맹원에게 보여요. 비우고 저장하면 공지가 내려가요.</p>' +
     '<textarea class="in notice-in" id="noticeText" maxlength="1000" style="margin-top:12px" aria-label="공지 내용">' + esc(S.notice) + '</textarea>' +
     '<div class="sheet-actions"><button class="btn" data-act="closeSheet">취소</button><button class="btn primary" data-act="saveNotice">저장</button></div></div></div>';
 }
@@ -1273,7 +1288,7 @@ function rulesSheet() {
     return '<li><b>' + esc(t.name) + '</b>: ' + parts.join(', ') + '</li>';
   }).join('');
   li += S.types.some(t => t.exPen) ? '<li>미리 알린 불참(사전 불참)도 위에 적힌 만큼 깎여요. 적혀 있지 않은 콘텐츠는 감점이 없어요.</li>' : '<li>미리 알린 불참(사전 불참)은 감점이 없어요.</li>';
-  li += '<li>그때 아직 길드에 없던 사람은 집계 제외로 기록해서 점수와 참여율에 영향이 없어요.</li>';
+  li += '<li>그때 아직 연맹에 없던 사람은 집계 제외로 기록해서 점수와 참여율에 영향이 없어요.</li>';
   li += '<li>보상은 점수 순으로 ' + S.tiers.map(t => '<b>' + esc(t.name) + ' ' + t.slots + '명</b>').join(', ') + ' 차례로 채워요.' + (S.reward.needNotice ? ' 공지방에 없으면 제외돼요.' : '') + (S.reward.minRate ? ' 참여율 ' + S.reward.minRate + '% 미만도 제외돼요.' : '') + '</li>';
   li += '<li>점수가 같으면 ' + esc(prioName()) + ' 참여 횟수가 많은 사람, 그다음 무단 불참이 적은 사람이 앞서요. 그것까지 같으면 사다리로 정해요.</li>';
   li += '<li>참여율은 열린 회차 중 참여한 비율이에요. 사전 불참은 ' + (S.demote.excused === 'skip' ? '계산에서 빼요.' : '불참으로 계산해요.') + '</li>';
@@ -1284,7 +1299,7 @@ function rulesSheet() {
 // ---------- record page ----------
 function recordPage() {
   let h = barHTML('기록하기') + '<div class="body">' + toastHTML();
-  if (!S.members.length) return h + '<div class="empty"><b>길드원이 없어요</b><p>기록하려면 길드원부터 추가해 주세요.</p><button class="btn primary" data-act="goto" data-v="manage">길드원 추가하기</button></div></div>';
+  if (!S.members.length) return h + '<div class="empty"><b>연맹원이 없어요</b><p>기록하려면 연맹원부터 추가해 주세요.</p><button class="btn primary" data-act="goto" data-v="manage">연맹원 추가하기</button></div></div>';
   if (!S.types.length) return h + '<div class="empty"><b>콘텐츠가 없어요</b><p>관리의 규칙과 설정에서 콘텐츠를 만들어 주세요.</p></div></div>';
   h += '<h2 class="q">어떤 콘텐츠를 기록할까요?</h2>';
   h += '<label class="date-pick">날짜<input class="in" type="date" id="wDate" value="' + (UI.wdate || today()) + '"></label>';
@@ -1324,7 +1339,7 @@ function wizardHTML() {
   if (w.step === 'in') {
     h += '<h2 class="q">참여한 사람을 모두 눌러 주세요</h2><p class="q-sub"><b>' + ins.length + '명</b> 선택, 대상 ' + elig.length + '명' + (rep.length ? '. 불참 신고한 ' + rep.length + '명은 전원 선택에서 빠져요.' : '') + '</p>';
     h += '<div class="tools"><button class="pill-btn" data-act="wizAll">전원 선택</button><button class="pill-btn" data-act="wizNone">선택 해제</button></div>';
-    h += elig.length ? '<div class="picks">' + elig.map(m => pick(m, w.in.includes(m.id), 'in', rtag(m))).join('') + '</div>' : '<div class="all-done">기록할 길드원이 없어요. 관리에서 먼저 추가해 주세요.</div>';
+    h += elig.length ? '<div class="picks">' + elig.map(m => pick(m, w.in.includes(m.id), 'in', rtag(m))).join('') + '</div>' : '<div class="all-done">기록할 연맹원이 없어요. 관리에서 먼저 추가해 주세요.</div>';
   } else if (w.step === 'ex') {
     if (!outs.length) h += '<h2 class="q">전원 참여했어요</h2><div class="all-done">빠진 사람이 없어요. 다음으로 넘어가세요.</div>';
     else {
@@ -1332,7 +1347,7 @@ function wizardHTML() {
       h += '<h2 class="q">빠진 ' + outs.length + '명 중 미리 불참을 알린 사람은?</h2><p class="q-sub">누른 사람은 <b>사전 불참</b>(' + (t.exPen ? sign(-t.exPen) + '점' : '감점 없음') + '), 누르지 않은 사람은 <b>무단 불참</b>(' + (t.pen ? sign(-t.pen) + '점' : '감점 없음') + ')으로 기록돼요.</p>';
       if (rep.length) h += '<p class="q-sub" style="margin-top:-6px">불참 신고가 들어온 사람은 미리 골라 뒀어요.</p>';
       h += exList.length ? '<div class="picks">' + exList.map(m => pick(m, w.ex.includes(m.id), 'ex', rtag(m))).join('') + '</div>' : '<div class="all-done">모두 집계 제외로 골랐어요.</div>';
-      h += '<div class="na-box"><button class="textbtn" data-act="naToggle" aria-expanded="' + !!(w.naOpen || w.na.length) + '">그때 아직 길드에 없던 사람이 있나요?</button>';
+      h += '<div class="na-box"><button class="textbtn" data-act="naToggle" aria-expanded="' + !!(w.naOpen || w.na.length) + '">그때 아직 연맹에 없던 사람이 있나요?</button>';
       if (w.naOpen || w.na.length) h += '<p class="q-sub">여기서 고른 사람은 이 회차에서 빠져서 점수와 참여율에 영향이 없어요.</p><div class="picks">' + naList.map(m => pick(m, w.na.includes(m.id), 'na')).join('') + '</div>';
       h += '</div>';
     }
@@ -1392,7 +1407,7 @@ function wizSave() {
 
 // ---------- manage page ----------
 function managePage() {
-  let h = barHTML('관리') + '<div class="seg2" role="group" aria-label="관리 메뉴"><button data-act="mseg" data-v="members" aria-pressed="' + (UI.mseg === 'members') + '">길드원 ' + S.members.length + '명</button><button data-act="mseg" data-v="rules" aria-pressed="' + (UI.mseg === 'rules') + '">규칙과 설정</button></div><div class="body">' + toastHTML();
+  let h = barHTML('관리') + '<div class="seg2" role="group" aria-label="관리 메뉴"><button data-act="mseg" data-v="members" aria-pressed="' + (UI.mseg === 'members') + '">연맹원 ' + S.members.length + '명</button><button data-act="mseg" data-v="rules" aria-pressed="' + (UI.mseg === 'rules') + '">규칙과 설정</button></div><div class="body">' + toastHTML();
   if (FB && mode === 'fbadmin') h += '<div class="card acct-card"><span><b>' + (FB.owner ? '최고 관리자' : '관리자') + '</b>로 로그인 중</span><button class="btn" data-act="logout" style="min-height:40px;padding:8px 14px">로그아웃</button></div>';
   h += UI.mseg === 'rules' ? rulesPage() : membersPage();
   return h + '</div>';
@@ -1405,7 +1420,7 @@ function memLinkHTML(m) {
     (ph ? '<button class="del" data-act="mPhotoDel" data-id="' + esc(m.id) + '" style="margin-left:0">' + (UI.armed === 'mph:' + m.id ? '한 번 더' : '사진 지우기') + '</button>' : '');
 }
 function membersPage() {
-  let h = '<div class="card"><h2 class="card-h">길드원 추가</h2><p class="card-sub">여러 명은 쉼표나 줄바꿈으로 나눠서 한 번에 넣을 수 있어요.</p><div class="stack">' +
+  let h = '<div class="card"><h2 class="card-h">연맹원 추가</h2><p class="card-sub">여러 명은 쉼표나 줄바꿈으로 나눠서 한 번에 넣을 수 있어요.</p><div class="stack">' +
     '<textarea class="in" id="addNames" rows="2" placeholder="예: 가을, 갱스터, 메롱" aria-label="닉네임">' + esc(UI.draft || '') + '</textarea>' +
     '<button class="btn primary" data-act="addMembers">추가하기</button></div></div>';
   if (!S.members.length) return h;
@@ -1448,7 +1463,7 @@ function rulesPage() {
     '</div><button class="btn" data-act="addTier" style="width:100%;margin-top:10px">등급 추가</button><p class="tip">지금 설정으로는 모두 ' + totalSlots + '명이 보상을 받아요.</p></div>';
   h += '<div class="card"><h2 class="card-h">보상 조건</h2><div class="stack" style="margin-top:10px">' +
     '<div class="line">점수가 같으면<select class="in" data-f="priority" aria-label="동점 비교 콘텐츠">' + S.types.map(t => '<option value="' + esc(t.id) + '"' + (t.id === S.priority ? ' selected' : '') + '>' + esc(t.name) + '</option>').join('') + '</select>참여 횟수가 많은 사람 우선</div>' +
-    sw('rNotice', S.reward.needNotice, '공지방에 없는 길드원은 보상 제외') +
+    sw('rNotice', S.reward.needNotice, '공지방에 없는 연맹원은 보상 제외') +
     '<div class="line">참여율<input class="in num" type="number" min="0" max="100" inputmode="numeric" data-f="rMin" value="' + S.reward.minRate + '" aria-label="보상 최소 참여율">% 미만은 보상 제외 (0이면 안 씀)</div></div></div>';
   h += '<div class="card"><h2 class="card-h">강등 기준</h2><div class="stack" style="margin-top:10px">' +
     '<div class="line">참여율<input class="in num" type="number" min="0" max="100" inputmode="numeric" data-f="dRate" value="' + S.demote.rate + '" aria-label="강등 기준 참여율">% 미만이면 강등 대상</div>' +
@@ -1456,11 +1471,11 @@ function rulesPage() {
     sw('dTrial', S.demote.trial, '시범 운영 (표시만 하고 적용 안 함)') + '</div></div>';
   h += '<div class="card"><h2 class="card-h">점수판 이름</h2><input class="in" data-f="title" value="' + esc(S.title) + '" maxlength="40" aria-label="점수판 이름" style="margin-top:8px"></div>';
   if (mode === 'local' || mode === 'fbadmin') {
-    h += '<div class="card"><h2 class="card-h">' + (mode === 'fbadmin' ? '백업' : '백업 (다른 기기로 옮기기)') + '</h2><p class="card-sub">' + (mode === 'fbadmin' ? '점수판 전체를 파일로 내려받아 보관할 수 있어요. 그 파일을 불러오면 모든 길드원이 보는 점수판이 파일 내용으로 바뀌니 조심해서 쓰세요.' : '이 주소에서는 기록이 지금 쓰는 브라우저에만 저장돼요. 백업 파일을 내보낸 뒤 다른 기기에서 불러오면 그대로 옮겨져요.') + '</p><div class="acts" style="margin:0"><button class="btn" data-act="exportData">내보내기</button><label class="btn" for="importFile" tabindex="0" role="button" id="importLbl">불러오기</label><input type="file" id="importFile" accept=".json,application/json" hidden></div></div>';
+    h += '<div class="card"><h2 class="card-h">' + (mode === 'fbadmin' ? '백업' : '백업 (다른 기기로 옮기기)') + '</h2><p class="card-sub">' + (mode === 'fbadmin' ? '점수판 전체를 파일로 내려받아 보관할 수 있어요. 그 파일을 불러오면 모든 연맹원이 보는 점수판이 파일 내용으로 바뀌니 조심해서 쓰세요.' : '이 주소에서는 기록이 지금 쓰는 브라우저에만 저장돼요. 백업 파일을 내보낸 뒤 다른 기기에서 불러오면 그대로 옮겨져요.') + '</p><div class="acts" style="margin:0"><button class="btn" data-act="exportData">내보내기</button><label class="btn" for="importFile" tabindex="0" role="button" id="importLbl">불러오기</label><input type="file" id="importFile" accept=".json,application/json" hidden></div></div>';
   }
-  h += '<div class="card"><h2 class="card-h">시즌</h2><p class="card-sub">새 시즌은 기록만 비우고 길드원과 규칙은 남겨요. 지우기 전에 순위에서 공지용 복사로 결과를 남겨 두세요.</p><div class="stack">' +
+  h += '<div class="card"><h2 class="card-h">시즌</h2><p class="card-sub">새 시즌은 기록만 비우고 연맹원과 규칙은 남겨요. 지우기 전에 순위에서 공지용 복사로 결과를 남겨 두세요.</p><div class="stack">' +
     '<button class="btn danger" data-act="newSeason">' + (UI.armed === 'season' ? '한 번 더 누르면 기록 전체 삭제' : '새 시즌 시작') + '</button>' +
-    '<button class="btn" data-act="resetAll">' + (UI.armed === 'reset' ? '한 번 더 누르면 전부 삭제' : '길드원과 기록 모두 지우기') + '</button></div></div>';
+    '<button class="btn" data-act="resetAll">' + (UI.armed === 'reset' ? '한 번 더 누르면 전부 삭제' : '연맹원과 기록 모두 지우기') + '</button></div></div>';
   return h;
 }
 
@@ -1547,7 +1562,7 @@ function groupsHTML(C, ro) {
   if (!q || bw.length) {
     const col = !q && UI.col.includes('g-warn');
     h += '<section class="grp warn' + (col ? ' collapsed' : '') + '" id="g-warn"><h2 class="grp-h tg"><button class="grp-tg" data-act="grpToggle" data-v="g-warn" aria-expanded="' + !col + '"><span>참여율 ' + S.demote.rate + '% 미만</span><span class="grp-r"><span class="grp-n">' + below.length + '명' + (S.demote.trial ? ', 시범 운영' : '') + '</span>' + ICON.chev + '</span></button></h2>' +
-      (bw.length ? '<ul class="list wl">' + bw.map(x => '<li><span class="nm">' + esc(x.m.name) + '</span><span class="muted">참여 ' + x.rin + '/' + x.opp + '회</span><b>' + x.rate + '%</b></li>').join('') + '</ul>' : '<p class="tie-box" style="border:0;margin:0;color:var(--muted)">기준 미달인 길드원이 없어요.</p>') + '</section>';
+      (bw.length ? '<ul class="list wl">' + bw.map(x => '<li><span class="nm">' + esc(x.m.name) + '</span><span class="muted">참여 ' + x.rin + '/' + x.opp + '회</span><b>' + x.rate + '%</b></li>').join('') + '</ul>' : '<p class="tie-box" style="border:0;margin:0;color:var(--muted)">기준 미달인 연맹원이 없어요.</p>') + '</section>';
     shown += bw.length;
   }
   if (q && !shown) h = '<p class="no-match">"' + esc(UI.rq.trim()) + '" 닉네임을 찾지 못했어요.</p>';
@@ -1591,7 +1606,7 @@ function maybeNoticePopup() {
 }
 function closeNoticePop() { try { localStorage.setItem(NOTICE_KEY, String(S.noticeAt)); } catch (e) {} UI.sheet = null; render(); }
 function noticePopHTML() {
-  return '<div class="overlay gov" role="dialog" aria-modal="true" aria-labelledby="npT"><div class="sheet" style="max-width:460px"><h2 class="sheet-title" id="npT" style="display:flex;align-items:center;gap:8px">' + ICON.bell + '길드 공지</h2><p style="white-space:pre-wrap;word-break:keep-all;font-size:1rem;line-height:1.65">' + esc(S.notice) + '</p><div class="sheet-actions"><button class="btn primary" data-act="noticeOk" style="width:100%">확인</button></div></div></div>';
+  return '<div class="overlay gov" role="dialog" aria-modal="true" aria-labelledby="npT"><div class="sheet" style="max-width:460px"><h2 class="sheet-title" id="npT" style="display:flex;align-items:center;gap:8px">' + ICON.bell + '연맹 공지</h2><p style="white-space:pre-wrap;word-break:keep-all;font-size:1rem;line-height:1.65">' + esc(S.notice) + '</p><div class="sheet-actions"><button class="btn primary" data-act="noticeOk" style="width:100%">확인</button></div></div></div>';
 }
 function whenFull(ms) { const d = new Date(ms); return (d.getMonth() + 1) + '/' + d.getDate() + ' ' + String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0'); }
 function absenceSheet() {
@@ -1600,7 +1615,7 @@ function absenceSheet() {
   const recent = absList().filter(a => a.date >= addDays(today(), -14)).sort((a, b) => a.date < b.date ? 1 : a.date > b.date ? -1 : b.at - a.at).slice(0, 40);
   let h = '<div class="overlay" role="dialog" aria-modal="true" aria-labelledby="abT"><div class="sheet" style="max-width:480px"><h2 class="sheet-title" id="abT">불참 신고</h2>' +
     '<p style="color:var(--muted)">전쟁이나 콘텐츠에 못 나가면 미리 남겨 주세요. 운영진이 기록할 때 무단 불참이 아니라 사전 불참으로 처리돼요. 신고한 시각이 그대로 남아요.</p>';
-  if (!mem.length) h += '<p class="abs-info err" style="margin-top:12px">아직 길드원 명단이 없어서 신고할 수 없어요.</p>';
+  if (!mem.length) h += '<p class="abs-info err" style="margin-top:12px">아직 연맹원 명단이 없어서 신고할 수 없어요.</p>';
   else {
     h += '<div class="abs-form"><label class="field">닉네임<select class="in" data-af="member"><option value="">닉네임을 골라 주세요</option>' + mem.map(m => '<option value="' + esc(m.id) + '"' + (f.member === m.id ? ' selected' : '') + '>' + esc(m.name) + '</option>').join('') + '</select></label>' +
       '<div class="fgrid"><label class="field">콘텐츠<select class="in" data-af="type">' + S.types.map(t => '<option value="' + esc(t.id) + '"' + (f.type === t.id ? ' selected' : '') + '>' + esc(t.name) + '</option>').join('') + '</select></label>' +
@@ -1753,8 +1768,8 @@ function randomPage() {
   if (!TOOLS.some(t => t.id === r.tool)) r.tool = 'roulette';
   r.n = Math.max(1, Math.min(r.n, Math.max(1, n - 1)));
   let h = barHTML('랜덤') + '<div class="body">' + toastHTML();
-  h += '<div class="card"><h2 class="card-h">참가자 <span class="count">' + n + '명</span></h2><p class="card-sub">길드원을 누르거나, 메뉴처럼 아무 이름이나 직접 넣을 수 있어요.</p>';
-  if (S.members.length) h += '<div class="tools" style="margin-bottom:8px"><button class="pill-btn" data-act="rAll">길드원 전원</button><button class="pill-btn" data-act="rNone">모두 빼기</button></div><div class="rchips">' + S.members.map(m => '<button class="rchip" data-act="rPick" data-id="' + esc(m.id) + '" aria-pressed="' + r.sel.includes(m.id) + '">' + esc(m.name) + '</button>').join('') + '</div>';
+  h += '<div class="card"><h2 class="card-h">참가자 <span class="count">' + n + '명</span></h2><p class="card-sub">연맹원을 누르거나, 메뉴처럼 아무 이름이나 직접 넣을 수 있어요.</p>';
+  if (S.members.length) h += '<div class="tools" style="margin-bottom:8px"><button class="pill-btn" data-act="rAll">연맹원 전원</button><button class="pill-btn" data-act="rNone">모두 빼기</button></div><div class="rchips">' + S.members.map(m => '<button class="rchip" data-act="rPick" data-id="' + esc(m.id) + '" aria-pressed="' + r.sel.includes(m.id) + '">' + esc(m.name) + '</button>').join('') + '</div>';
   h += '<div class="radd"><input class="in" id="rAddIn" maxlength="60" placeholder="직접 입력 (쉼표로 여러 개)" value="' + esc(r.draft || '') + '" aria-label="직접 입력"><button class="btn" data-act="rAdd">추가</button></div>';
   if (r.custom.length) h += '<div class="rchips" style="margin-top:8px">' + r.custom.map((c, i) => '<button class="rchip custom" data-act="rDel" data-v="' + i + '" aria-label="' + esc(c) + ' 빼기">' + esc(c) + '<b aria-hidden="true">×</b></button>').join('') + '</div>';
   h += '</div>';
@@ -1859,7 +1874,7 @@ function ruleText(run) {
   if (run.kind === 'tie') return '동점자 ' + run.entries.length + '명이 ' + seatText(run) + '를 나눠요.';
   if (run.tool === 'race') return (run.rule === 'last' ? '마지막에 도착한 ' : '먼저 도착한 ') + run.N + '명이 당첨이에요.';
   if (run.tool === 'cards') return '카드 ' + run.entries.length + '장 중에 당첨 카드 ' + run.N + '장이 숨어 있어요.';
-  if (run.tool === 'ladder') return '아래 칸 ' + run.entries.length + '개 중 당첨 ' + run.N + '칸이 가려져 있어요.';
+  if (run.tool === 'ladder') return run.entries.length >= 13 ? '아래 당첨 칸 ' + run.N + '개를 하나씩 눌러서 주인을 찾아요.' : '아래 칸 ' + run.entries.length + '개 중 당첨 ' + run.N + '칸이 가려져 있어요.';
   return '룰렛을 ' + run.N + '번 돌려서 ' + run.N + '명을 뽑아요.';
 }
 function readyView() {
@@ -1923,6 +1938,7 @@ function onStageClick(e) {
   else if (a === 'flip') { if (STAGE.flip) STAGE.flip(+b.dataset.i); }
   else if (a === 'autoFlip') { if (STAGE.autoFlip) { STAGE.autoFlip(); b.disabled = true; } }
   else if (a === 'lgo') { if (STAGE.lgo) STAGE.lgo(+b.dataset.i); }
+  else if (a === 'lrev') { if (STAGE.lrev) STAGE.lrev(+b.dataset.c); }
   else if (a === 'speed') { STAGE.speed = STAGE.speed === 1 ? 3 : 1; b.textContent = STAGE.speed === 1 ? '빨리 보기' : '보통 속도로'; }
 }
 function showResult(run) {
@@ -1944,52 +1960,60 @@ function showResult(run) {
   setTimeout(() => { if (box.scrollIntoView) box.scrollIntoView({ block:'nearest', behavior:prefersReduced() ? 'auto' : 'smooth' }); }, 50);
 }
 
-// ---------- ladder: results hidden, one person at a time ----------
+// ---------- ladder: 12 or fewer -> one person at a time; 13+ -> tap a winning slot and trace upward ----------
 function stageLadder(body, run) {
-  const hasPh = run.entries.some(e => e.photo);
-  const n = run.entries.length, gap = Math.max(58, Math.min(88, 480 / Math.max(1, n - 1))), padX = 44, nameY = hasPh ? 50 : 18, yTop = hasPh ? 64 : 32, step = 22, rows = run.L.rows;
+  const n = run.entries.length, reverse = n >= 13, hasPh = !reverse && run.entries.some(e => e.photo);
+  const gap = reverse ? 42 : Math.max(58, Math.min(88, 480 / Math.max(1, n - 1))), padX = 44, nameY = hasPh ? 50 : 18, yTop = hasPh ? 64 : 32, step = 22, rows = run.L.rows;
   const yBot = yTop + (rows + 1) * step, H = yBot + 40, W = padX * 2 + (n - 1) * gap;
   const X = c => padX + c * gap, Y = r => r < 0 ? yTop : yTop + (r + 1) * step;
-  let s = '<p class="lad-hint" id="ladHint">이름을 누르면 한 명씩 내려가요.</p><div class="ladwrap" style="width:100%"><svg class="ladder" viewBox="0 0 ' + W + ' ' + H + '" width="' + W + '" height="' + H + '" role="img" aria-label="사다리">';
+  const special = c => !!run.labelCls[run.slot[c]];
+  const slotsSp = [...Array(n).keys()].filter(special);
+  let s = '<p class="lad-hint" id="ladHint">' + (reverse ? '아래 당첨 칸을 누르면 선이 위로 올라가 주인을 찾아요.' : '이름을 누르면 한 명씩 내려가요.') + '</p>';
+  if (reverse) s += '<div class="lslots">' + slotsSp.map((c, k) => '<button class="pill-btn" data-sact="lrev" data-c="' + c + '" id="lsb' + c + '">' + esc(run.labels[run.slot[c]]) + ' ' + (k + 1) + '</button>').join('') + '</div>';
+  s += '<div class="ladwrap" style="width:100%"><svg class="ladder" viewBox="0 0 ' + W + ' ' + H + '" width="' + W + '" height="' + H + '" role="img" aria-label="사다리">';
   run.L.rungs.forEach((row, r) => row.forEach(i => { s += '<line class="lv" x1="' + X(i) + '" y1="' + Y(r) + '" x2="' + X(i + 1) + '" y2="' + Y(r) + '"/>'; }));
   run.entries.forEach((e, i) => { s += '<line class="lv" x1="' + X(i) + '" y1="' + yTop + '" x2="' + X(i) + '" y2="' + yBot + '"/>'; });
   run.paths.forEach((pp, i) => { s += '<path class="lp" id="lp' + i + '" d="' + pp.pts.map((q, k) => (k ? 'L' : 'M') + X(q[0]) + ' ' + Y(q[1])).join(' ') + '" stroke="' + run.entries[i].color + '" style="opacity:0"/>'; });
   run.slot.forEach((pos, c) => {
-    s += '<text class="lb ' + (run.labelCls[pos] || '') + '" x="' + X(c) + '" y="' + (yBot + 24) + '" text-anchor="middle">' + esc(run.labels[pos]) + '</text>';
-    s += '<g class="lcov" id="lcov' + c + '"><rect x="' + (X(c) - 28) + '" y="' + (yBot + 8) + '" width="56" height="26" rx="7"/><text x="' + X(c) + '" y="' + (yBot + 26) + '" text-anchor="middle">?</text></g>';
+    if (reverse) {
+      if (special(c)) s += '<g class="lslot" data-sact="lrev" data-c="' + c + '" id="lsl' + c + '"><rect x="' + (X(c) - 19) + '" y="' + (yBot + 8) + '" width="38" height="26" rx="7"/><text x="' + X(c) + '" y="' + (yBot + 25) + '" text-anchor="middle">' + esc(short(run.labels[pos])) + '</text></g>';
+      else s += '<text class="lb" x="' + X(c) + '" y="' + (yBot + 25) + '" text-anchor="middle">' + esc(run.labels[pos]) + '</text>';
+    } else {
+      s += '<text class="lb ' + (run.labelCls[pos] || '') + '" x="' + X(c) + '" y="' + (yBot + 24) + '" text-anchor="middle">' + esc(run.labels[pos]) + '</text>';
+      s += '<g class="lcov" id="lcov' + c + '"><rect x="' + (X(c) - 28) + '" y="' + (yBot + 8) + '" width="56" height="26" rx="7"/><text x="' + X(c) + '" y="' + (yBot + 26) + '" text-anchor="middle">?</text></g>';
+    }
   });
   run.entries.forEach((e, i) => {
-    s += '<g class="lname" data-sact="lgo" data-i="' + i + '" id="ln' + i + '"><rect class="lhit" x="' + (X(i) - gap / 2 + 3) + '" y="0" width="' + (gap - 6) + '" height="' + (yTop - 4) + '" rx="8"/>';
-    if (e.photo) s += '<clipPath id="lc' + i + '"><circle cx="' + X(i) + '" cy="20" r="16"/></clipPath><image href="' + e.photo + '" x="' + (X(i) - 16) + '" y="4" width="32" height="32" clip-path="url(#lc' + i + ')" preserveAspectRatio="xMidYMid slice"/><circle cx="' + X(i) + '" cy="20" r="16" fill="none" stroke="' + e.color + '" stroke-width="2.5"/>';
-    s += '<text class="ln" x="' + X(i) + '" y="' + nameY + '" text-anchor="middle" fill="' + e.color + '">' + esc(short(e.name)) + '</text></g>';
+    if (reverse) s += '<g class="ltop" id="ltop' + i + '"><text class="ln" x="' + X(i) + '" y="' + nameY + '" text-anchor="middle" fill="currentColor">?</text></g>';
+    else {
+      s += '<g class="lname" data-sact="lgo" data-i="' + i + '" id="ln' + i + '"><rect class="lhit" x="' + (X(i) - gap / 2 + 3) + '" y="0" width="' + (gap - 6) + '" height="' + (yTop - 4) + '" rx="8"/>';
+      if (e.photo) s += '<clipPath id="lc' + i + '"><circle cx="' + X(i) + '" cy="20" r="16"/></clipPath><image href="' + e.photo + '" x="' + (X(i) - 16) + '" y="4" width="32" height="32" clip-path="url(#lc' + i + ')" preserveAspectRatio="xMidYMid slice"/><circle cx="' + X(i) + '" cy="20" r="16" fill="none" stroke="' + e.color + '" stroke-width="2.5"/>';
+      s += '<text class="ln" x="' + X(i) + '" y="' + nameY + '" text-anchor="middle" fill="' + e.color + '">' + esc(short(e.name)) + '</text></g>';
+    }
     s += '<circle class="lball" id="lball' + i + '" r="7" cx="' + X(i) + '" cy="' + yTop + '" fill="' + e.color + '" style="display:none"/>';
   });
   body.innerHTML = s + '</svg></div>';
   const done = new Set();
   let moving = false;
-  const reveal = (i, quiet) => {
-    const end = run.paths[i].end, cov = body.querySelector('#lcov' + end), sp = !!run.labelCls[run.slot[end]];
-    if (cov) cov.classList.add('open');
-    const nm = body.querySelector('#ln' + i); if (nm) nm.classList.add('done');
-    done.add(i);
-    if (!quiet) { if (sp) { SFX.win(); confetti(cov); } else SFX.lose(); }
-    const left = n - done.size, hint = body.querySelector('#ladHint');
-    if (hint) hint.textContent = left ? '남은 사람 ' + left + '명. 다음 사람 이름을 눌러 주세요.' : '모두 내려왔어요.';
-    if (done.size === n) stageTimer(() => showResult(run), quiet ? 50 : 900);
+  const box = STAGE.el.querySelector('.stage'), wrap = body.querySelector('.ladwrap');
+  const follow = ball => {
+    const br = ball.getBoundingClientRect();
+    if (box) { const sr = box.getBoundingClientRect(); if (br.bottom > sr.bottom - 90) box.scrollTop += br.bottom - (sr.bottom - 90); else if (br.top < sr.top + 90) box.scrollTop -= (sr.top + 90) - br.top; }
+    if (wrap) { const wr = wrap.getBoundingClientRect(); if (br.right > wr.right - 40) wrap.scrollLeft += br.right - (wr.right - 40); else if (br.left < wr.left + 40) wrap.scrollLeft -= (wr.left + 40) - br.left; }
   };
-  STAGE.lgo = i => {
-    if (moving || done.has(i) || !STAGE) return;
+  const animate = (i, upward, onEnd) => {
     const path = body.querySelector('#lp' + i), ball = body.querySelector('#lball' + i);
-    const pts = run.paths[i].pts.map(q => [X(q[0]), Y(q[1])]);
+    let pts = run.paths[i].pts.map(q => [X(q[0]), Y(q[1])]);
+    if (upward) pts = pts.slice().reverse();
     const segs = []; let total = 0;
     for (let k = 1; k < pts.length; k++) { const len = Math.hypot(pts[k][0] - pts[k - 1][0], pts[k][1] - pts[k - 1][1]); segs.push({ a:pts[k - 1], b:pts[k], len, start:total, horiz:pts[k][1] === pts[k - 1][1] && len > 0 }); total += len; }
-    if (prefersReduced()) { path.style.opacity = '1'; reveal(i); return; }
+    path.style.opacity = '1';
+    if (prefersReduced()) { path.style.strokeDasharray = 'none'; onEnd(); return; }
     moving = true; SFX.step();
-    path.style.opacity = '1'; path.style.strokeDasharray = total; path.style.strokeDashoffset = total;
+    path.style.strokeDasharray = total; path.style.strokeDashoffset = upward ? -total : total;
     ball.style.display = '';
     let t0 = 0, lastSeg = -1;
     const speed = total / Math.min(6, Math.max(3.2, total / 380));
-    const box = STAGE.el.querySelector('.stage'), wrap = body.querySelector('.ladwrap');
     const frame = t => {
       if (!STAGE) return;
       if (!t0) t0 = t;
@@ -1997,18 +2021,47 @@ function stageLadder(body, run) {
       let k = segs.findIndex(sg => d <= sg.start + sg.len); if (k < 0) k = segs.length - 1;
       const sg = segs[k], f = sg.len ? (d - sg.start) / sg.len : 1;
       ball.setAttribute('cx', sg.a[0] + (sg.b[0] - sg.a[0]) * f); ball.setAttribute('cy', sg.a[1] + (sg.b[1] - sg.a[1]) * f);
-      path.style.strokeDashoffset = total - d;
+      path.style.strokeDashoffset = upward ? -(total - d) : total - d;
       if (k !== lastSeg) { if (sg.horiz) SFX.step(); lastSeg = k; }
-      const br = ball.getBoundingClientRect();
-      if (box) { const sr = box.getBoundingClientRect(); if (br.bottom > sr.bottom - 90) box.scrollTop += br.bottom - (sr.bottom - 90); }
-      if (wrap) { const wr = wrap.getBoundingClientRect(); if (br.right > wr.right - 30) wrap.scrollLeft += br.right - (wr.right - 30); else if (br.left < wr.left + 30) wrap.scrollLeft -= (wr.left + 30) - br.left; }
+      follow(ball);
       if (d < total) { STAGE.raf = requestAnimationFrame(frame); return; }
       SFX.tension(0.45);
-      stageTimer(() => { ball.style.display = 'none'; moving = false; reveal(i); }, 450);
+      stageTimer(() => { ball.style.display = 'none'; moving = false; onEnd(); }, 450);
     };
     STAGE.raf = requestAnimationFrame(frame);
   };
-  STAGE.skip = () => { cancelAnimationFrame(STAGE.raf); moving = false; run.entries.forEach((_, i) => { const pth = body.querySelector('#lp' + i); pth.style.opacity = '1'; pth.style.strokeDasharray = 'none'; body.querySelector('#lball' + i).style.display = 'none'; if (!done.has(i)) reveal(i, true); }); showResult(run); };
+  const hint = txt => { const h = body.querySelector('#ladHint'); if (h) h.textContent = txt; };
+  if (!reverse) {
+    const reveal = (i, quiet) => {
+      const end = run.paths[i].end, cov = body.querySelector('#lcov' + end), sp = special(end);
+      if (cov) cov.classList.add('open');
+      const nm = body.querySelector('#ln' + i); if (nm) nm.classList.add('done');
+      done.add(i);
+      if (!quiet) { if (sp) { SFX.win(); confetti(cov); } else SFX.lose(); }
+      const left = n - done.size;
+      hint(left ? '남은 사람 ' + left + '명. 다음 사람 이름을 눌러 주세요.' : '모두 내려왔어요.');
+      if (done.size === n) stageTimer(() => showResult(run), quiet ? 50 : 900);
+    };
+    STAGE.lgo = i => { if (moving || done.has(i) || !STAGE) return; animate(i, false, () => reveal(i)); };
+    STAGE.skip = () => { cancelAnimationFrame(STAGE.raf); moving = false; run.entries.forEach((_, i) => { const pth = body.querySelector('#lp' + i); pth.style.opacity = '1'; pth.style.strokeDasharray = 'none'; body.querySelector('#lball' + i).style.display = 'none'; if (!done.has(i)) reveal(i, true); }); showResult(run); };
+    return;
+  }
+  // reverse: start from a winning slot at the bottom
+  const owner = c => run.paths.findIndex(pp => pp.end === c);
+  const revealTop = (c, quiet) => {
+    const i = owner(c), e = run.entries[i], top = body.querySelector('#ltop' + i);
+    done.add(c);
+    if (top) top.innerHTML = '<rect class="ltop-box" x="' + (X(i) - 30) + '" y="' + (nameY - 15) + '" width="60" height="22" rx="6"/><text class="ln" x="' + X(i) + '" y="' + nameY + '" text-anchor="middle" fill="#fff">' + esc(short(e.name)) + '</text>';
+    const sl = body.querySelector('#lsl' + c); if (sl) sl.classList.add('done');
+    const sb = body.querySelector('#lsb' + c); if (sb) { sb.disabled = true; sb.textContent = e.name + ' ' + run.labels[run.slot[c]]; }
+    if (!quiet) { SFX.win(); confetti(top); caption(e.name + ' ' + run.labels[run.slot[c]] + '!', 'hot'); }
+    const left = slotsSp.length - done.size;
+    hint(left ? '남은 당첨 칸 ' + left + '개. 다음 칸을 눌러 주세요.' : '당첨자를 모두 찾았어요.');
+    if (left === 0) stageTimer(() => showResult(run), quiet ? 50 : 900);
+  };
+  STAGE.lrev = c => { if (moving || done.has(c) || !special(c) || !STAGE) return; animate(owner(c), true, () => revealTop(c)); };
+  STAGE.skip = () => { cancelAnimationFrame(STAGE.raf); moving = false; slotsSp.forEach(c => { const i = owner(c), pth = body.querySelector('#lp' + i); pth.style.opacity = '1'; pth.style.strokeDasharray = 'none'; body.querySelector('#lball' + i).style.display = 'none'; if (!done.has(c)) revealTop(c, true); }); showResult(run); };
+  if (wrap && slotsSp.length) { const first = X(slotsSp[0]); wrap.scrollLeft = Math.max(0, first - wrap.clientWidth / 2); }
 }
 
 // ---------- roulette: slows down with ticks ----------
@@ -2022,7 +2075,7 @@ function wheelSVG(rem, run) {
     s += '<path d="M150 150 L' + x0.toFixed(2) + ' ' + y0.toFixed(2) + ' A' + R + ' ' + R + ' 0 ' + (a1 - a0 > Math.PI ? 1 : 0) + ' 1 ' + x1.toFixed(2) + ' ' + y1.toFixed(2) + 'Z" fill="' + run.entries[ei].color + '" stroke="#fff" stroke-width="1.5"/>';
     const am = (a0 + a1) / 2, ph = run.entries[ei].photo && m <= 20, tr = ph ? 0.5 : 0.62, tx = cx + R * tr * Math.cos(am), ty = cy + R * tr * Math.sin(am), fs = m > 24 ? 8 : m > 14 ? 10 : 13;
     if (ph) { const pr = Math.max(9, Math.min(22, R * Math.sin(Math.PI / m) * 0.62)), px = cx + (R - pr - 6) * Math.cos(am), py = cy + (R - pr - 6) * Math.sin(am), cid = 'wc' + ei + '_' + m; s += '<clipPath id="' + cid + '"><circle cx="' + px.toFixed(2) + '" cy="' + py.toFixed(2) + '" r="' + pr.toFixed(2) + '"/></clipPath><image href="' + run.entries[ei].photo + '" x="' + (px - pr).toFixed(2) + '" y="' + (py - pr).toFixed(2) + '" width="' + (2 * pr).toFixed(2) + '" height="' + (2 * pr).toFixed(2) + '" clip-path="url(#' + cid + ')" preserveAspectRatio="xMidYMid slice"/><circle cx="' + px.toFixed(2) + '" cy="' + py.toFixed(2) + '" r="' + pr.toFixed(2) + '" fill="none" stroke="#fff" stroke-width="2"/>'; }
-    s += '<text x="' + tx.toFixed(2) + '" y="' + ty.toFixed(2) + '" transform="rotate(' + (am * 180 / Math.PI).toFixed(2) + ' ' + tx.toFixed(2) + ' ' + ty.toFixed(2) + ')" text-anchor="middle" dominant-baseline="central" font-size="' + fs + '" font-weight="700" fill="#fff">' + esc(short(run.entries[ei].name)) + '</text>';
+    if (m <= 20) s += '<text x="' + tx.toFixed(2) + '" y="' + ty.toFixed(2) + '" transform="rotate(' + (am * 180 / Math.PI).toFixed(2) + ' ' + tx.toFixed(2) + ' ' + ty.toFixed(2) + ')" text-anchor="middle" dominant-baseline="central" font-size="' + fs + '" font-weight="700" fill="#fff">' + esc(short(run.entries[ei].name)) + '</text>';
   });
   return s + '<circle cx="150" cy="150" r="22" fill="#17203A" stroke="#F4B92B" stroke-width="3"/>';
 }
@@ -2030,12 +2083,13 @@ function stageRoulette(body, run) {
   const spins = run.kind === 'tie' ? firstUniform(run.labels) : run.N;
   const picks = run.order.slice(0, spins);
   let remaining = run.entries.map((_, i) => i), rot = 0, k = 0;
-  body.innerHTML = '<div class="wheel-wrap"><div class="wheel-ptr" id="wptr"></div><svg class="wheel" id="wheel" viewBox="0 0 300 300" role="img" aria-label="룰렛"></svg></div><div class="spin-picks" id="spinPicks" aria-live="polite"></div>';
-  const wheel = body.querySelector('#wheel'), picksEl = body.querySelector('#spinPicks'), ptr = body.querySelector('#wptr');
+  body.innerHTML = '<div class="wheel-wrap"><div class="wheel-ptr" id="wptr"></div><svg class="wheel" id="wheel" viewBox="0 0 300 300" role="img" aria-label="룰렛"></svg></div><div class="wheel-now"><small>바늘이 가리키는 사람</small><div class="wn" id="wnow"></div></div><div class="spin-picks" id="spinPicks" aria-live="polite"></div>';
+  const wheel = body.querySelector('#wheel'), picksEl = body.querySelector('#spinPicks'), ptr = body.querySelector('#wptr'), nowEl = body.querySelector('#wnow');
+  const showNow = ei => { const e = run.entries[ei]; if (!e || !nowEl) return; nowEl.innerHTML = (e.photo ? '<img src="' + e.photo + '" alt="">' : '<i style="background:' + e.color + '"></i>') + '<b>' + esc(e.name) + '</b>'; };
   const chip = j => '<span class="lab ' + (run.labelCls[j] || '') + '">' + (j + 1) + '. ' + esc(run.entries[picks[j]].name) + ' ' + esc(run.labels[j]) + '</span>';
   const draw = () => { wheel.innerHTML = wheelSVG(remaining, run); };
   const segAt = (r, m) => Math.floor(((((360 - r) % 360) + 360) % 360) / (360 / m));
-  draw();
+  draw(); showNow(remaining[segAt(0, remaining.length)]);
   const spinNext = () => {
     if (!STAGE || STAGE.run !== run) return;
     if (k >= spins) { showResult(run); return; }
@@ -2054,12 +2108,12 @@ function stageRoulette(body, run) {
       rot = from + (to - from) * ease(x);
       wheel.style.transform = 'rotate(' + rot + 'deg)';
       const sg = segAt(rot, m);
-      if (sg !== lastSeg) { lastSeg = sg; SFX.tick(); if (ptr) { ptr.classList.remove('flick'); void ptr.offsetWidth; ptr.classList.add('flick'); } }
+      if (sg !== lastSeg) { lastSeg = sg; SFX.tick(); showNow(remaining[sg]); if (ptr) { ptr.classList.remove('flick'); void ptr.offsetWidth; ptr.classList.add('flick'); } }
       if (x < 1) { STAGE.raf = requestAnimationFrame(frame); return; }
       SFX.win(); caption(run.entries[target].name + ' 당첨!', 'hot');
       picksEl.insertAdjacentHTML('beforeend', chip(k)); k++;
       if (k >= spins) { stageTimer(() => showResult(run), 900); return; }
-      stageTimer(() => { remaining = remaining.filter(i => i !== target); rot = 0; wheel.style.transform = 'rotate(0deg)'; draw(); stageTimer(spinNext, 500); }, 1300);
+      stageTimer(() => { remaining = remaining.filter(i => i !== target); rot = 0; wheel.style.transform = 'rotate(0deg)'; draw(); showNow(remaining[segAt(0, remaining.length)]); stageTimer(spinNext, 500); }, 1300);
     };
     STAGE.raf = requestAnimationFrame(frame);
   };
@@ -2405,7 +2459,7 @@ function guideSteps() {
     { ro:true, stage:stageRank, title:'순위는 한눈에 보여요',
       text: ro ? '운영진이 기록한 점수 순위예요. 보상 등급별로 묶여 있고, 참여율 막대가 빨간색이면 기준 미달이에요.' : '맨 위 숫자는 등급별 인원이에요. 아래는 보상 등급별로 묶여 있고, 참여율 막대가 빨간색이면 기준 미달이에요.' },
     { ro:true, stage:stageAbsence, title:'불참은 미리 신고해요',
-      text: ro ? '못 나가는 날은 순위 화면의 불참 신고하기로 미리 남겨 주세요. 신고한 시각이 그대로 남아서 무단 불참이 아니라 사전 불참으로 처리돼요.' : '길드원이 불참 신고를 남기면, 기록할 때 그 사람이 사전 불참으로 미리 골라져 있어요. 신고 시각도 그대로 남아요.' },
+      text: ro ? '못 나가는 날은 순위 화면의 불참 신고하기로 미리 남겨 주세요. 신고한 시각이 그대로 남아서 무단 불참이 아니라 사전 불참으로 처리돼요.' : '연맹원이 불참 신고를 남기면, 기록할 때 그 사람이 사전 불참으로 미리 골라져 있어요. 신고 시각도 그대로 남아요.' },
     { ro:true, stage:stageRandom, title:'랜덤은 누구나 돌려요',
       text: ro ? '아래 랜덤 메뉴에서 룰렛, 카드 뽑기, 구슬 경주, 사다리를 재미로 돌려 볼 수 있어요. 운영진의 공식 추첨 결과도 거기에 모두 공개돼요.' : '랜덤 메뉴에서 룰렛, 카드 뽑기, 구슬 경주, 사다리를 누구나 돌릴 수 있어요. 관리자가 공식 추첨으로 돌리면 첫 결과가 바로 기록돼서 모두에게 공개돼요.' },
     { stage:stagePick, title:'기록은 누르기만 하면 끝', text:'아래 기록하기에서 콘텐츠를 고르고, 참여한 사람의 닉네임을 누르세요. 전원 선택을 누른 뒤 빠진 사람만 다시 누르면 더 빨라요.' },
@@ -2414,7 +2468,7 @@ function guideSteps() {
       text:'오른쪽 위 로그인을 눌러 구글로 로그인하고 내 게임 닉네임을 고르면, 순위표와 랜덤 게임에 내 사진이 나와요. 카카오톡 안에서는 로그인이 막혀서 크롬이나 사파리로 열어야 해요.' },
     { ro:true, stage:stageDetail, title:'이름을 누르면 기록이 보여요',
       text: ro ? '이름을 누르면 회차별 참여 기록과 점수를 직접 확인할 수 있어요. 이 설명은 위쪽 사용법 버튼으로 다시 볼 수 있어요.' : '누가 언제 참여했는지 회차별로 확인할 수 있어요. 글 복사나 이미지 저장으로 순위를 디스코드나 카톡에 바로 올릴 수 있어요.' },
-    { stage:stageManage, title:'규칙과 등급은 관리에서', text:'관리에서 길드원, 콘텐츠별 점수와 보너스 항목, 보상 등급 이름과 인원을 바꿀 수 있어요. 이 설명은 위쪽 사용법 버튼으로 언제든 다시 볼 수 있어요.' }
+    { stage:stageManage, title:'규칙과 등급은 관리에서', text:'관리에서 연맹원, 콘텐츠별 점수와 보너스 항목, 보상 등급 이름과 인원을 바꿀 수 있어요. 이 설명은 위쪽 사용법 버튼으로 언제든 다시 볼 수 있어요.' }
   ];
   return ro ? all.filter(x => x.ro) : all.filter(x => !x.roOnly);
 }
@@ -2569,7 +2623,7 @@ function importData(input) {
       if (!data || data.v !== 2 || !Array.isArray(data.members) || !Array.isArray(data.events)) throw new Error('bad');
       S = normalize(data);
       UI.open = null;
-      UI.msg = '백업을 불러왔어요. 길드원 ' + S.members.length + '명, 기록 ' + S.events.length + '개예요.';
+      UI.msg = '백업을 불러왔어요. 연맹원 ' + S.members.length + '명, 기록 ' + S.events.length + '개예요.';
       changed();
     } catch (e) { UI.msg = '이 점수판의 백업 파일이 아니에요. 내보내기로 만든 .json 파일을 골라 주세요.'; render(); }
   };
@@ -2605,7 +2659,7 @@ app.addEventListener('click', e => {
   const b = e.target.closest('[data-act]');
   if (!b || b.disabled) return;
   const act = b.dataset.act, id = b.dataset.id, w = UI.wiz;
-  if (mode === 'ro' && !['open','copy','closeCopy','closeMsg','rules','closeSheet','jump','guideOpen','guideNext','guidePrev','guideGo','guideClose','login','doLogin','logout','noticeOk','absence','absSubmit','saveImage','tab','rTool','rPick','rAll','rNone','rAdd','rDel','rN','rRule','rStart','profile','googleLogin','copyLink','pfLink','pfUnlink','pfPhotoDel','grpToggle'].includes(act)) return;
+  if (mode === 'ro' && !['open','copy','closeCopy','closeMsg','rules','closeSheet','jump','guideOpen','guideNext','guidePrev','guideGo','guideClose','login','doLogin','logout','noticeOk','absence','absSubmit','tab','rTool','rPick','rAll','rNone','rAdd','rDel','rN','rRule','rStart','profile','googleLogin','copyLink','pfLink','pfUnlink','pfPhotoDel','grpToggle'].includes(act)) return;
   switch (act) {
     case 'tab': case 'goto':
       if (mode === 'ro' && !['rank','random'].includes(b.dataset.v)) return;
@@ -2673,8 +2727,8 @@ app.addEventListener('click', e => {
       if (S.priority === id) S.priority = S.types[0].id;
       changed(); break;
     case 'newSeason': if (!arm('season')) return; S.events = []; S.draws = {}; S.drawLog = []; UI.msg = '새 시즌을 시작했어요.'; changed(); break;
-    case 'resetAll': if (!arm('reset')) return; wipeData(); S.drawLog = []; S.demo = false; UI.msg = '길드원과 기록을 모두 지웠어요.'; changed(); break;
-    case 'clearDemo': if (!arm('demo')) return; wipeData(); S.demo = false; UI.tab = 'manage'; UI.mseg = 'members'; UI.msg = '예시를 지웠어요. 길드원부터 추가하고, 보상 등급 인원은 규칙과 설정에서 실제에 맞게 바꿔 주세요.'; changed(); break;
+    case 'resetAll': if (!arm('reset')) return; wipeData(); S.drawLog = []; S.demo = false; UI.msg = '연맹원과 기록을 모두 지웠어요.'; changed(); break;
+    case 'clearDemo': if (!arm('demo')) return; wipeData(); S.demo = false; UI.tab = 'manage'; UI.mseg = 'members'; UI.msg = '예시를 지웠어요. 연맹원부터 추가하고, 보상 등급 인원은 규칙과 설정에서 실제에 맞게 바꿔 주세요.'; changed(); break;
     case 'openLadder': openLadder(b.dataset.key); break;
     case 'runLadder': runLadder(); break;
     case 'confirmLadder': confirmLadder(); break;
@@ -2721,7 +2775,7 @@ app.addEventListener('click', e => {
     case 'doLogin': doLogin(); break;
     case 'logout': logout(); break;
     case 'editNotice': UI.sheet = 'notice'; UI.focus = 'noticeText'; render(); break;
-    case 'saveNotice': { const ta = document.getElementById('noticeText'), nv = ta ? ta.value.trim().slice(0, 1000) : S.notice; if (nv !== S.notice) { S.notice = nv; S.noticeAt = Date.now(); try { localStorage.setItem(NOTICE_KEY, String(S.noticeAt)); } catch (e) {} } UI.sheet = null; UI.msg = S.notice ? '공지를 저장했어요. 길드원이 다음에 열 때 팝업으로 한 번 보여요.' : '공지를 내렸어요.'; changed(); break; }
+    case 'saveNotice': { const ta = document.getElementById('noticeText'), nv = ta ? ta.value.trim().slice(0, 1000) : S.notice; if (nv !== S.notice) { S.notice = nv; S.noticeAt = Date.now(); try { localStorage.setItem(NOTICE_KEY, String(S.noticeAt)); } catch (e) {} } UI.sheet = null; UI.msg = S.notice ? '공지를 저장했어요. 연맹원이 다음에 열 때 팝업으로 한 번 보여요.' : '공지를 내렸어요.'; changed(); break; }
     case 'addBonus': { const t = typeOf(id); if (!t) return; const bo = { id:uid(), name:'새 보너스', pts:5 }; t.bonuses.push(bo); UI.focus = 'bn-' + bo.id; changed(); break; }
     case 'delBonus': {
       const t = typeOf(id), bid = b.dataset.b; if (!t) return;
@@ -2758,7 +2812,7 @@ app.addEventListener('change', e => {
   if (f === 'rOfficial') { UI.rnd.official = el.checked; render(); if (el.checked) UI.focus = 'rTitle'; return; }
   const t = id ? typeOf(id) : null, m = id ? memOf(id) : null;
   switch (f) {
-    case 'title': S.title = v.trim().slice(0, 40) || '길드 점수판'; el.value = S.title; break;
+    case 'title': S.title = v.trim().slice(0, 40) || '<Z3RO> No Mercy'; el.value = S.title; break;
     case 'tName': if (!t) return; t.name = v.trim().slice(0, 30) || '이름 없음'; el.value = t.name; break;
     case 'tPts': if (!t) return; t.pts = clampInt(v, -9999, 9999, t.pts); el.value = t.pts; break;
     case 'tPen': if (!t) return; t.pen = clampInt(Math.abs(parseInt(v, 10)), 0, 9999, t.pen); el.value = t.pen; break;
