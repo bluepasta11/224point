@@ -376,7 +376,7 @@ details.adv .in{margin-top:8px;width:auto}
 .spin-picks .lab.win{background:var(--gold-fill);border-color:var(--gold-fill);color:#2B1E00}
 .spin-picks .lab.tier{background:var(--tf);border-color:var(--tf);color:var(--tfo)}
 .wheel-wrap{position:relative;width:min(320px,80vw);aspect-ratio:1/1;margin-top:10px}
-.wheel{width:100%;height:100%;display:block;transform-origin:50% 50%;transition:transform 3.4s cubic-bezier(.12,.62,.08,1)}
+.wheel{width:100%;height:100%;display:block;transform-origin:50% 50%}
 .wheel.nt{transition:none}
 .wheel-ptr{position:absolute;left:50%;top:-8px;transform:translateX(-50%);width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-top:28px solid var(--ink);z-index:2;filter:drop-shadow(0 2px 2px rgba(0,0,0,.3))}
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(82px,1fr));gap:10px;width:100%}
@@ -489,6 +489,49 @@ details.adv .in{margin-top:8px;width:auto}
 .btn,.tool,.pick,.rchip,.type,.tile,.nav button{transition:transform .12s ease}
 .btn:active,.tool:active,.pick:active,.rchip:active,.type:active,.tile:active,.nav button:active{transform:scale(.97)}
 .confetti{position:fixed;inset:0;pointer-events:none;z-index:70}
+
+/* tension: ready, countdown, sound, captions, cards, ladder, race */
+.st-hr{display:flex;align-items:center;gap:6px;flex:none}
+.snd{width:38px;height:38px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);display:grid;place-items:center;cursor:pointer}
+.snd svg.i{width:20px;height:20px}
+.snd[aria-pressed="false"]{color:var(--muted)}
+.ready{display:flex;flex-direction:column;align-items:center;gap:14px;width:100%;padding:8px 0}
+.ready-rule{font-size:1.05rem;font-weight:700;text-align:center;margin:0;word-break:keep-all}
+.ready-ents{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;max-height:34vh;overflow:auto}
+.re{display:inline-flex;align-items:center;gap:6px;background:var(--surface2);border-radius:999px;padding:4px 10px 4px 4px;font-size:.88rem;font-weight:700}
+.re img,.re i{width:24px;height:24px;border-radius:50%;object-fit:cover;display:grid;place-items:center;font-style:normal;color:#fff;font-size:.75rem;flex:none}
+@keyframes go-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+.go-btn{max-width:320px;font-size:1.2rem;min-height:60px;animation:go-pulse 1.6s ease-in-out infinite}
+.countdown{height:240px;display:grid;place-items:center;width:100%}
+.countdown b{font-family:var(--display);font-weight:400;font-size:5rem;color:var(--gold);line-height:1}
+@keyframes cd-pop{0%{transform:scale(1.6);opacity:0}35%{opacity:1}100%{transform:scale(1);opacity:1}}
+.countdown b.pop{animation:cd-pop .45s cubic-bezier(.2,.8,.2,1)}
+.st-cap{min-height:30px;text-align:center;margin-top:8px}
+.cap{display:inline-block;font-weight:700;font-size:.95rem;color:var(--muted);animation:pg-in .25s ease-out}
+.cap.hot{color:var(--gold);font-size:1.05rem}
+.card-stat{align-self:stretch;text-align:center;font-weight:700;margin:0 0 12px;font-size:.98rem}
+.card-stat b{font-family:var(--display);font-weight:400;font-size:1.4rem;color:var(--gold);margin:0 2px}
+@keyframes card-shake{0%,100%{transform:rotate(0)}25%{transform:rotate(-5deg) scale(1.04)}75%{transform:rotate(5deg) scale(1.04)}}
+.card3d.suspense .card-in{animation:card-shake .22s ease-in-out infinite}
+.card3d.slow .card-in{transition:transform 1s cubic-bezier(.3,.7,.2,1)}
+.card3d.glow .cf{box-shadow:0 0 0 3px var(--gold-fill),0 0 20px rgba(244,185,43,.65)}
+.lad-hint{align-self:stretch;text-align:center;font-weight:700;margin:0 0 8px}
+.lname{cursor:pointer}
+.lname .lhit{fill:var(--blue-soft)}
+.lname.done{cursor:default;opacity:.55}
+.lname.done .lhit{fill:transparent}
+.lcov rect{fill:var(--ink)}
+.lcov text{fill:var(--surface);font:700 14px var(--body)}
+.lcov{transition:opacity .4s ease,transform .4s ease;transform-box:fill-box;transform-origin:center}
+.lcov.open{opacity:0;transform:scaleY(.1)}
+.lball{stroke:#fff;stroke-width:2}
+.race-wrap{position:relative;width:100%;display:flex;justify-content:center}
+.race-hud{position:absolute;top:8px;left:8px;background:rgba(15,20,32,.74);color:#fff;border-radius:10px;padding:6px 9px;font-size:.78rem;display:flex;flex-direction:column;gap:3px;pointer-events:none;max-width:46%}
+.race-hud b{font-size:.72rem;color:#F7C553}
+.race-hud span{display:flex;align-items:center;gap:5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.race-hud img,.race-hud i{width:14px;height:14px;border-radius:50%;object-fit:cover;flex:none}
+@keyframes ptr-flick{0%{transform:translateX(-50%) rotate(-14deg)}100%{transform:translateX(-50%) rotate(0)}}
+.wheel-ptr.flick{animation:ptr-flick .12s ease-out}
 
 /* tiers */
 .tier-0{--tf:var(--gold-fill);--ts:var(--gold-soft);--tt:var(--gold);--tfo:#2B1E00;--th:#F7C553}
@@ -633,6 +676,8 @@ const ICON = {
   rank: svg('<path d="M7 4h10v4a5 5 0 0 1-10 0V4Z"/><path d="M7 6H4v1a4 4 0 0 0 3.5 4M17 6h3v1a4 4 0 0 1-3.5 4M12 13v3M8.5 20h7M10 16h4v4h-4z"/>'),
   record: svg('<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M9 11l2 2 4-4M9 17h6"/>'),
   dice: svg('<rect x="4" y="4" width="16" height="16" rx="3.5"/><circle cx="9" cy="9" r="1.2"/><circle cx="15" cy="15" r="1.2"/><circle cx="15" cy="9" r="1.2"/><circle cx="9" cy="15" r="1.2"/>'),
+  sndOn: svg('<path d="M4 10v4h3.5L12 18V6L7.5 10H4Z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/>'),
+  sndOff: svg('<path d="M4 10v4h3.5L12 18V6L7.5 10H4Z"/><path d="m16 9.5 5 5M21 9.5l-5 5"/>'),
   search: svg('<circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/>'),
   user: svg('<circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/>'),
   manage: svg('<circle cx="9" cy="8" r="3.2"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0M16 5.3a3 3 0 0 1 0 5.6M17.5 14.3A5.5 5.5 0 0 1 20.5 19"/>'),
@@ -1637,19 +1682,59 @@ function imageSheet() {
 
 // ---------- random tools ----------
 const TOOLS = [
-  { id:'roulette', name:'룰렛', desc:'돌림판이 멈춘 곳이 당첨' },
-  { id:'cards', name:'카드 뽑기', desc:'카드를 뒤집어서 확인해요' },
-  { id:'plinko', name:'핀볼 (플링코)', desc:'핀 사이로 공이 떨어져요' },
-  { id:'race', name:'핀볼 (구슬 경주)', desc:'긴 코스를 구슬이 내려가요' },
-  { id:'ladder', name:'사다리', desc:'가로줄을 따라 내려가요' }
+  { id:'roulette', name:'룰렛', desc:'돌림판이 천천히 멈춰요' },
+  { id:'cards', name:'카드 뽑기', desc:'섞인 카드를 하나씩 뒤집어요' },
+  { id:'race', name:'구슬 경주', desc:'장애물 코스를 구슬이 달려요' },
+  { id:'ladder', name:'사다리', desc:'한 명씩 내려가며 결과를 열어요' }
 ];
-const toolName = id => (TOOLS.find(t => t.id === id) || { name:id }).name;
+const TOOL_NAMES = { roulette:'룰렛', cards:'카드 뽑기', race:'구슬 경주', ladder:'사다리', plinko:'핀볼 (플링코)' };
+const toolName = id => TOOL_NAMES[id] || id;
 UI.rnd = { sel:[], custom:[], draft:'', tool:'roulette', n:1, rule:'first', official:false, title:'' };
 let STAGE = null;
 function mulberry32(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
 function newSeed() { const a = new Uint32Array(1); crypto.getRandomValues(a); return a[0]; }
 function shuffleR(arr, rnd) { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
 const prefersReduced = () => !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+// short, soft sound effects made in the browser (no audio files)
+const SFX = (() => {
+  let ctx = null, on = true, last = 0;
+  try { on = localStorage.getItem('guild-scoreboard-sound') !== 'off'; } catch (e) {}
+  const ac = () => { try { if (!ctx) { const C = window.AudioContext || window.webkitAudioContext; if (!C) return null; ctx = new C(); } if (ctx.state === 'suspended') ctx.resume(); return ctx; } catch (e) { return null; } };
+  const tone = (f, d, o) => {
+    o = o || {}; if (!on) return; const c = ac(); if (!c) return;
+    const t = c.currentTime + (o.at || 0), osc = c.createOscillator(), g = c.createGain(), v = o.vol || 0.06;
+    osc.type = o.type || 'sine'; osc.frequency.setValueAtTime(f, t);
+    if (o.to) osc.frequency.exponentialRampToValueAtTime(o.to, t + d);
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(v, t + Math.min(0.02, d / 3)); g.gain.exponentialRampToValueAtTime(0.0001, t + d);
+    osc.connect(g); g.connect(c.destination); osc.start(t); osc.stop(t + d + 0.03);
+  };
+  const noise = (d, freq, vol, at) => {
+    if (!on) return; const c = ac(); if (!c) return;
+    const t = c.currentTime + (at || 0), len = Math.max(1, Math.floor(c.sampleRate * d)), buf = c.createBuffer(1, len, c.sampleRate), data = buf.getChannelData(0);
+    for (let i = 0; i < len; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / len);
+    const src = c.createBufferSource(), bp = c.createBiquadFilter(), g = c.createGain();
+    src.buffer = buf; bp.type = 'bandpass'; bp.frequency.value = freq; bp.Q.value = 0.8; g.gain.value = vol;
+    src.connect(bp); bp.connect(g); g.connect(c.destination); src.start(t);
+  };
+  const gate = ms => { const n = performance.now(); if (n - last < ms) return false; last = n; return true; };
+  return {
+    unlock: () => { ac(); },
+    isOn: () => on,
+    toggle: () => { on = !on; try { localStorage.setItem('guild-scoreboard-sound', on ? 'on' : 'off'); } catch (e) {} if (on) { ac(); tone(880, 0.08, { vol:0.04 }); } return on; },
+    tick: () => { if (gate(30)) tone(1500, 0.025, { type:'triangle', vol:0.03 }); },
+    step: () => tone(760, 0.05, { type:'triangle', vol:0.035 }),
+    count: final => final ? tone(1046, 0.3, { vol:0.07 }) : tone(659, 0.12, { vol:0.06 }),
+    flip: () => noise(0.08, 2200, 0.1),
+    shuffle: () => { for (let i = 0; i < 7; i++) noise(0.045, 2600, 0.07, i * 0.06); },
+    tension: d => tone(392, d, { to:784, vol:0.03 }),
+    win: () => { [784, 988, 1319].forEach((f, i) => tone(f, 0.28, { vol:0.06, at:i * 0.09 })); },
+    lose: () => tone(330, 0.15, { to:247, vol:0.04 }),
+    bump: () => { if (gate(70)) tone(520 + Math.random() * 260, 0.045, { vol:0.03 }); },
+    finish: () => tone(1175, 0.1, { type:'triangle', vol:0.045 })
+  };
+})();
+
 function rndEntries() {
   const r = UI.rnd, out = [];
   S.members.forEach(m => { if (r.sel.includes(m.id)) out.push({ name:m.name, photo:photoOf(m.id) }); });
@@ -1664,8 +1749,8 @@ function rndAdd() {
 }
 function randomPage() {
   const r = UI.rnd, ents = rndEntries(), n = ents.length, admin = mode !== 'ro';
+  if (!TOOLS.some(t => t.id === r.tool)) r.tool = 'roulette';
   r.n = Math.max(1, Math.min(r.n, Math.max(1, n - 1)));
-  const pin = r.tool === 'plinko' || r.tool === 'race';
   let h = barHTML('랜덤') + '<div class="body">' + toastHTML();
   h += '<div class="card"><h2 class="card-h">참가자 <span class="count">' + n + '명</span></h2><p class="card-sub">길드원을 누르거나, 메뉴처럼 아무 이름이나 직접 넣을 수 있어요.</p>';
   if (S.members.length) h += '<div class="tools" style="margin-bottom:8px"><button class="pill-btn" data-act="rAll">길드원 전원</button><button class="pill-btn" data-act="rNone">모두 빼기</button></div><div class="rchips">' + S.members.map(m => '<button class="rchip" data-act="rPick" data-id="' + esc(m.id) + '" aria-pressed="' + r.sel.includes(m.id) + '">' + esc(m.name) + '</button>').join('') + '</div>';
@@ -1675,13 +1760,13 @@ function randomPage() {
   h += '<div class="card"><h2 class="card-h">방식</h2><div class="tools-grid" style="margin-top:10px">' + TOOLS.map(t => '<button class="tool" data-act="rTool" data-v="' + t.id + '" aria-pressed="' + (r.tool === t.id) + '"><b>' + t.name + '</b><span>' + t.desc + '</span></button>').join('') + '</div></div>';
   h += '<div class="card"><h2 class="card-h">설정</h2><div class="stack" style="margin-top:10px">';
   h += '<div class="line">당첨 인원<span class="stepper"><button data-act="rN" data-v="-1" aria-label="당첨 인원 줄이기">−</button><span>' + r.n + '명</span><button data-act="rN" data-v="1" aria-label="당첨 인원 늘리기">+</button></span>' + (n ? '<span style="color:var(--muted);font-size:.9rem">' + n + '명 중</span>' : '') + '</div>';
-  if (pin) h += '<div class="rule-seg" role="group" aria-label="당첨 규칙"><button data-act="rRule" data-v="first" aria-pressed="' + (r.rule === 'first') + '">먼저 도착한 사람 당첨</button><button data-act="rRule" data-v="last" aria-pressed="' + (r.rule === 'last') + '">마지막에 도착한 사람 당첨</button></div>';
+  if (r.tool === 'race') h += '<div class="rule-seg" role="group" aria-label="당첨 규칙"><button data-act="rRule" data-v="first" aria-pressed="' + (r.rule === 'first') + '">먼저 도착한 사람 당첨</button><button data-act="rRule" data-v="last" aria-pressed="' + (r.rule === 'last') + '">마지막에 도착한 사람 당첨</button></div>';
   if (admin) {
-    h += sw('rOfficial', r.official, '공식 추첨으로 기록 (첫 결과가 바로 공개돼요)');
+    h += sw('rOfficial', r.official, '공식 추첨으로 기록 (시작하는 순간 결과가 공개돼요)');
     if (r.official) h += '<input class="in" id="rTitle" maxlength="40" placeholder="추첨 이름 (예: 10월 보상 추첨)" value="' + esc(r.title) + '" aria-label="추첨 이름">';
   }
   h += '</div></div>';
-  h += '<button class="btn primary big" data-act="rStart"' + (n < 2 ? ' disabled' : '') + '>' + (n < 2 ? '참가자를 2명 이상 넣어 주세요' : (r.official && admin ? '공식 추첨 시작' : '시작하기')) + '</button>';
+  h += '<button class="btn primary big" data-act="rStart"' + (n < 2 ? ' disabled' : '') + '>' + (n < 2 ? '참가자를 2명 이상 넣어 주세요' : (r.official && admin ? '공식 추첨 준비' : '준비하기')) + '</button>';
   h += drawLogHTML();
   return h + '</div>';
 }
@@ -1697,7 +1782,8 @@ function prepareRun(run) {
   run.rnd = rnd;
   if (run.tool === 'ladder') {
     run.L = makeLadder(n, rnd); run.paths = run.entries.map((_, i) => trace(i, run.L));
-    const ord = new Array(n); run.paths.forEach((pp, i) => { ord[pp.end] = i; }); run.order = ord;
+    run.slot = shuffleR([...Array(n).keys()], rnd);
+    const ord = new Array(n); run.paths.forEach((pp, i) => { ord[run.slot[pp.end]] = i; }); run.order = ord;
   } else if (run.tool === 'roulette' || run.tool === 'cards') {
     run.order = shuffleR(run.entries.map((_, i) => i), rnd);
   } else {
@@ -1728,47 +1814,64 @@ function startRandom() {
     entries:ents.map((e, i) => ({ name:e.name, photo:e.photo || '', color:PALETTE[i % PALETTE.length] })), labels, labelCls:labels.map(l => l === '당첨' ? 'win' : ''),
     title:(r.title || '').trim() || (official ? '공식 추첨' : '재미로 돌리기') };
   prepareRun(run);
-  if (official) { logRun(run); r.official = false; r.title = ''; }
   openStage(run);
 }
 function startTie(key, tool) {
   const p = compute().pending.find(x => x.key === key);
   if (!p || !TOOLS.some(t => t.id === tool)) return;
-  const cnt = {}; p.labels.forEach(l => { if (l) cnt[l] = (cnt[l] || 0) + 1; });
   const run = { tool, seed:newSeed(), kind:'tie', tieKey:key, ids:p.ids.slice(), official:true, N:0, rule:'first',
     entries:p.ids.map((id, i) => ({ name:nameOf(id), photo:photoOf(id), color:PALETTE[i % PALETTE.length] })),
-    labels:p.labels.map(l => tierName(l)), labelCls:p.labels.map(l => l ? tierCls(l) : ''),
-    title:fmt(p.pts) + '점 동점 (' + Object.keys(cnt).map(l => tierName(l) + ' ' + cnt[l] + '자리').join(', ') + ')' };
-  prepareRun(run); logRun(run);
+    labels:p.labels.map(l => tierName(l)), labelCls:p.labels.map(l => l ? tierCls(l) : '') };
+  run.title = fmt(p.pts) + '점 동점 (' + seatText(run) + ')';
+  prepareRun(run);
   UI.sheet = null; UI.tieKey = null; render();
   openStage(run);
+}
+function seatText(run) {
+  const cnt = {}, order = [];
+  run.labels.forEach((l, i) => { if (!run.labelCls[i]) return; if (!(l in cnt)) { cnt[l] = 0; order.push(l); } cnt[l]++; });
+  return order.map(l => l + ' ' + cnt[l] + '자리').join(', ');
 }
 function tieToolSheet() {
   const p = compute().pending.find(x => x.key === UI.tieKey);
   if (!p) return '';
-  return '<div class="overlay" role="dialog" aria-modal="true" aria-labelledby="ttT"><div class="sheet"><h2 class="sheet-title" id="ttT">동점자 추첨</h2><p style="color:var(--muted)">' + esc(p.ids.map(nameOf).join(', ')) + '. 방식을 고르면 바로 시작되고, 첫 결과가 공식 기록으로 남아서 다시 할 수 없어요.</p>' +
+  return '<div class="overlay" role="dialog" aria-modal="true" aria-labelledby="ttT"><div class="sheet"><h2 class="sheet-title" id="ttT">동점자 추첨</h2><p style="color:var(--muted)">' + esc(p.ids.map(nameOf).join(', ')) + '. 방식을 고르면 준비 화면이 열리고, 시작을 누르는 순간 결과가 공식 기록으로 남아요.</p>' +
     '<div class="tools-grid" style="margin-top:14px">' + TOOLS.map(t => '<button class="tool" data-act="tieStart" data-v="' + t.id + '"><b>' + t.name + '</b><span>' + t.desc + '</span></button>').join('') + '</div><div class="sheet-actions"><button class="btn" data-act="closeSheet">취소</button></div></div></div>';
 }
 
-// stage (lives outside #app so re-renders never interrupt it)
+// ---------- stage (lives outside #app so re-renders never interrupt it) ----------
 function openStage(run) {
   closeStage(true);
   const el = document.createElement('div');
   el.className = 'stage-ov'; el.id = 'rnd-stage'; el.setAttribute('role', 'dialog'); el.setAttribute('aria-modal', 'true'); el.setAttribute('aria-label', toolName(run.tool));
-  el.innerHTML = '<div class="stage"><div class="st-head"><div><b>' + esc(toolName(run.tool)) + '</b><span>' + esc(run.title) + ', 참가 ' + run.entries.length + '명</span></div><button class="textbtn" data-sact="close">닫기</button></div>' +
-    (run.official ? '<div class="st-official">공식 추첨이라 결과가 이미 기록됐어요. 다시 할 수 없어요.</div>' : '') +
-    '<div class="st-body" id="st-body"></div><div class="st-result" id="st-result" hidden></div><div class="st-actions" id="st-actions"></div></div>';
+  el.innerHTML = '<div class="stage"><div class="st-head"><div><b>' + esc(toolName(run.tool)) + '</b><span>' + esc(run.title) + ', 참가 ' + run.entries.length + '명</span></div>' +
+    '<div class="st-hr"><button class="snd" data-sact="sound" aria-pressed="' + SFX.isOn() + '" aria-label="효과음 켜기/끄기">' + (SFX.isOn() ? ICON.sndOn : ICON.sndOff) + '</button><button class="textbtn" data-sact="close">닫기</button></div></div>' +
+    (run.official ? '<div class="st-official">공식 추첨이에요. 시작을 누르는 순간 결과가 정해져 기록되고, 다시 할 수 없어요.</div>' : '') +
+    '<div class="st-body" id="st-body"></div><div class="st-cap" id="st-cap" aria-live="polite"></div><div class="st-result" id="st-result" hidden></div><div class="st-actions" id="st-actions"></div></div>';
   document.body.appendChild(el);
   document.body.style.overflow = 'hidden';
-  STAGE = { run, el, raf:0, timers:[], done:false, speed:1 };
+  STAGE = { run, el, raf:0, timers:[], done:false, speed:1, started:false };
   el.addEventListener('click', onStageClick);
-  setStageActions(false);
-  const body = el.querySelector('#st-body');
-  ({ ladder:stageLadder, roulette:stageRoulette, cards:stageCards, plinko:stagePin, race:stagePin })[run.tool](body, run);
+  readyView();
 }
-function setStageActions(done) {
+function ruleText(run) {
+  if (run.kind === 'tie') return '동점자 ' + run.entries.length + '명이 ' + seatText(run) + '를 나눠요.';
+  if (run.tool === 'race') return (run.rule === 'last' ? '마지막에 도착한 ' : '먼저 도착한 ') + run.N + '명이 당첨이에요.';
+  if (run.tool === 'cards') return '카드 ' + run.entries.length + '장 중에 당첨 카드 ' + run.N + '장이 숨어 있어요.';
+  if (run.tool === 'ladder') return '아래 칸 ' + run.entries.length + '개 중 당첨 ' + run.N + '칸이 가려져 있어요.';
+  return '룰렛을 ' + run.N + '번 돌려서 ' + run.N + '명을 뽑아요.';
+}
+function readyView() {
+  const run = STAGE.run, body = STAGE.el.querySelector('#st-body');
+  body.innerHTML = '<div class="ready"><p class="ready-rule">' + esc(ruleText(run)) + '</p><div class="ready-ents">' + run.entries.map(e => '<span class="re">' + (e.photo ? '<img src="' + e.photo + '" alt="">' : '<i style="background:' + e.color + '">' + esc(e.name.slice(0, 1)) + '</i>') + esc(e.name) + '</span>').join('') + '</div>' +
+    '<button class="btn primary big go-btn" data-sact="go">시작</button></div>';
+  setStageActions('ready');
+}
+function setStageActions(state) {
   if (!STAGE) return;
   const a = STAGE.el.querySelector('#st-actions'), run = STAGE.run;
+  if (state === 'ready') { a.innerHTML = '<button class="btn" data-sact="close">닫기</button>'; return; }
+  const done = state === 'done';
   a.innerHTML = (done ? '' : '<button class="btn" data-sact="skip">결과 바로 보기</button>') +
     (done && !run.official ? '<button class="btn" data-sact="again">다시 하기</button>' : '') +
     '<button class="btn primary" data-sact="close">' + (done ? '확인' : '닫기') + '</button>';
@@ -1780,20 +1883,51 @@ function closeStage(silent) {
   STAGE.el.remove(); document.body.style.overflow = ''; STAGE = null;
   if (!silent) { render(); if (dirty && mode === 'shared') schedule(1200); }
 }
+function caption(text, kind) {
+  if (!STAGE) return;
+  const c = STAGE.el.querySelector('#st-cap'); if (!c) return;
+  c.innerHTML = '<span class="cap ' + (kind || '') + '">' + esc(text) + '</span>';
+}
+function stageGo() {
+  if (!STAGE || STAGE.started) return;
+  STAGE.started = true;
+  const run = STAGE.run;
+  SFX.unlock();
+  if (run.official && !run.logged) { logRun(run); run.logged = true; if (run.kind === 'pick') { UI.rnd.official = false; UI.rnd.title = ''; } }
+  setStageActions('running');
+  const body = STAGE.el.querySelector('#st-body');
+  const go = () => { if (!STAGE || STAGE.run !== run) return; ({ ladder:stageLadder, roulette:stageRoulette, cards:stageCards, race:stagePin, plinko:stagePin })[run.tool](body, run); };
+  if (prefersReduced()) { go(); return; }
+  let n = 3;
+  body.innerHTML = '<div class="countdown"><b id="cdn" class="pop">3</b></div>';
+  SFX.count(false);
+  const show = txt => { const b = body.querySelector('#cdn'); if (!b) return; b.textContent = txt; b.classList.remove('pop'); void b.offsetWidth; b.classList.add('pop'); };
+  const next = () => {
+    if (!STAGE || STAGE.run !== run) return;
+    n--;
+    if (n > 0) { show(String(n)); SFX.count(false); stageTimer(next, 750); }
+    else { show('시작!'); SFX.count(true); stageTimer(go, 500); }
+  };
+  stageTimer(next, 750);
+}
 function onStageClick(e) {
   const b = e.target.closest('[data-sact]');
   if (!b || !STAGE) return;
   const a = b.dataset.sact;
   if (a === 'close') closeStage();
+  else if (a === 'go') stageGo();
   else if (a === 'skip') { if (STAGE.skip) STAGE.skip(); }
-  else if (a === 'again') { const run = Object.assign({}, STAGE.run, { seed:newSeed() }); delete run.sim; delete run.L; delete run.paths; prepareRun(run); openStage(run); }
+  else if (a === 'again') { const run = Object.assign({}, STAGE.run, { seed:newSeed(), logged:false }); delete run.sim; delete run.L; delete run.paths; prepareRun(run); openStage(run); }
+  else if (a === 'sound') { const on = SFX.toggle(); b.setAttribute('aria-pressed', on); b.innerHTML = on ? ICON.sndOn : ICON.sndOff; }
   else if (a === 'flip') { if (STAGE.flip) STAGE.flip(+b.dataset.i); }
-  else if (a === 'flipAll') { if (STAGE.flipAll) STAGE.flipAll(); b.remove(); }
+  else if (a === 'autoFlip') { if (STAGE.autoFlip) { STAGE.autoFlip(); b.disabled = true; } }
+  else if (a === 'lgo') { if (STAGE.lgo) STAGE.lgo(+b.dataset.i); }
   else if (a === 'speed') { STAGE.speed = STAGE.speed === 1 ? 3 : 1; b.textContent = STAGE.speed === 1 ? '빨리 보기' : '보통 속도로'; }
 }
 function showResult(run) {
   if (!STAGE || STAGE.run !== run || STAGE.done) return;
   STAGE.done = true;
+  cancelAnimationFrame(STAGE.raf);
   const box = STAGE.el.querySelector('#st-result');
   let h;
   if (run.kind === 'tie') {
@@ -1803,35 +1937,80 @@ function showResult(run) {
     if (run.sim) h += '<p style="margin:8px 0 0;font-size:.88rem;color:var(--muted)">도착 순서: ' + esc(run.sim.arrival.map((i, k) => (k + 1) + ' ' + run.entries[i].name).join(', ')) + '</p>';
   }
   box.innerHTML = h; box.hidden = false;
+  SFX.win();
   setTimeout(() => confetti(box), 120);
-  setStageActions(true);
+  setStageActions('done');
   setTimeout(() => { if (box.scrollIntoView) box.scrollIntoView({ block:'nearest', behavior:prefersReduced() ? 'auto' : 'smooth' }); }, 50);
 }
 
-// ladder
+// ---------- ladder: results hidden, one person at a time ----------
 function stageLadder(body, run) {
   const hasPh = run.entries.some(e => e.photo);
   const n = run.entries.length, gap = Math.max(58, Math.min(88, 480 / Math.max(1, n - 1))), padX = 44, nameY = hasPh ? 50 : 18, yTop = hasPh ? 64 : 32, step = 22, rows = run.L.rows;
-  const yBot = yTop + (rows + 1) * step, H = yBot + 32, W = padX * 2 + (n - 1) * gap;
+  const yBot = yTop + (rows + 1) * step, H = yBot + 40, W = padX * 2 + (n - 1) * gap;
   const X = c => padX + c * gap, Y = r => r < 0 ? yTop : yTop + (r + 1) * step;
-  let s = '<div class="ladwrap" style="width:100%"><svg class="ladder" viewBox="0 0 ' + W + ' ' + H + '" width="' + W + '" height="' + H + '" role="img" aria-label="사다리">';
-  run.entries.forEach((e, i) => {
-    if (e.photo) s += '<clipPath id="lc' + i + '"><circle cx="' + X(i) + '" cy="20" r="16"/></clipPath><image href="' + e.photo + '" x="' + (X(i) - 16) + '" y="4" width="32" height="32" clip-path="url(#lc' + i + ')" preserveAspectRatio="xMidYMid slice"/><circle cx="' + X(i) + '" cy="20" r="16" fill="none" stroke="' + e.color + '" stroke-width="2.5"/>';
-    s += '<text class="ln" x="' + X(i) + '" y="' + nameY + '" text-anchor="middle" fill="' + e.color + '">' + esc(short(e.name)) + '</text><line class="lv" x1="' + X(i) + '" y1="' + yTop + '" x2="' + X(i) + '" y2="' + yBot + '"/>';
-  });
+  let s = '<p class="lad-hint" id="ladHint">이름을 누르면 한 명씩 내려가요.</p><div class="ladwrap" style="width:100%"><svg class="ladder" viewBox="0 0 ' + W + ' ' + H + '" width="' + W + '" height="' + H + '" role="img" aria-label="사다리">';
   run.L.rungs.forEach((row, r) => row.forEach(i => { s += '<line class="lv" x1="' + X(i) + '" y1="' + Y(r) + '" x2="' + X(i + 1) + '" y2="' + Y(r) + '"/>'; }));
-  run.paths.forEach((pp, i) => { s += '<path class="lp" d="' + pp.pts.map((q, k) => (k ? 'L' : 'M') + X(q[0]) + ' ' + Y(q[1])).join(' ') + '" stroke="' + run.entries[i].color + '"/>'; });
-  run.labels.forEach((l, pos) => { s += '<text class="lb ' + (run.labelCls[pos] || '') + '" x="' + X(pos) + '" y="' + (yBot + 22) + '" text-anchor="middle">' + esc(l) + '</text>'; });
+  run.entries.forEach((e, i) => { s += '<line class="lv" x1="' + X(i) + '" y1="' + yTop + '" x2="' + X(i) + '" y2="' + yBot + '"/>'; });
+  run.paths.forEach((pp, i) => { s += '<path class="lp" id="lp' + i + '" d="' + pp.pts.map((q, k) => (k ? 'L' : 'M') + X(q[0]) + ' ' + Y(q[1])).join(' ') + '" stroke="' + run.entries[i].color + '" style="opacity:0"/>'; });
+  run.slot.forEach((pos, c) => {
+    s += '<text class="lb ' + (run.labelCls[pos] || '') + '" x="' + X(c) + '" y="' + (yBot + 24) + '" text-anchor="middle">' + esc(run.labels[pos]) + '</text>';
+    s += '<g class="lcov" id="lcov' + c + '"><rect x="' + (X(c) - 28) + '" y="' + (yBot + 8) + '" width="56" height="26" rx="7"/><text x="' + X(c) + '" y="' + (yBot + 26) + '" text-anchor="middle">?</text></g>';
+  });
+  run.entries.forEach((e, i) => {
+    s += '<g class="lname" data-sact="lgo" data-i="' + i + '" id="ln' + i + '"><rect class="lhit" x="' + (X(i) - gap / 2 + 3) + '" y="0" width="' + (gap - 6) + '" height="' + (yTop - 4) + '" rx="8"/>';
+    if (e.photo) s += '<clipPath id="lc' + i + '"><circle cx="' + X(i) + '" cy="20" r="16"/></clipPath><image href="' + e.photo + '" x="' + (X(i) - 16) + '" y="4" width="32" height="32" clip-path="url(#lc' + i + ')" preserveAspectRatio="xMidYMid slice"/><circle cx="' + X(i) + '" cy="20" r="16" fill="none" stroke="' + e.color + '" stroke-width="2.5"/>';
+    s += '<text class="ln" x="' + X(i) + '" y="' + nameY + '" text-anchor="middle" fill="' + e.color + '">' + esc(short(e.name)) + '</text></g>';
+    s += '<circle class="lball" id="lball' + i + '" r="7" cx="' + X(i) + '" cy="' + yTop + '" fill="' + e.color + '" style="display:none"/>';
+  });
   body.innerHTML = s + '</svg></div>';
-  const paths = body.querySelectorAll('.lp');
-  STAGE.skip = () => { paths.forEach(pth => { pth.style.transition = 'none'; pth.style.strokeDashoffset = '0'; }); showResult(run); };
-  if (prefersReduced()) { STAGE.skip(); return; }
-  const stagger = Math.min(0.3, 3 / n);
-  paths.forEach((pth, i) => { const len = pth.getTotalLength ? pth.getTotalLength() : 1000; pth.style.strokeDasharray = len; pth.style.strokeDashoffset = len; pth.getBoundingClientRect(); pth.style.transition = 'stroke-dashoffset 1.4s ease-in-out ' + (i * stagger) + 's'; pth.style.strokeDashoffset = '0'; });
-  stageTimer(() => showResult(run), (1.4 + n * stagger) * 1000 + 200);
+  const done = new Set();
+  let moving = false;
+  const reveal = (i, quiet) => {
+    const end = run.paths[i].end, cov = body.querySelector('#lcov' + end), sp = !!run.labelCls[run.slot[end]];
+    if (cov) cov.classList.add('open');
+    const nm = body.querySelector('#ln' + i); if (nm) nm.classList.add('done');
+    done.add(i);
+    if (!quiet) { if (sp) { SFX.win(); confetti(cov); } else SFX.lose(); }
+    const left = n - done.size, hint = body.querySelector('#ladHint');
+    if (hint) hint.textContent = left ? '남은 사람 ' + left + '명. 다음 사람 이름을 눌러 주세요.' : '모두 내려왔어요.';
+    if (done.size === n) stageTimer(() => showResult(run), quiet ? 50 : 900);
+  };
+  STAGE.lgo = i => {
+    if (moving || done.has(i) || !STAGE) return;
+    const path = body.querySelector('#lp' + i), ball = body.querySelector('#lball' + i);
+    const pts = run.paths[i].pts.map(q => [X(q[0]), Y(q[1])]);
+    const segs = []; let total = 0;
+    for (let k = 1; k < pts.length; k++) { const len = Math.hypot(pts[k][0] - pts[k - 1][0], pts[k][1] - pts[k - 1][1]); segs.push({ a:pts[k - 1], b:pts[k], len, start:total, horiz:pts[k][1] === pts[k - 1][1] && len > 0 }); total += len; }
+    if (prefersReduced()) { path.style.opacity = '1'; reveal(i); return; }
+    moving = true; SFX.step();
+    path.style.opacity = '1'; path.style.strokeDasharray = total; path.style.strokeDashoffset = total;
+    ball.style.display = '';
+    let t0 = 0, lastSeg = -1;
+    const speed = total / Math.min(6, Math.max(3.2, total / 380));
+    const box = STAGE.el.querySelector('.stage'), wrap = body.querySelector('.ladwrap');
+    const frame = t => {
+      if (!STAGE) return;
+      if (!t0) t0 = t;
+      const d = Math.min(total, (t - t0) / 1000 * speed * STAGE.speed);
+      let k = segs.findIndex(sg => d <= sg.start + sg.len); if (k < 0) k = segs.length - 1;
+      const sg = segs[k], f = sg.len ? (d - sg.start) / sg.len : 1;
+      ball.setAttribute('cx', sg.a[0] + (sg.b[0] - sg.a[0]) * f); ball.setAttribute('cy', sg.a[1] + (sg.b[1] - sg.a[1]) * f);
+      path.style.strokeDashoffset = total - d;
+      if (k !== lastSeg) { if (sg.horiz) SFX.step(); lastSeg = k; }
+      const br = ball.getBoundingClientRect();
+      if (box) { const sr = box.getBoundingClientRect(); if (br.bottom > sr.bottom - 90) box.scrollTop += br.bottom - (sr.bottom - 90); }
+      if (wrap) { const wr = wrap.getBoundingClientRect(); if (br.right > wr.right - 30) wrap.scrollLeft += br.right - (wr.right - 30); else if (br.left < wr.left + 30) wrap.scrollLeft -= (wr.left + 30) - br.left; }
+      if (d < total) { STAGE.raf = requestAnimationFrame(frame); return; }
+      SFX.tension(0.45);
+      stageTimer(() => { ball.style.display = 'none'; moving = false; reveal(i); }, 450);
+    };
+    STAGE.raf = requestAnimationFrame(frame);
+  };
+  STAGE.skip = () => { cancelAnimationFrame(STAGE.raf); moving = false; run.entries.forEach((_, i) => { const pth = body.querySelector('#lp' + i); pth.style.opacity = '1'; pth.style.strokeDasharray = 'none'; body.querySelector('#lball' + i).style.display = 'none'; if (!done.has(i)) reveal(i, true); }); showResult(run); };
 }
 
-// roulette
+// ---------- roulette: slows down with ticks ----------
 function wheelSVG(rem, run) {
   const m = rem.length, cx = 150, cy = 150, R = 146;
   let s = '';
@@ -1850,56 +2029,97 @@ function stageRoulette(body, run) {
   const spins = run.kind === 'tie' ? firstUniform(run.labels) : run.N;
   const picks = run.order.slice(0, spins);
   let remaining = run.entries.map((_, i) => i), rot = 0, k = 0;
-  body.innerHTML = '<div class="wheel-wrap"><div class="wheel-ptr"></div><svg class="wheel" id="wheel" viewBox="0 0 300 300" role="img" aria-label="룰렛"></svg></div><div class="spin-picks" id="spinPicks" aria-live="polite"></div>';
-  const wheel = body.querySelector('#wheel'), picksEl = body.querySelector('#spinPicks');
+  body.innerHTML = '<div class="wheel-wrap"><div class="wheel-ptr" id="wptr"></div><svg class="wheel" id="wheel" viewBox="0 0 300 300" role="img" aria-label="룰렛"></svg></div><div class="spin-picks" id="spinPicks" aria-live="polite"></div>';
+  const wheel = body.querySelector('#wheel'), picksEl = body.querySelector('#spinPicks'), ptr = body.querySelector('#wptr');
   const chip = j => '<span class="lab ' + (run.labelCls[j] || '') + '">' + (j + 1) + '. ' + esc(run.entries[picks[j]].name) + ' ' + esc(run.labels[j]) + '</span>';
-  wheel.innerHTML = wheelSVG(remaining, run);
-  const quick = prefersReduced();
+  const draw = () => { wheel.innerHTML = wheelSVG(remaining, run); };
+  const segAt = (r, m) => Math.floor(((((360 - r) % 360) + 360) % 360) / (360 / m));
+  draw();
   const spinNext = () => {
     if (!STAGE || STAGE.run !== run) return;
     if (k >= spins) { showResult(run); return; }
     const target = picks[k], idx = remaining.indexOf(target), m = remaining.length, seg = 360 / m;
-    const off = seg * (0.2 + run.rnd() * 0.6);
+    const off = seg * (0.12 + run.rnd() * 0.76);
     const want = ((360 - (idx * seg + off)) % 360 + 360) % 360;
-    rot = Math.floor(rot / 360) * 360 + 360 * 5 + want;
-    wheel.style.transform = 'rotate(' + rot + 'deg)';
-    stageTimer(() => {
-      picksEl.insertAdjacentHTML('beforeend', chip(k));
-      k++;
-      if (k >= spins) { stageTimer(() => showResult(run), 500); return; }
-      stageTimer(() => {
-        remaining = remaining.filter(i => i !== target);
-        wheel.classList.add('nt'); rot = 0; wheel.style.transform = 'rotate(0deg)'; wheel.innerHTML = wheelSVG(remaining, run);
-        wheel.getBoundingClientRect(); wheel.classList.remove('nt');
-        stageTimer(spinNext, 150);
-      }, 900);
-    }, quick ? 60 : 3550);
+    const from = rot, to = Math.floor(rot / 360) * 360 + 360 * (5 + Math.floor(run.rnd() * 2)) + want;
+    const dur = prefersReduced() ? 1 : 5600 + run.rnd() * 1400;
+    let t0 = 0, lastSeg = segAt(from, m);
+    const ease = x => 1 - Math.pow(1 - x, 4);
+    caption(spins > 1 ? (k + 1) + '번째 당첨자를 뽑아요' : '두구두구...', '');
+    const frame = t => {
+      if (!STAGE || STAGE.run !== run) return;
+      if (!t0) t0 = t;
+      const x = Math.min(1, (t - t0) / dur);
+      rot = from + (to - from) * ease(x);
+      wheel.style.transform = 'rotate(' + rot + 'deg)';
+      const sg = segAt(rot, m);
+      if (sg !== lastSeg) { lastSeg = sg; SFX.tick(); if (ptr) { ptr.classList.remove('flick'); void ptr.offsetWidth; ptr.classList.add('flick'); } }
+      if (x < 1) { STAGE.raf = requestAnimationFrame(frame); return; }
+      SFX.win(); caption(run.entries[target].name + ' 당첨!', 'hot');
+      picksEl.insertAdjacentHTML('beforeend', chip(k)); k++;
+      if (k >= spins) { stageTimer(() => showResult(run), 900); return; }
+      stageTimer(() => { remaining = remaining.filter(i => i !== target); rot = 0; wheel.style.transform = 'rotate(0deg)'; draw(); stageTimer(spinNext, 500); }, 1300);
+    };
+    STAGE.raf = requestAnimationFrame(frame);
   };
-  STAGE.skip = () => { STAGE.timers.forEach(clearTimeout); STAGE.timers = []; picksEl.innerHTML = picks.map((_, j) => chip(j)).join(''); showResult(run); };
-  stageTimer(spinNext, 350);
+  STAGE.skip = () => { cancelAnimationFrame(STAGE.raf); STAGE.timers.forEach(clearTimeout); STAGE.timers = []; picksEl.innerHTML = picks.map((_, j) => chip(j)).join(''); caption('', ''); showResult(run); };
+  stageTimer(spinNext, 300);
 }
 
-// cards
+// ---------- cards: dealt face down, tap or auto reveal; winning cards reveal slowly ----------
 function stageCards(body, run) {
   const n = run.entries.length, pos = new Array(n);
   run.order.forEach((ei, p) => { pos[ei] = p; });
-  body.innerHTML = '<p style="margin:0 0 10px;font-size:.92rem;color:var(--muted);align-self:flex-start">카드를 하나씩 누르거나 모두 뒤집기를 누르세요.</p><div class="cards">' +
+  const special = i => !!run.labelCls[pos[i]];
+  const unit = run.kind === 'tie' ? ['자리', '개'] : ['당첨', '장'];
+  body.innerHTML = '<div class="card-stat" id="cardStat"></div><div class="cards" id="cardsGrid">' +
     run.entries.map((e, i) => '<div class="card3d" id="cd' + i + '"><button class="card-in" data-sact="flip" data-i="' + i + '" aria-label="' + esc(e.name) + ' 카드 뒤집기"><span class="cb">?</span><span class="cf ' + (run.labelCls[pos[i]] || '') + '">' + (e.photo ? '<img class="cimg" src="' + e.photo + '" alt="">' : '') + esc(run.labels[pos[i]]) + '</span></button><small>' + esc(e.name) + '</small></div>').join('') +
-    '</div><div class="st-tools"><button class="btn primary" data-sact="flipAll" style="flex:1">모두 뒤집기</button></div>';
-  const done = new Set();
-  STAGE.flip = i => {
-    if (done.has(i) || !STAGE) return;
+    '</div><div class="st-tools"><button class="btn primary" data-sact="autoFlip" style="flex:1">자동 공개</button></div>';
+  const statEl = body.querySelector('#cardStat'), done = new Set();
+  let busy = false, auto = false;
+  const stat = () => { const left = n - done.size, sp = run.entries.filter((_, i) => special(i) && !done.has(i)).length; statEl.innerHTML = '남은 카드 <b>' + left + '</b>장, 남은 ' + unit[0] + ' <b>' + sp + '</b>' + unit[1]; };
+  stat();
+  const finish = () => { if (done.size === n) stageTimer(() => showResult(run), 800); };
+  const reveal = (i, cb) => {
+    if (done.has(i)) { if (cb) cb(); return; }
     done.add(i);
-    const c = body.querySelector('#cd' + i); if (c) c.classList.add('flipped');
-    if (done.size === n) stageTimer(() => showResult(run), prefersReduced() ? 50 : 650);
+    const c = body.querySelector('#cd' + i);
+    if (special(i) && !prefersReduced()) {
+      busy = true; c.classList.add('suspense'); SFX.tension(1.2);
+      caption(run.entries[i].name + '의 카드... ', 'hot');
+      stageTimer(() => {
+        c.classList.remove('suspense'); c.classList.add('slow', 'flipped'); SFX.flip();
+        stageTimer(() => { c.classList.add('glow'); SFX.win(); confetti(c); caption(run.entries[i].name + ' ' + run.labels[pos[i]] + '!', 'hot'); busy = false; stat(); finish(); if (cb) cb(); }, 950);
+      }, 1200);
+    } else {
+      c.classList.add('flipped'); SFX.flip(); stat(); finish(); if (cb) cb();
+    }
   };
-  STAGE.flipAll = () => { let d = 0; const gapMs = Math.max(40, Math.min(170, 2400 / n)); run.entries.forEach((_, i) => { if (!done.has(i)) { stageTimer(() => STAGE && STAGE.flip(i), d); d += gapMs; } }); };
-  STAGE.skip = () => { run.entries.forEach((_, i) => STAGE.flip(i)); };
+  const ids = [...Array(n).keys()];
+  STAGE.flip = i => { if (busy || auto || !STAGE) return; reveal(i); };
+  STAGE.autoFlip = () => {
+    if (auto) return; auto = true;
+    const rest = shuffleR(ids.filter(i => !done.has(i)), Math.random);
+    const next = () => { if (!STAGE || STAGE.run !== run) return; if (busy) { stageTimer(next, 200); return; } const i = rest.shift(); if (i == null) return; reveal(i, () => stageTimer(next, special(i) ? 700 : Math.max(120, Math.min(320, 6000 / n)))); };
+    next();
+  };
+  STAGE.skip = () => { auto = true; busy = false; STAGE.timers.forEach(clearTimeout); STAGE.timers = []; ids.forEach(i => { done.add(i); const c = body.querySelector('#cd' + i); c.classList.remove('suspense'); c.classList.add('flipped'); }); stat(); showResult(run); };
+  // deal animation
+  if (!prefersReduced()) {
+    const grid = body.querySelector('#cardsGrid'), cards = [...grid.querySelectorAll('.card3d')];
+    const gr = grid.getBoundingClientRect(), cx = gr.left + gr.width / 2, cy = gr.top + Math.min(gr.height / 2, 110);
+    cards.forEach(c => { const r = c.getBoundingClientRect(); c.style.transition = 'none'; c.style.transform = 'translate(' + (cx - r.left - r.width / 2) + 'px,' + (cy - r.top - r.height / 2) + 'px) rotate(' + ((Math.random() - 0.5) * 24) + 'deg) scale(.85)'; c.style.opacity = '0'; });
+    grid.getBoundingClientRect();
+    SFX.shuffle(); busy = true;
+    const gapS = Math.min(0.05, 1.2 / n);
+    cards.forEach((c, i) => { c.style.transition = 'transform .5s cubic-bezier(.2,.8,.2,1) ' + (i * gapS) + 's, opacity .25s ' + (i * gapS) + 's'; c.style.transform = ''; c.style.opacity = ''; });
+    stageTimer(() => { busy = false; caption('카드를 눌러 하나씩 뒤집거나 자동 공개를 눌러 주세요.', ''); }, (0.5 + n * gapS) * 1000);
+  }
 }
 
-// pinball (plinko / marble race): simulate first, then play back the recording
+// ---------- marble race: simulate first, then play back with commentary ----------
 function course(kind) {
-  const W = 360, pegs = [], segs = [], deco = [];
+  const W = 360, pegs = [], segs = [], deco = [], bumpers = [], bars = [];
   const seg = (x1, y1, x2, y2) => segs.push({ x1, y1, x2, y2 });
   if (kind === 'plinko') {
     const rows = 12, top = 130, dy = 34, dx = 32;
@@ -1907,18 +2127,21 @@ function course(kind) {
     const finishY = top + rows * dy + 14, H = finishY + 96, bins = 9, bw = W / bins;
     seg(0, 0, 0, H); seg(W, 0, W, H);
     for (let b = 1; b < bins; b++) deco.push({ x1:b * bw, y1:finishY + 8, x2:b * bw, y2:H });
-    return { kind, W, H, pegs, segs, deco, finishY, bins, bw, spawnY:18 };
+    return { kind, W, H, pegs, segs, deco, bumpers, bars, finishY, bins, bw, spawnY:18 };
   }
-  const H = 1900, finishY = 1840;
+  const H = 2090, finishY = 2030;
   seg(0, 0, 0, H); seg(W, 0, W, H);
-  seg(0, 115, 150, 195); seg(W, 115, 210, 195);
-  for (let y = 245, r = 0; y <= 485; y += 30, r++) { const off = r % 2 ? 20 : 0; for (let x = 24 + off; x <= W - 24; x += 40) pegs.push({ x, y, r:5 }); }
-  seg(0, 540, 290, 600); seg(W, 680, 70, 740); seg(0, 820, 290, 880); seg(W, 960, 70, 1020);
-  for (let y = 1080, r = 0; y <= 1320; y += 36, r++) { const off = r % 2 ? 24 : 0; for (let x = 30 + off; x <= W - 30; x += 48) pegs.push({ x, y, r:6 }); }
-  seg(0, 1380, 150, 1460); seg(W, 1380, 210, 1460);
-  for (let y = 1505, r = 0; y <= 1645; y += 28, r++) { const off = r % 2 ? 18 : 0; for (let x = 22 + off; x <= W - 22; x += 36) pegs.push({ x, y, r:4 }); }
-  seg(0, 1700, 154, 1782); seg(W, 1700, 206, 1782);
-  return { kind, W, H, pegs, segs, deco, finishY, spawnY:18 };
+  seg(0, 118, 148, 196); seg(W, 118, 212, 196);
+  [[70, 270], [180, 252], [290, 270], [125, 342], [235, 342], [62, 420], [180, 412], [298, 420]].forEach(([x, y]) => bumpers.push({ x, y, r:13 }));
+  bars.push({ cx:112, cy:540, len:130, w:2.4, ph:0 }, { cx:248, cy:625, len:130, w:-2.8, ph:1 }, { cx:180, cy:745, len:170, w:1.9, ph:0.5 });
+  seg(0, 835, 282, 890); seg(W, 965, 78, 1020);
+  for (let y = 1075, r = 0; y <= 1275; y += 32, r++) { const off = r % 2 ? 22 : 0; for (let x = 28 + off; x <= W - 28; x += 44) pegs.push({ x, y, r:5 }); }
+  bars.push({ cx:104, cy:1365, len:120, w:3.0, ph:0.2 }, { cx:256, cy:1365, len:120, w:-3.0, ph:0.9 });
+  [[92, 1475], [180, 1505], [268, 1475]].forEach(([x, y]) => bumpers.push({ x, y, r:14 }));
+  seg(0, 1585, 150, 1665); seg(W, 1585, 210, 1665);
+  for (let y = 1735, r = 0; y <= 1855; y += 40, r++) { const off = r % 2 ? 30 : 0; for (let x = 40 + off; x <= W - 40; x += 60) pegs.push({ x, y, r:5 }); }
+  bars.push({ cx:180, cy:1935, len:110, w:2.2, ph:0.3 });
+  return { kind, W, H, pegs, segs, deco, bumpers, bars, finishY, spawnY:18 };
 }
 function simulate(kind, n, rnd) {
   const C = course(kind), W = C.W;
@@ -1930,37 +2153,54 @@ function simulate(kind, n, rnd) {
     const row = Math.floor(k / perRow), col = k % perRow;
     balls[ei] = { x:30 + r + col * (2 * r + 6) + (rnd() - 0.5) * 4, y:C.spawnY + row * (2 * r + 4), vx:(rnd() - 0.5) * 30, vy:0, done:false, best:0, last:0 };
   });
-  const frames = [], arrival = [], finishFrame = new Array(n).fill(-1), binCount = C.bins ? new Array(C.bins).fill(0) : null;
+  const frames = [], arrival = [], finishFrame = new Array(n).fill(-1), hits = [], binCount = C.bins ? new Array(C.bins).fill(0) : null;
   const snap = () => { const f = new Float32Array(n * 2); for (let i = 0; i < n; i++) { f[i * 2] = balls[i].x; f[i * 2 + 1] = balls[i].y; } frames.push(f); };
   const hitCircle = (b, px, py, minD) => {
     const dx = b.x - px, dy = b.y - py, d2 = dx * dx + dy * dy;
-    if (d2 >= minD * minD) return;
+    if (d2 >= minD * minD) return false;
     const d = Math.sqrt(d2) || 0.001, nx = dx / d, ny = dy / d;
     b.x = px + nx * minD; b.y = py + ny * minD;
     const vn = b.vx * nx + b.vy * ny;
     if (vn < 0) { b.vx -= 1.45 * vn * nx; b.vy -= 1.45 * vn * ny; b.vx += (rnd() - 0.5) * 18; }
+    return true;
   };
-  const hitSeg = (b, sg) => {
-    const ex = sg.x2 - sg.x1, ey = sg.y2 - sg.y1, L2 = ex * ex + ey * ey;
-    let t = ((b.x - sg.x1) * ex + (b.y - sg.y1) * ey) / L2; t = Math.max(0, Math.min(1, t));
-    const qx = sg.x1 + t * ex, qy = sg.y1 + t * ey, dx = b.x - qx, dy = b.y - qy, d2 = dx * dx + dy * dy;
-    if (d2 >= r * r) return;
+  const hitSeg = (b, x1, y1, x2, y2, rad, sv) => {
+    const ex = x2 - x1, ey = y2 - y1, L2 = ex * ex + ey * ey;
+    let t = ((b.x - x1) * ex + (b.y - y1) * ey) / L2; t = Math.max(0, Math.min(1, t));
+    const qx = x1 + t * ex, qy = y1 + t * ey, dx = b.x - qx, dy = b.y - qy, d2 = dx * dx + dy * dy;
+    if (d2 >= rad * rad) return;
     const d = Math.sqrt(d2), L = Math.sqrt(L2);
     const nx = d > 0.0001 ? dx / d : -ey / L, ny = d > 0.0001 ? dy / d : ex / L;
-    b.x = qx + nx * r; b.y = qy + ny * r;
-    const vn = b.vx * nx + b.vy * ny;
-    if (vn < 0) { b.vx -= 1.3 * vn * nx; b.vy -= 1.3 * vn * ny; }
+    b.x = qx + nx * rad; b.y = qy + ny * rad;
+    const svx = sv ? sv(qx, qy)[0] : 0, svy = sv ? sv(qx, qy)[1] : 0;
+    let rvx = b.vx - svx, rvy = b.vy - svy;
+    const vn = rvx * nx + rvy * ny;
+    if (vn < 0) { rvx -= 1.35 * vn * nx; rvy -= 1.35 * vn * ny; b.vx = rvx + svx; b.vy = rvy + svy; }
   };
   snap();
   let step = 0;
   const maxSteps = 120 * 200;
   while (arrival.length < n && step < maxSteps) {
+    const tnow = step * dt;
+    const barNow = C.bars.map(bb => { const a = bb.ph + bb.w * tnow, hx = Math.cos(a) * bb.len / 2, hy = Math.sin(a) * bb.len / 2; return { x1:bb.cx - hx, y1:bb.cy - hy, x2:bb.cx + hx, y2:bb.cy + hy, sv:(qx, qy) => [-bb.w * (qy - bb.cy), bb.w * (qx - bb.cx)] }; });
     for (let i = 0; i < n; i++) {
       const b = balls[i]; if (b.done) continue;
       b.vy += g * dt; b.x += b.vx * dt; b.y += b.vy * dt;
       const cx = Math.floor(b.x / cell), cy = Math.floor(b.y / cell);
       for (let ox = -1; ox <= 1; ox++) for (let oy = -1; oy <= 1; oy++) { const list = grid.get((cx + ox) + ',' + (cy + oy)); if (list) for (const pg of list) hitCircle(b, pg.x, pg.y, pg.r + r); }
-      for (const sg of C.segs) hitSeg(b, sg);
+      for (const sg of C.segs) hitSeg(b, sg.x1, sg.y1, sg.x2, sg.y2, r);
+      for (const bn of barNow) hitSeg(b, bn.x1, bn.y1, bn.x2, bn.y2, r + 4, bn.sv);
+      C.bumpers.forEach((bp, k) => {
+        const dx = b.x - bp.x, dy = b.y - bp.y, md = bp.r + r, d2 = dx * dx + dy * dy;
+        if (d2 >= md * md) return;
+        const d = Math.sqrt(d2) || 0.001, nx = dx / d, ny = dy / d;
+        b.x = bp.x + nx * md; b.y = bp.y + ny * md;
+        let vn = b.vx * nx + b.vy * ny;
+        if (vn < 0) { b.vx -= 2 * vn * nx; b.vy -= 2 * vn * ny; vn = -vn; }
+        if (vn < 380) { b.vx += (380 - vn) * nx; b.vy += (380 - vn) * ny; }
+        b.vx += (rnd() - 0.5) * 40;
+        if (!hits.length || hits[hits.length - 1].f !== frames.length || hits[hits.length - 1].k !== k) hits.push({ f:frames.length, k });
+      });
       if (b.x < r) { b.x = r; if (b.vx < 0) b.vx = -b.vx * 0.5; } else if (b.x > W - r) { b.x = W - r; if (b.vx > 0) b.vx = -b.vx * 0.5; }
       const sp = Math.hypot(b.vx, b.vy); if (sp > maxV) { b.vx *= maxV / sp; b.vy *= maxV / sp; }
       if (b.y > b.best + 2) { b.best = b.y; b.last = step; }
@@ -1987,45 +2227,62 @@ function simulate(kind, n, rnd) {
   }
   if (arrival.length < n) balls.map((b, i) => i).filter(i => !balls[i].done).sort((a, b) => balls[b].y - balls[a].y).forEach(i => { arrival.push(i); finishFrame[i] = frames.length; });
   snap();
-  return { C, r, frames, arrival, finishFrame };
+  return { C, r, frames, arrival, finishFrame, hits, frameDt:2 * dt };
 }
 function stagePin(body, run) {
-  const sim = run.sim, C = sim.C, n = run.entries.length, r = sim.r, race = C.kind === 'race';
-  body.innerHTML = '<canvas class="pb" id="pbc"></canvas><div class="st-tools"><button class="pill-btn" data-sact="speed">빨리 보기</button><span style="align-self:center;font-size:.85rem;color:var(--muted)">' + (run.kind === 'pick' ? (run.rule === 'last' ? '마지막에 도착한 ' + run.N + '명 당첨' : '먼저 도착한 ' + run.N + '명 당첨') : '먼저 도착한 순서대로 자리 배정') + '</span></div><div class="arrivals" id="pbArr" aria-live="polite"></div>';
-  const cv = body.querySelector('#pbc'), ctx = cv.getContext('2d'), arrEl = body.querySelector('#pbArr');
+  const sim = run.sim, C = sim.C, n = run.entries.length, r = sim.r;
+  const lastMode = run.kind === 'pick' && run.rule === 'last';
+  body.innerHTML = '<div class="race-wrap"><canvas class="pb" id="pbc"></canvas><div class="race-hud" id="rHud"></div></div><div class="st-tools"><button class="pill-btn" data-sact="speed">빨리 보기</button><span style="align-self:center;font-size:.85rem;color:var(--muted)">' + esc(ruleText(run)) + '</span></div><div class="arrivals" id="pbArr" aria-live="polite"></div>';
+  const cv = body.querySelector('#pbc'), ctx = cv.getContext('2d'), arrEl = body.querySelector('#pbArr'), hud = body.querySelector('#rHud');
   const cssW = Math.min(body.clientWidth || 340, 560), k = cssW / C.W;
-  const viewH = race ? Math.min(Math.round(window.innerHeight * 0.52), 540) / k : C.H;
+  const viewH = Math.min(Math.round(window.innerHeight * 0.5), 520) / k;
   const dpr = Math.min(2, window.devicePixelRatio || 1);
   cv.style.width = cssW + 'px'; cv.style.height = Math.round(viewH * k) + 'px';
   cv.width = Math.round(cssW * dpr); cv.height = Math.round(viewH * k * dpr);
   const css = getComputedStyle(document.documentElement), col = v => (css.getPropertyValue(v) || '').trim();
-  const bg = col('--surface2') || '#EEF1F5', ink = col('--ink') || '#141B2B', peg = col('--muted') || '#566176', red = col('--red') || '#C42F1D';
-  const total = sim.frames.length;
+  const bg = col('--surface2') || '#EEF1F5', ink = col('--ink') || '#141B2B', peg = col('--muted') || '#566176', red = col('--red') || '#C42F1D', font = col('--body') || 'sans-serif';
   const imgs = run.entries.map(e => { if (!e.photo) return null; const im = new Image(); im.src = e.photo; return im; });
-  let fi = 0, acc = 0, lastT = 0, camY = 0, shown = 0, first = true;
+  const hitAt = new Map(); sim.hits.forEach(hh => { if (!hitAt.has(hh.f)) hitAt.set(hh.f, []); hitAt.get(hh.f).push(hh.k); });
+  const total = sim.frames.length;
+  let fi = 0, acc = 0, lastT = 0, camY = 0, shown = 0, first = true, prevLead = null, prevLast = null, lastCapAt = 0, slowOn = false, hudTick = 0;
   const isFinished = i => sim.finishFrame[i] >= 0 && sim.finishFrame[i] <= fi;
-  function draw() {
-    const f = sim.frames[Math.min(fi, total - 1)];
-    if (race) {
-      const ys = []; let anyDone = false;
-      for (let i = 0; i < n; i++) { if (isFinished(i)) anyDone = true; else ys.push(f[i * 2 + 1]); }
-      const target = ys.length ? ((run.kind === 'pick' && run.rule === 'last' && anyDone) ? Math.min.apply(null, ys) : Math.max.apply(null, ys)) : C.finishY;
-      const want = Math.max(0, Math.min(C.H - viewH, target - viewH * 0.55));
-      camY = first ? want : camY + (want - camY) * 0.12; first = false;
-    }
+  const orderNow = f => {
+    const fin = sim.arrival.filter(isFinished);
+    const un = []; for (let i = 0; i < n; i++) if (!isFinished(i)) un.push(i);
+    un.sort((a, b) => f[b * 2 + 1] - f[a * 2 + 1]);
+    return { fin, un, all:fin.concat(un) };
+  };
+  const say = (txt, kind) => { const now = performance.now(); if (now - lastCapAt < 1100) return; lastCapAt = now; caption(txt, kind); };
+  function draw(f, o) {
+    const target = o.un.length ? ((lastMode && o.fin.length) ? f[o.un[o.un.length - 1] * 2 + 1] : f[o.un[0] * 2 + 1]) : C.finishY;
+    const want = Math.max(0, Math.min(C.H - viewH, target - viewH * 0.55));
+    camY = first ? want : camY + (want - camY) * 0.12; first = false;
     ctx.setTransform(dpr * k, 0, 0, dpr * k, 0, -camY * dpr * k);
     ctx.fillStyle = bg; ctx.fillRect(0, camY, C.W, viewH);
     ctx.strokeStyle = red; ctx.lineWidth = 2; ctx.setLineDash([6, 6]); ctx.beginPath(); ctx.moveTo(0, C.finishY); ctx.lineTo(C.W, C.finishY); ctx.stroke(); ctx.setLineDash([]);
-    ctx.fillStyle = red; ctx.font = '700 11px ' + (col('--body') || 'sans-serif'); ctx.fillText('도착', 6, C.finishY - 6);
+    ctx.fillStyle = red; ctx.font = '700 11px ' + font; ctx.fillText('도착', 6, C.finishY - 6);
     ctx.fillStyle = peg;
     for (const pg of C.pegs) { if (pg.y < camY - 10 || pg.y > camY + viewH + 10) continue; ctx.beginPath(); ctx.arc(pg.x, pg.y, pg.r, 0, Math.PI * 2); ctx.fill(); }
-    ctx.strokeStyle = ink; ctx.lineWidth = 4; ctx.lineCap = 'round';
+    const lit = new Set(); for (let q = fi - 6; q <= fi; q++) (hitAt.get(q) || []).forEach(kk => lit.add(kk));
+    C.bumpers.forEach((bp, kk) => {
+      if (bp.y < camY - 30 || bp.y > camY + viewH + 30) return;
+      const on = lit.has(kk);
+      ctx.fillStyle = on ? '#F4B92B' : '#C2507A'; ctx.beginPath(); ctx.arc(bp.x, bp.y, bp.r + (on ? 2 : 0), 0, Math.PI * 2); ctx.fill();
+      ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.stroke();
+    });
+    const tnow = fi * sim.frameDt;
+    ctx.lineCap = 'round';
+    C.bars.forEach(bb => {
+      if (bb.cy < camY - 100 || bb.cy > camY + viewH + 100) return;
+      const a = bb.ph + bb.w * tnow, hx = Math.cos(a) * bb.len / 2, hy = Math.sin(a) * bb.len / 2;
+      ctx.strokeStyle = '#3F8FD2'; ctx.lineWidth = 8; ctx.beginPath(); ctx.moveTo(bb.cx - hx, bb.cy - hy); ctx.lineTo(bb.cx + hx, bb.cy + hy); ctx.stroke();
+      ctx.fillStyle = ink; ctx.beginPath(); ctx.arc(bb.cx, bb.cy, 5, 0, Math.PI * 2); ctx.fill();
+    });
+    ctx.strokeStyle = ink; ctx.lineWidth = 4;
     for (const sg of C.segs) { ctx.beginPath(); ctx.moveTo(sg.x1, sg.y1); ctx.lineTo(sg.x2, sg.y2); ctx.stroke(); }
-    ctx.strokeStyle = peg; ctx.lineWidth = 2;
-    for (const sg of C.deco) { ctx.beginPath(); ctx.moveTo(sg.x1, sg.y1); ctx.lineTo(sg.x2, sg.y2); ctx.stroke(); }
-    ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.font = '700 ' + Math.round(r * 1.15) + 'px ' + (col('--body') || 'sans-serif');
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.font = '700 ' + Math.round(r * 1.15) + 'px ' + font;
     for (let i = 0; i < n; i++) {
-      if (race && isFinished(i)) continue;
+      if (isFinished(i)) continue;
       const x = f[i * 2], y = f[i * 2 + 1];
       if (y < camY - 20 || y > camY + viewH + 20) continue;
       const im = imgs[i];
@@ -2040,25 +2297,58 @@ function stagePin(body, run) {
     }
     ctx.textAlign = 'start'; ctx.textBaseline = 'alphabetic';
   }
-  function updateArrivals() {
-    let html = '';
-    while (shown < n && sim.finishFrame[sim.arrival[shown]] <= fi) {
-      const i = sim.arrival[shown]; shown++;
-      html += '<span>' + (run.entries[i].photo ? '<img src="' + run.entries[i].photo + '" alt="">' : '<i style="background:' + run.entries[i].color + '"></i>') + shown + ' ' + esc(run.entries[i].name) + '</span>';
+  function updateHud(o) {
+    const list = lastMode ? o.all.slice(-3).reverse() : o.all.slice(0, 3);
+    hud.innerHTML = '<b>' + (lastMode ? '꼴찌권' : '현재 순위') + '</b>' + list.map((i, j) => '<span>' + (lastMode ? '' : (j + 1) + ' ') + (run.entries[i].photo ? '<img src="' + run.entries[i].photo + '" alt="">' : '<i style="background:' + run.entries[i].color + '"></i>') + esc(short(run.entries[i].name)) + '</span>').join('');
+  }
+  function commentary(o, f) {
+    const lead = o.all[0], tail = o.all[o.all.length - 1];
+    if (fi > 60) {
+      if (!lastMode && !o.fin.length && prevLead !== null && lead !== prevLead) say('역전! ' + run.entries[lead].name + ' 선두', 'hot');
+      if (lastMode && o.fin.length && prevLast !== null && tail !== prevLast) say(run.entries[prevLast].name + ' 꼴찌 탈출!', 'hot');
     }
-    if (html) arrEl.insertAdjacentHTML('beforeend', html);
+    prevLead = lead; prevLast = tail;
+  }
+  function slowNow(o, f) {
+    if (!o.un.length) return false;
+    const yLead = f[o.un[0] * 2 + 1];
+    if (yLead < C.finishY - 230) return false;
+    if (lastMode) return o.un.length <= run.N + 1 && o.un.length > run.N;
+    const slots = (run.kind === 'pick' ? run.N : n) - o.fin.length;
+    if (slots <= 0 || o.un.length <= slots) return false;
+    const a = f[o.un[slots - 1] * 2 + 1], b = f[o.un[slots] * 2 + 1];
+    return a - b < 50;
   }
   function tick(t) {
     if (!STAGE || STAGE.run !== run) return;
     if (!lastT) lastT = t;
-    acc += Math.min(100, t - lastT) * STAGE.speed; lastT = t;
+    const f0 = sim.frames[Math.min(fi, total - 1)], o0 = orderNow(f0);
+    const slow = slowNow(o0, f0);
+    if (slow && !slowOn) say(lastMode ? '남은 구슬 ' + o0.un.length + '개, 누가 남을까요?' : '막상막하!', 'hot');
+    slowOn = slow;
+    acc += Math.min(100, t - lastT) * STAGE.speed * (slow ? 0.35 : 1); lastT = t;
+    const before = fi;
     while (acc >= 1000 / 60 && fi < total - 1) { fi++; acc -= 1000 / 60; }
-    updateArrivals(); draw();
-    if (fi >= total - 1) { showResult(run); return; }
+    for (let q = before + 1; q <= fi; q++) if (hitAt.has(q)) { SFX.bump(); break; }
+    const f = sim.frames[Math.min(fi, total - 1)], o = orderNow(f);
+    let html = '';
+    while (shown < n && sim.finishFrame[sim.arrival[shown]] <= fi) {
+      const i = sim.arrival[shown]; shown++;
+      SFX.finish();
+      html += '<span>' + (run.entries[i].photo ? '<img src="' + run.entries[i].photo + '" alt="">' : '<i style="background:' + run.entries[i].color + '"></i>') + shown + ' ' + esc(run.entries[i].name) + '</span>';
+      if (lastMode) { const left = n - shown; if (left <= 5 && left > 0) say('남은 구슬 ' + left + '개', ''); }
+      else if (shown === 1) say(run.entries[i].name + ' 1등으로 도착!', 'hot');
+    }
+    if (html) arrEl.insertAdjacentHTML('beforeend', html);
+    commentary(o, f);
+    if (++hudTick % 6 === 0) updateHud(o);
+    draw(f, o);
+    if (fi >= total - 1) { updateHud(o); showResult(run); return; }
     STAGE.raf = requestAnimationFrame(tick);
   }
-  STAGE.skip = () => { cancelAnimationFrame(STAGE.raf); fi = total - 1; first = true; updateArrivals(); draw(); showResult(run); };
-  draw();
+  STAGE.skip = () => { cancelAnimationFrame(STAGE.raf); fi = total - 1; first = true; const f = sim.frames[fi], o = orderNow(f); while (shown < n) { const i = sim.arrival[shown]; shown++; arrEl.insertAdjacentHTML('beforeend', '<span>' + shown + ' ' + esc(run.entries[i].name) + '</span>'); } updateHud(o); draw(f, o); showResult(run); };
+  const f0 = sim.frames[0], o0 = orderNow(f0);
+  updateHud(o0); draw(f0, o0);
   if (prefersReduced()) { STAGE.skip(); return; }
   STAGE.raf = requestAnimationFrame(tick);
 }
@@ -2116,7 +2406,7 @@ function guideSteps() {
     { ro:true, stage:stageAbsence, title:'불참은 미리 신고해요',
       text: ro ? '못 나가는 날은 순위 화면의 불참 신고하기로 미리 남겨 주세요. 신고한 시각이 그대로 남아서 무단 불참이 아니라 사전 불참으로 처리돼요.' : '길드원이 불참 신고를 남기면, 기록할 때 그 사람이 사전 불참으로 미리 골라져 있어요. 신고 시각도 그대로 남아요.' },
     { ro:true, stage:stageRandom, title:'랜덤은 누구나 돌려요',
-      text: ro ? '아래 랜덤 메뉴에서 룰렛, 카드 뽑기, 핀볼, 사다리를 재미로 돌려 볼 수 있어요. 운영진의 공식 추첨 결과도 거기에 모두 공개돼요.' : '랜덤 메뉴에서 룰렛, 카드 뽑기, 핀볼, 사다리를 누구나 돌릴 수 있어요. 관리자가 공식 추첨으로 돌리면 첫 결과가 바로 기록돼서 모두에게 공개돼요.' },
+      text: ro ? '아래 랜덤 메뉴에서 룰렛, 카드 뽑기, 구슬 경주, 사다리를 재미로 돌려 볼 수 있어요. 운영진의 공식 추첨 결과도 거기에 모두 공개돼요.' : '랜덤 메뉴에서 룰렛, 카드 뽑기, 구슬 경주, 사다리를 누구나 돌릴 수 있어요. 관리자가 공식 추첨으로 돌리면 첫 결과가 바로 기록돼서 모두에게 공개돼요.' },
     { stage:stagePick, title:'기록은 누르기만 하면 끝', text:'아래 기록하기에서 콘텐츠를 고르고, 참여한 사람의 닉네임을 누르세요. 전원 선택을 누른 뒤 빠진 사람만 다시 누르면 더 빨라요.' },
     { stage:stageSave, title:'불참 구분하고 저장', text:'빠진 사람 중 미리 불참을 알린 사람을 누르면 사전 불참으로 따로 기록돼요. 보너스 항목이 있으면 해당하는 사람도 고르고, 명단을 확인해 저장하면 끝이에요.' },
     { ro:true, roOnly:true, stage:stageProfile, title:'내 사진 걸기',
@@ -2139,7 +2429,7 @@ function guideHTML() {
 function rand() { const a = new Uint32Array(1); crypto.getRandomValues(a); return a[0] / 4294967296; }
 function makeLadder(n, rng) {
   const rand2 = rng || rand;
-  const rows = Math.max(8, n * 3), rungs = [];
+  const rows = rng ? Math.max(8, Math.min(18, n + 6)) : Math.max(8, n * 3), rungs = [];
   for (let r = 0; r < rows; r++) {
     const row = [];
     for (let i = 0; i < n - 1; i++) { if (row.includes(i - 1)) continue; if (rand2() < 0.5) row.push(i); }
