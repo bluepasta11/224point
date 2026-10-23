@@ -768,6 +768,152 @@ table.mx tr.mx-line td{border-bottom:2px dashed var(--red);color:var(--red);font
 @media (prefers-reduced-motion: reduce){
   *{transition:none!important;animation:none!important;scroll-behavior:auto!important}
 }
+
+/* ===== Theme v2: clean layout (light) + alliance lobby colors (dark) ===== */
+:root{
+  --bg:#F2F4F6; --surface:#FFFFFF; --surface2:#F2F4F6; --ink:#191F28; --muted:#6B7684; --line:#E5E8EB;
+  --gold:#946200; --gold-fill:#F4B92B; --gold-soft:#FFF4D6;
+  --blue:#1B64DA; --blue-fill:#3182F6; --blue-soft:#E8F3FF;
+  --red:#E42939; --red-soft:#FFEEEE;
+  --green:#058A55; --green-fill:#03B26C; --green-soft:#E5F8EF;
+  --amber:#A86400; --amber-soft:#FFF1D6;
+  --hero:#1B2433; --on-primary:#FFFFFF;
+  --accent:#3182F6; --accent-ink:#FFFFFF;
+  --page-bg:#F2F4F6;
+  --title-bg:linear-gradient(#191F28,#191F28);
+  --mh-bar:#3182F6;
+  --pts:#191F28;
+  --card-shadow:0 1px 3px rgba(0,0,0,.05);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1521; --surface:#1B2433; --surface2:#232E42; --ink:#F2F5FA; --muted:#8FA3BF; --line:#2C3850;
+    --gold:#F4B92B; --gold-fill:#F4B92B; --gold-soft:#2A2414;
+    --blue:#8DB4FF; --blue-fill:#3B6EF0; --blue-soft:#1A2840;
+    --red:#FF7A6E; --red-soft:#2A1614;
+    --green:#5FD497; --green-fill:#22A862; --green-soft:#15362A;
+    --amber:#FFC56E; --amber-soft:#2A2414;
+    --hero:#243049; --on-primary:#1A1200;
+    --accent:#F4B92B; --accent-ink:#1A1200;
+    --page-bg:linear-gradient(180deg,#18202F 0%,#0B1019 100%) fixed;
+    --title-bg:linear-gradient(#FFE29A,#D49A2A);
+    --mh-bar:repeating-linear-gradient(45deg,#F4B92B 0 6px,#D49A2A 6px 12px);
+    --pts:#F4B92B;
+    --card-shadow:none;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1521; --surface:#1B2433; --surface2:#232E42; --ink:#F2F5FA; --muted:#8FA3BF; --line:#2C3850;
+  --gold:#F4B92B; --gold-fill:#F4B92B; --gold-soft:#2A2414;
+  --blue:#8DB4FF; --blue-fill:#3B6EF0; --blue-soft:#1A2840;
+  --red:#FF7A6E; --red-soft:#2A1614;
+  --green:#5FD497; --green-fill:#22A862; --green-soft:#15362A;
+  --amber:#FFC56E; --amber-soft:#2A2414;
+  --hero:#243049; --on-primary:#1A1200;
+  --accent:#F4B92B; --accent-ink:#1A1200;
+  --page-bg:linear-gradient(180deg,#18202F 0%,#0B1019 100%) fixed;
+  --title-bg:linear-gradient(#FFE29A,#D49A2A);
+  --mh-bar:repeating-linear-gradient(45deg,#F4B92B 0 6px,#D49A2A 6px 12px);
+  --pts:#F4B92B;
+  --card-shadow:none;
+  color-scheme:dark;
+}
+:root[data-theme="light"]{color-scheme:light}
+body{background:var(--page-bg)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.card,.grp,.ncard,.sched,.podium,.my-card{box-shadow:var(--card-shadow)}
+/* header */
+.hero{background:transparent;color:var(--ink);border-bottom:0;padding:22px 16px 8px}
+.hero .title{background:var(--title-bg);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:clamp(1.8rem,7vw,2.4rem);line-height:1.1}
+.hero-kicker{display:block;font-size:.66rem;font-weight:800;letter-spacing:.24em;color:var(--muted);margin-bottom:2px}
+.hero .hgrp{flex-direction:row;flex-wrap:wrap;justify-content:flex-end;align-items:center;gap:6px;max-width:60%}
+.hero .help,.hero .me-btn,.theme-btn{background:var(--surface);border:1px solid var(--line);color:var(--ink)}
+.hero .status{color:var(--muted);background:transparent;border:0}
+.theme-btn{display:inline-flex;align-items:center;gap:4px;font:inherit;font-size:.8rem;font-weight:700;border-radius:999px;padding:6px 10px;min-height:36px;cursor:pointer}
+.theme-btn svg.i{width:16px;height:16px}
+.season-line{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-top:10px;font-size:.85rem;color:var(--muted)}
+.season-pill{display:inline-flex;align-items:center;padding:3px 11px;border-radius:999px;background:var(--gold-soft);color:var(--gold);font-weight:800;font-size:.8rem}
+/* my rank hero */
+.my-card.mh{display:block;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:16px 18px 14px;margin:0 0 14px}
+.mh-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.mh-label{font-size:.88rem;font-weight:700;color:var(--muted)}
+.mh-av{width:38px;height:38px;border-radius:50%;overflow:hidden;display:grid;place-items:center;background:var(--surface2);border:2px solid var(--gold-fill);font-family:var(--display);color:var(--muted)}
+.mh-av img{width:100%;height:100%;object-fit:cover}
+.mh-main{display:flex;align-items:baseline;gap:4px;margin-top:2px}
+.mh-rank{font-family:var(--display);font-weight:400;font-size:3.6rem;line-height:1;font-style:italic;color:var(--ink)}
+.mh-wi{font-size:1.35rem;font-weight:800;color:var(--ink);margin-right:8px}
+.mh-name{font-size:1.05rem;font-weight:800;color:var(--ink);align-self:center}
+.mh-pts{margin-left:auto;font-weight:800;color:var(--muted);white-space:nowrap}
+.mh-pts b{font-family:var(--display);font-weight:400;font-size:2rem;color:var(--pts);margin-right:2px}
+.mh-goal{font-size:1rem;font-weight:800;color:var(--blue);margin-top:8px;word-break:keep-all}
+.mh-goal.up{color:var(--green)}
+.mh-bar{height:10px;border-radius:5px;background:var(--surface2);overflow:hidden;margin-top:10px}
+.mh-bar i{display:block;height:100%;border-radius:inherit;background:var(--mh-bar)}
+.mh-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.mh-chips .chip{font-size:.78rem}
+.chip.tierc{background:var(--ts,var(--surface2));color:var(--tt,var(--ink))}
+.my-card.mh .mc-acts{margin-top:8px}
+.my-card.mh .mc-graph{border-top:1px dashed var(--line);margin-top:8px;padding-top:8px}
+/* podium with shields */
+.podium{background:var(--surface);border:1px solid var(--line)}
+.pd.p1{--md:#D49A2A;--mdg:linear-gradient(#FFE29A,#D49A2A)}
+.pd.p2{--md:#9AA6B6;--mdg:linear-gradient(#EEF2F7,#9AA6B6)}
+.pd.p3{--md:#B26A2C;--mdg:linear-gradient(#F2C08E,#B26A2C)}
+.pd-s{color:var(--pts);font-weight:800}
+.pd-base{background:var(--surface2);border:1px solid var(--line);border-bottom:0;display:flex;justify-content:center;align-items:flex-start;padding-top:8px;text-shadow:none}
+.pd-shield{width:30px;height:35px;clip-path:polygon(50% 0,100% 18%,100% 64%,50% 100%,0 64%,0 18%);background:var(--mdg);display:grid;place-items:center;font-family:var(--display);color:#1A1200;font-size:1.05rem;padding-bottom:3px}
+.pd.p1 .pd-shield{width:36px;height:42px;font-size:1.25rem}
+/* groups and rows */
+.gsh{display:inline-block;width:13px;height:15px;margin-right:8px;vertical-align:-2px;clip-path:polygon(50% 0,100% 18%,100% 64%,50% 100%,0 64%,0 18%);background:var(--tf,var(--muted))}
+.grp.warn .gsh{background:var(--red)}
+.grp.rest .gsh,.grp.out .gsh{background:var(--muted)}
+.m-pts{color:var(--pts)}
+.rk{font-style:italic}
+.ncard{border-left:4px solid var(--gold-fill)}
+/* layout: tablet and PC */
+.rk-side,.rk-main{min-width:0}
+@media (min-width:1000px){
+  #app{padding-left:88px}
+  .nav{top:0;bottom:0;left:0;right:auto;width:88px;border-top:0;border-right:1px solid var(--line);padding:18px 0}
+  .nav-in{display:flex !important;flex-direction:column;gap:4px;max-width:none}
+  .nav button{min-height:70px}
+  .nav button[aria-current="page"]::before{top:14px;bottom:14px;left:0;right:auto;width:3px;height:auto;border-radius:0 3px 3px 0}
+  .page{max-width:760px;padding-bottom:40px}
+  .page.wide{max-width:1120px}
+  .page.has-mybar{padding-bottom:40px}
+  .rk-layout{display:grid;grid-template-columns:minmax(320px,400px) minmax(0,1fr);gap:22px;align-items:start}
+  .rk-side{position:sticky;top:12px;max-height:calc(100vh - 24px);overflow:auto;padding-right:2px}
+  .mybar{left:88px;bottom:16px}
+  .wz-foot{left:88px}
+}
+/* season recap story cards */
+.recap-ov{background:rgba(5,8,14,.88);align-items:center;justify-content:center}
+.recap-wrap{display:flex;flex-direction:column;align-items:center;gap:12px;width:100%}
+.recap{position:relative;width:min(360px,92vw);height:min(640px,76vh);border-radius:22px;overflow:hidden;background:linear-gradient(135deg,#141C2B 0%,#3B2A6B 55%,#B9771C 100%);color:#fff;padding:18px 20px 16px;display:flex;flex-direction:column;cursor:pointer;box-shadow:0 20px 50px rgba(0,0,0,.45);user-select:none}
+.rc-bars{display:flex;gap:6px;margin-bottom:12px}
+.rc-bars i{flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.3)}
+.rc-bars i.on{background:#fff}
+.rc-al{font-size:.75rem;font-weight:700;opacity:.8}
+.rc-body{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:10px;animation:pg-in .35s ease-out}
+.rc-av{width:108px;height:108px;border-radius:50%;border:3px solid #FFE29A;overflow:hidden;display:grid;place-items:center;font-family:var(--display);font-size:2.6rem;background:#2E3A50;color:#F2F5FA}
+.rc-av img{width:100%;height:100%;object-fit:cover}
+.rc-sub{font-size:1.25rem;font-weight:800}
+.rc-sub.gold,.rc-p.gold{color:#FDE68A}
+.rc-big{font-family:var(--display);font-size:2.1rem;line-height:1.15;color:#FFE29A}
+.rc-p{margin:6px 0 0;font-size:.95rem;font-weight:600;opacity:.9;line-height:1.5}
+.rc-stat{width:100%;text-align:left;background:rgba(0,0,0,.25);border-radius:16px;padding:12px 16px}
+.rc-stat small{display:block;font-size:.8rem;opacity:.8;font-weight:700}
+.rc-stat b{display:block;font-family:var(--display);font-weight:400;font-size:1.55rem;margin-top:2px}
+.rc-stat.good b{color:#9BF0C0}
+.rc-tier{display:inline-block;background:rgba(0,0,0,.28);border-radius:999px;padding:5px 14px;font-weight:800;color:#BFD4FF}
+.rc-badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:6px}
+.rc-badge{background:rgba(0,0,0,.25);border-radius:12px;padding:8px 10px 7px;font-size:.78rem;font-weight:800;display:flex;flex-direction:column;align-items:center;gap:4px;min-width:62px}
+.rc-hint{font-size:.75rem;opacity:.75;text-align:center}
+.recap-ctl{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.bar{flex-wrap:wrap}
+.bar .hgrp{flex-wrap:wrap;justify-content:flex-end}
+@media (max-width:420px){.theme-btn span{display:none}.theme-btn{padding:6px 9px}}
 </style>
 </head>
 <body>
@@ -810,6 +956,9 @@ const ICON = {
   search: svg('<circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/>'),
   cal: svg('<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/>'),
   archive: svg('<rect x="3.5" y="4" width="17" height="4.5" rx="1"/><path d="M5 8.5V19a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8.5M10 12h4"/>'),
+  sun: svg('<circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4 7 17M17 7l1.4-1.4"/>'),
+  moon: svg('<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/>'),
+  autoTheme: svg('<circle cx="12" cy="12" r="8"/><path d="M12 4v16a8 8 0 0 0 0-16Z" fill="currentColor"/>'),
   user: svg('<circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/>'),
   manage: svg('<circle cx="9" cy="8" r="3.2"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0M16 5.3a3 3 0 0 1 0 5.6M17.5 14.3A5.5 5.5 0 0 1 20.5 19"/>'),
   chev: svg('<path d="m7 10 5 5 5-5"/>'),
@@ -840,7 +989,7 @@ function defaults() {
     tiers:[{id:'k1',name:'핵심',slots:10},{id:'k2',name:'주력',slots:10}],
     reward:{minRate:0,needNotice:true},
     demote:{rate:50,excused:'skip',trial:true},
-    draws:{}, drawLog:[], schedules:[], seasons:[], history:[], updated:0 };
+    draws:{}, drawLog:[], seasonEnd:'', schedules:[], seasons:[], history:[], updated:0 };
 }
 function normalize(s) {
   const d = defaults();
@@ -869,6 +1018,7 @@ function normalize(s) {
     absences: Array.isArray(s.absences) ? s.absences.filter(a => a && a.id && a.member && a.type && isDate(a.date)).slice(0, 300).map(a => ({ id:String(a.id), member:String(a.member), name:String(a.name || '').slice(0, 30), type:String(a.type), date:a.date, note:String(a.note || '').slice(0, 100), at:Number(a.at) || 0 })) : [],
     types, priority: types.some(t => t.id === s.priority) ? s.priority : (types[0] ? types[0].id : ''),
     members, events,
+    seasonEnd: isDate(s.seasonEnd) ? s.seasonEnd : '',
     schedules: Array.isArray(s.schedules) ? s.schedules.filter(x => x && x.id && isDate(x.date)).slice(0, 30).map(x => ({ id:String(x.id), title:String(x.title || '').slice(0, 30), type:String(x.type || ''), date:x.date, time:/^\d{2}:\d{2}$/.test(x.time || '') ? x.time : '21:00', every:clampInt(x.every, 0, 12, 0) })) : [],
     seasons: Array.isArray(s.seasons) ? s.seasons.filter(x => x && x.id).slice(0, 30) : [],
     history: Array.isArray(s.history) ? s.history.filter(x => x && x.id).slice(0, 300) : [],
@@ -1288,7 +1438,7 @@ function paintStatus() { const el = document.getElementById('status'); if (el) e
 const statusEl = () => '<div class="status" id="status" aria-live="polite">' + statusHTML() + '</div>';
 const toastHTML = () => UI.msg ? '<div class="toast" role="status"><span>' + esc(UI.msg) + '</span><button data-act="closeMsg">닫기</button></div>' : '';
 const helpBtn = () => '<button class="help" data-act="guideOpen">사용법</button>';
-const barHTML = title => '<header class="bar"><h1>' + title + '</h1><div class="hgrp">' + meBtn() + helpBtn() + statusEl() + '</div></header>';
+const barHTML0 = title => '<header class="bar"><h1>' + title + '</h1><div class="hgrp">' + meBtn() + helpBtn() + statusEl() + '</div></header>';
 
 let lastView = '', lastSheet = '', lastMsg = null, MYBAR_IO = null;
 function render() {
@@ -1297,7 +1447,7 @@ function render() {
   let h = '';
   if (UI.wiz) h = wizardHTML();
   else {
-    h += '<div class="page">';
+    h += '<div class="page' + (UI.tab === 'rank' && !UI.wiz ? ' wide' : '') + '">';
     if (UI.tab === 'record') h += recordPage();
     else if (UI.tab === 'manage') h += managePage();
     else if (UI.tab === 'random') h += randomPage();
@@ -1314,6 +1464,7 @@ function render() {
   if (UI.sheet === 'absence') h += absenceSheet();
   if (UI.sheet === 'image' && UI.capUrl) h += imageSheet();
   if (UI.sheet === 'seasons') h += seasonsSheet();
+  if (UI.sheet === 'recap' && UI.recap) h += recapHTML();
   if (UI.sheet === 'review' && mode !== 'ro' && UI.reviewMx) h += reviewSheet();
   if (UI.sheet === 'appeal' && FB) h += appealSheet();
   if (UI.sheet === 'tieTool' && mode !== 'ro') h += tieToolSheet();
@@ -1327,6 +1478,7 @@ function render() {
   if (sk !== lastSheet) { if (sk) { const ovs = app.querySelectorAll('.overlay'); if (ovs.length) ovs[ovs.length - 1].classList.add('ov-enter'); } lastSheet = sk; }
   if (UI.msg !== lastMsg) { const tt = app.querySelector('.toast'); if (tt && UI.msg) tt.classList.add('t-enter'); lastMsg = UI.msg; }
   { const bar = document.getElementById('mybar'); if (bar) { const pg = app.querySelector('.page'); if (pg) pg.classList.add('has-mybar'); const card = app.querySelector('.my-card'); if (MYBAR_IO) MYBAR_IO.disconnect(); if (card && 'IntersectionObserver' in window) { MYBAR_IO = new IntersectionObserver(es => { es.forEach(en => bar.classList.toggle('hide', en.isIntersecting)); }, { threshold:0.15 }); MYBAR_IO.observe(card); } else bar.classList.remove('hide'); } }
+  if (!UI.sheet && UI.guide === null && !UI.wiz && FB && FB.user) setTimeout(maybeRecap, 60);
   if (UI.pendingConfetti) { const sel = UI.pendingConfetti; UI.pendingConfetti = null; setTimeout(() => confetti(app.querySelector(sel)), 250); }
   if (UI.ladder && UI.ladder.animate) { UI.ladder.animate = false; animateLadder(); }
   if (UI.focus) { const el = document.getElementById(UI.focus); UI.focus = null; if (el) { el.focus(); if (el.select) el.select(); } }
@@ -1336,31 +1488,36 @@ function render() {
 // ---------- rank page ----------
 function rankPage(ro) {
   const C = compute();
-  const evs = sortedEvents(), last = evs.length ? evs[evs.length - 1].date : null;
-  const tcount = S.tiers.map(t => C.rows.filter(x => x.tier === t.id).length);
-  const below = C.xs.filter(x => x.below).sort((a, b) => a.exact - b.exact);
-  let h = '<header class="hero"><div class="hero-top"><h1 class="title">' + esc(S.title) + '</h1><div class="hgrp">' + meBtn() + helpBtn() + statusEl() + '</div></div>';
-  h += '<p class="season">' + (C.active ? '이번 시즌: ' + esc(seasonCounts()) + (last ? '. 마지막 기록 ' + md(last) : '') : '아직 기록된 회차가 없어요') + '</p>';
-  if (C.active && S.members.length) {
-    h += '<div class="tiles">' +
-      S.tiers.map((t, k) => '<button class="tile ' + tierCls(t.id) + '" data-act="jump" data-v="g-' + esc(t.id) + '"><b>' + tcount[k] + '<small>/' + t.slots + '</small></b><span>' + esc(t.name) + '</span></button>').join('') +
-      '<button class="tile warn" data-act="jump" data-v="g-warn"><b>' + below.length + '</b><span>참여율 미달</span></button></div>';
-  }
-  h += '</header><div class="body">' + toastHTML();
-  h += noticeHTML(ro) + scheduleCardHTML();
+  let h = '<header class="hero"><div class="hero-top"><div><span class="hero-kicker">ALLIANCE</span><h1 class="title">' + esc(S.title) + '</h1></div><div class="hgrp">' + meBtn() + themeBtn() + helpBtn() + statusEl() + '</div></div>';
+  h += '<div class="season-line">' + seasonPill() + '<span>' + (C.active ? esc(seasonCounts()) : '아직 기록된 회차가 없어요') + '</span></div></header>';
   RD = C.active ? rankDeltas(C) : {};
-  if (C.active) h += podiumHTML(C) + myCardHTML(C);
-  if (canReport()) h += '<button class="btn primary abs-btn" data-act="absence">불참 신고하기</button>';
-  if (S.demo && !ro) h += '<div class="note demo"><span>지금은 <b>예시 데이터</b>예요.</span><button class="btn" data-act="clearDemo">' + (UI.armed === 'demo' ? '한 번 더 누르면 삭제' : '지우고 시작하기') + '</button></div>';
-  if (!S.members.length) return h + '<div class="empty"><b>연맹원이 없어요</b><p>관리 화면에서 연맹원부터 추가해 주세요.</p>' + (ro ? '' : '<button class="btn primary" data-act="goto" data-v="manage">연맹원 추가하기</button>') + '</div>' + acctHTML() + '</div>';
-  if (!C.active) return h + '<div class="empty"><b>아직 기록이 없어요</b><p>첫 회차를 기록하면 순위가 바로 나타나요.</p>' + (ro ? '' : '<button class="btn primary" data-act="tab" data-v="record">첫 기록 하기</button>') + '</div>' + (seasonList().length ? '<div class="acts" style="margin-top:14px"><button class="btn" data-act="seasons">' + ICON.archive + '지난 시즌 보기</button></div>' : '') + acctHTML() + '</div>';
-
-  h += '<div class="acts">' + (ro ? '' : '<button class="btn" data-act="copy">' + ICON.copy + '글 복사</button><button class="btn" data-act="saveImage">' + ICON.image + '이미지 저장</button>') + '<button class="btn" data-act="rules">' + ICON.book + '점수 규칙</button><button class="btn" data-act="seasons">' + ICON.archive + '지난 시즌</button></div>';
-  if (S.demote.trial) h += '<div class="note">시범 운영 중이라 참여율 미달은 <b>표시만</b> 하고 강등에는 쓰지 않아요.</div>';
-
-  h += '<div class="rsearch">' + ICON.search + '<input class="in" id="rq" type="search" placeholder="닉네임 찾기" value="' + esc(UI.rq || '') + '" aria-label="닉네임 찾기"></div><div id="rankGroups">' + groupsHTML(C, ro) + '</div>';
-  return h + acctHTML() + '</div>';
+  let side = toastHTML(), main = '';
+  if (C.active) side += myCardHTML(C);
+  side += noticeHTML(ro) + scheduleCardHTML();
+  if (C.active) side += podiumHTML(C);
+  if (canReport()) side += '<button class="btn primary abs-btn" data-act="absence">불참 신고하기</button>';
+  if (S.demo && !ro) side += '<div class="note demo"><span>지금은 <b>예시 데이터</b>예요.</span><button class="btn" data-act="clearDemo">' + (UI.armed === 'demo' ? '한 번 더 누르면 삭제' : '지우고 시작하기') + '</button></div>';
+  if (!S.members.length) main = '<div class="empty"><b>연맹원이 없어요</b><p>관리 화면에서 연맹원부터 추가해 주세요.</p>' + (ro ? '' : '<button class="btn primary" data-act="goto" data-v="manage">연맹원 추가하기</button>') + '</div>';
+  else if (!C.active) main = '<div class="empty"><b>아직 기록이 없어요</b><p>첫 회차를 기록하면 순위가 바로 나타나요.</p>' + (ro ? '' : '<button class="btn primary" data-act="tab" data-v="record">첫 기록 하기</button>') + '</div>' + (seasonList().length ? '<div class="acts" style="margin-top:14px"><button class="btn" data-act="seasons">' + ICON.archive + '지난 시즌 보기</button></div>' : '');
+  else {
+    side += '<div class="acts">' + (ro ? '' : '<button class="btn" data-act="copy">' + ICON.copy + '글 복사</button><button class="btn" data-act="saveImage">' + ICON.image + '이미지 저장</button>') + '<button class="btn" data-act="rules">' + ICON.book + '점수 규칙</button><button class="btn" data-act="seasons">' + ICON.archive + '지난 시즌</button></div>';
+    if (S.demote.trial) side += '<div class="note">시범 운영 중이라 참여율 미달은 <b>표시만</b> 하고 강등에는 쓰지 않아요.</div>';
+    main = '<div class="rsearch">' + ICON.search + '<input class="in" id="rq" type="search" placeholder="닉네임 찾기" value="' + esc(UI.rq || '') + '" aria-label="닉네임 찾기"></div><div id="rankGroups">' + groupsHTML(C, ro) + '</div>';
+  }
+  return h + '<div class="body rk-layout"><div class="rk-side">' + side + '</div><div class="rk-main">' + main + acctHTML() + '</div></div>';
 }
+function seasonName() { const ds = S.events.map(e => e.date).sort(); return ds.length ? (+ds[ds.length - 1].split('-')[1]) + '월 시즌' : '새 시즌'; }
+function seasonPill() {
+  let txt = seasonName();
+  if (isDate(S.seasonEnd)) { const d = Math.round((new Date(S.seasonEnd + 'T00:00:00') - new Date(today() + 'T00:00:00')) / 86400000); txt += d > 0 ? ', 마감까지 ' + d + '일' : d === 0 ? ', 오늘 마감' : ', 마감일 지남'; }
+  return '<span class="season-pill">' + esc(txt) + '</span>';
+}
+const THEME_KEY = 'guild-scoreboard-theme', THEME_NAMES = { auto:'자동', light:'라이트', dark:'다크' };
+function getTheme() { try { const t = localStorage.getItem(THEME_KEY); return t === 'light' || t === 'dark' ? t : 'auto'; } catch (e) { return 'auto'; } }
+function applyTheme(t) { const r = document.documentElement; if (t === 'light' || t === 'dark') r.setAttribute('data-theme', t); else r.removeAttribute('data-theme'); }
+function themeBtn() { const t = getTheme(); return '<button class="theme-btn" data-act="theme" aria-label="화면 모드 바꾸기, 지금 ' + THEME_NAMES[t] + '">' + (t === 'dark' ? ICON.moon : t === 'light' ? ICON.sun : ICON.autoTheme) + '<span>' + THEME_NAMES[t] + '</span></button>'; }
+function barHTML(title) { return barHTML0(title).replace('<div class="hgrp">', '<div class="hgrp">' + themeBtn()); }
+applyTheme(getTheme());
 function noticeHTML(ro) {
   const can = !ro;
   if (!S.notice) return can ? '<div class="ncard empty-n"><div class="ncard-h"><span>' + ICON.bell + '연맹 공지</span><button class="textbtn" data-act="editNotice">공지 쓰기</button></div><p>아직 공지가 없어요. 공지를 쓰면 모든 연맹원에게 맨 위에 보여요.</p></div>' : '';
@@ -1611,7 +1768,7 @@ function rulesPage() {
   }
   const ds = S.events.map(e => e.date).sort(), defName = ds.length ? (+ds[ds.length - 1].split('-')[1]) + '월 시즌' : '';
   h += '<div class="card"><h2 class="card-h">시즌 마감</h2><p class="card-sub">지금 순위, 점수, 참여율, 보상 등급, 공식 추첨 기록을 지난 시즌으로 저장한 뒤 회차 기록을 비우고 새로 시작해요. 연맹원과 규칙은 그대로예요. 지난 시즌은 순위 화면의 지난 시즌에서 누구나 볼 수 있어요.</p><div class="stack">' +
-    '<input class="in" id="seasonName" maxlength="30" placeholder="시즌 이름 (예: 10월 시즌)" value="' + esc(UI.seasonName != null ? UI.seasonName : defName) + '" aria-label="시즌 이름">' +
+    '<label class="field">시즌 마감 예정일 (선택, 순위 화면에 남은 날짜가 보여요)<input class="in" type="date" data-f="seasonEnd" value="' + esc(S.seasonEnd || '') + '"></label>' + '<input class="in" id="seasonName" maxlength="30" placeholder="시즌 이름 (예: 10월 시즌)" value="' + esc(UI.seasonName != null ? UI.seasonName : defName) + '" aria-label="시즌 이름">' +
     '<button class="btn danger" data-act="closeSeason"' + (S.events.length ? '' : ' disabled') + '>' + (S.events.length ? '시즌 결산 보고 마감하기' : '마감할 기록이 없어요') + '</button>' +
     '<button class="btn" data-act="resetAll">' + (UI.armed === 'reset' ? '한 번 더 누르면 전부 삭제' : '연맹원과 기록 모두 지우기') + '</button></div></div>';
   return h;
@@ -1636,7 +1793,7 @@ function podiumHTML(C) {
   if (top.length < 2) return '';
   const same = (a, b) => a.pts === b.pts && a.prio === b.prio && a.abN === b.abN, pr = [];
   top.forEach((x, i) => { pr[i] = i > 0 && same(x, top[i - 1]) ? pr[i - 1] : i + 1; });
-  const col = (i, cls) => { const x = top[i]; return x ? '<div class="pd ' + cls + '"><div class="pd-av">' + avatarInner(x.m.id, x.m.name) + '</div><div class="pd-n">' + esc(x.m.name) + '</div><div class="pd-s">' + fmt(x.pts) + '점</div><div class="pd-base">' + pr[i] + '</div></div>' : '<div></div>'; };
+  const col = (i, cls) => { const x = top[i]; return x ? '<div class="pd ' + cls + '"><div class="pd-av">' + avatarInner(x.m.id, x.m.name) + '</div><div class="pd-n">' + esc(x.m.name) + '</div><div class="pd-s">' + fmt(x.pts) + '점</div><div class="pd-base"><span class="pd-shield">' + pr[i] + '</span></div></div>' : '<div></div>'; };
   return '<div class="podium" aria-label="보상 순위 상위 3명">' + col(1, 'p2') + col(0, 'p1') + col(2, 'p3') + '</div>';
 }
 function myCardHTML(C) {
@@ -1645,11 +1802,7 @@ function myCardHTML(C) {
   if (!mid) return '<div class="my-card empty"><span>내 닉네임을 연결하면 여기에 내 순위가 보여요.</span><button class="btn" data-act="profile">연결하기</button></div>';
   const x = C.xs.find(v => v.m.id === mid);
   if (!x) return '';
-  let sub, goal = '';
-  if (x.tier === 'pending') sub = '동점 추첨 대기';
-  else if (x.tier) sub = tierName(x.tier) + ' 보상권';
-  else if (!x.elig) sub = '보상 제외: ' + x.reasons.join(', ');
-  else sub = '보상권 밖';
+  let goal = '', pct = 100;
   if (x.elig && x.tier !== 'pending') {
     const cur = x.tier ? tierIdx(x.tier) : S.tiers.length;
     let ti = cur - 1;
@@ -1657,13 +1810,21 @@ function myCardHTML(C) {
     if (cur === 0 || ti < 0) { if (x.tier) goal = '가장 높은 보상권이에요.'; }
     else {
       const rowsT = C.rows.filter(r => r.tier === S.tiers[ti].id);
-      if (rowsT.length) { const need = Math.min.apply(null, rowsT.map(r => r.pts)) - x.pts; goal = need > 0 ? esc(S.tiers[ti].name) + '까지 ' + need + '점 남았어요.' : esc(S.tiers[ti].name) + '와 점수가 같아요. 동점 처리 순서로 갈려요.'; }
+      if (rowsT.length) { const target = Math.min.apply(null, rowsT.map(r => r.pts)), need = target - x.pts; goal = need > 0 ? esc(S.tiers[ti].name) + ' 보상까지 ' + need + '점 남았어요' : esc(S.tiers[ti].name) + '와 점수가 같아요. 동점 처리 순서로 갈려요.'; if (need > 0) pct = Math.max(4, Math.min(100, Math.round(Math.max(0, x.pts) / Math.max(1, target) * 100))); }
     }
-  }
+  } else if (x.tier === 'pending') goal = '동점이라 추첨을 기다리고 있어요.';
+  else if (!x.elig) { goal = '보상 제외: ' + esc(x.reasons.join(', ')); pct = 0; }
   const ru = rankUpCheck(x), up = ru.up;
   if (up && ru.fresh) UI.pendingConfetti = '.my-card';
-  return '<div class="my-card' + (up && ru.fresh ? ' up' : '') + '"><span class="mc-label">내 순위</span><div class="mc-av">' + avatarInner(mid, x.m.name) + '</div><div class="mc-mid"><div class="mc-top"><b>' + esc(x.m.name) + '</b>' + dltHTML(mid) + '</div><div class="mc-sub">' + esc(sub) + (x.rate === null ? '' : ', 참여율 ' + x.rate + '%') + '</div>' +
-    (up ? '<div class="mc-up">지난번보다 ' + up + '계단 올랐어요!</div>' : goal ? '<div class="mc-goal">' + goal + '</div>' : '') + '<div class="mc-acts"><button class="textbtn" data-act="myGraph">' + (UI.myGraph ? '그래프 닫기' : '내 기록 그래프') + '</button>' + (FB ? '<button class="textbtn" data-act="appeal">이의 신청' + (unreadReplies() ? '<i class="dot-new">' + unreadReplies() + '</i>' : '') + '</button>' : '') + '</div></div><div class="mc-rank"><b>' + x.rank + '</b><span>위</span><small>' + fmt(x.pts) + '점</small></div>' + (UI.myGraph ? '<div class="mc-graph">' + graphHTML(mid) + '</div>' : '') + '</div>';
+  const tierChip = x.tier && x.tier !== 'pending' ? '<span class="chip tierc ' + tierCls(x.tier) + '">' + esc(tierName(x.tier)) + ' 보상권</span>' : '';
+  const un = unreadReplies();
+  return '<div class="my-card mh' + (up && ru.fresh ? ' up' : '') + '"><div class="mh-top"><span class="mh-label">내 순위</span>' + dltHTML(mid) + '<div class="mh-av" style="margin-left:auto">' + avatarInner(mid, x.m.name) + '</div></div>' +
+    '<div class="mh-main"><b class="mh-rank">' + x.rank + '</b><span class="mh-wi">위</span><span class="mh-name">' + esc(x.m.name) + '</span><span class="mh-pts"><b>' + fmt(x.pts) + '</b>점</span></div>' +
+    (up ? '<div class="mh-goal up">지난번보다 ' + up + '계단 올랐어요!</div>' : goal ? '<div class="mh-goal">' + goal + '</div>' : '') +
+    (goal || up ? '<div class="mh-bar" aria-hidden="true"><i style="width:' + pct + '%"></i></div>' : '') +
+    '<div class="mh-chips">' + (x.streak ? '<span class="chip streak">' + esc(x.streak.name) + ' ' + x.streak.n + '연속</span>' : '') + tierChip + (x.rate === null ? '' : '<span class="chip">참여율 ' + x.rate + '%</span>') + '</div>' +
+    '<div class="mc-acts"><button class="textbtn" data-act="myGraph">' + (UI.myGraph ? '그래프 닫기' : '내 기록 그래프') + '</button><button class="textbtn" data-act="appeal">이의 신청' + (un ? '<i class="dot-new">' + un + '</i>' : '') + '</button></div>' +
+    (UI.myGraph ? '<div class="mc-graph">' + graphHTML(mid) + '</div>' : '') + '</div>';
 }
 function rankUpCheck(x) {
   try {
@@ -1687,7 +1848,7 @@ function groupsHTML(C, ro) {
     if (!q && !rows.length && !always) return '';
     shown += r.length;
     const col = !q && UI.col.includes(id);
-    return '<section class="grp ' + cls + (col ? ' collapsed' : '') + '" id="' + id + '"><h2 class="grp-h tg"><button class="grp-tg" data-act="grpToggle" data-v="' + id + '" aria-expanded="' + !col + '"><span>' + title + '</span><span class="grp-r"><span class="grp-n">' + count + '</span>' + ICON.chev + '</span></button></h2>' +
+    return '<section class="grp ' + cls + (col ? ' collapsed' : '') + '" id="' + id + '"><h2 class="grp-h tg"><button class="grp-tg" data-act="grpToggle" data-v="' + id + '" aria-expanded="' + !col + '"><span><i class="gsh"></i>' + title + '</span><span class="grp-r"><span class="grp-n">' + count + '</span>' + ICON.chev + '</span></button></h2>' +
       (r.length ? '<ol class="list">' + r.map(rowHTML).join('') + '</ol>' : '<p class="tie-box" style="border:0;margin:0;color:var(--muted)">아직 없어요.</p>') + '</section>';
   };
   S.tiers.forEach((t, k) => {
@@ -1699,7 +1860,7 @@ function groupsHTML(C, ro) {
   const bw = below.filter(match);
   if (!q || bw.length) {
     const col = !q && UI.col.includes('g-warn');
-    h += '<section class="grp warn' + (col ? ' collapsed' : '') + '" id="g-warn"><h2 class="grp-h tg"><button class="grp-tg" data-act="grpToggle" data-v="g-warn" aria-expanded="' + !col + '"><span>참여율 ' + S.demote.rate + '% 미만</span><span class="grp-r"><span class="grp-n">' + below.length + '명' + (S.demote.trial ? ', 시범 운영' : '') + '</span>' + ICON.chev + '</span></button></h2>' +
+    h += '<section class="grp warn' + (col ? ' collapsed' : '') + '" id="g-warn"><h2 class="grp-h tg"><button class="grp-tg" data-act="grpToggle" data-v="g-warn" aria-expanded="' + !col + '"><span><i class="gsh"></i>참여율 ' + S.demote.rate + '% 미만</span><span class="grp-r"><span class="grp-n">' + below.length + '명' + (S.demote.trial ? ', 시범 운영' : '') + '</span>' + ICON.chev + '</span></button></h2>' +
       (bw.length ? '<ul class="list wl">' + bw.map(x => '<li><span class="nm">' + esc(x.m.name) + '</span><span class="muted">참여 ' + x.rin + '/' + x.opp + '회</span><b>' + x.rate + '%</b></li>').join('') + '</ul>' : '<p class="tie-box" style="border:0;margin:0;color:var(--muted)">기준 미달인 연맹원이 없어요.</p>') + '</section>';
     shown += bw.length;
   }
@@ -1819,6 +1980,70 @@ function loadSeasonMx(id) {
     .catch(() => { UI.seasonMxData = null; UI.msg = '결산표를 불러오지 못했어요.'; render(); });
 }
 
+// ---------- season recap story cards ----------
+function longestStreaks() {
+  const evs = sortedEvents(), res = {};
+  S.members.forEach(m => {
+    const cur = {}, best = { n:0, t:'' };
+    evs.forEach(e => {
+      if (!eligibleFor(m, e.date)) return;
+      const v = e.st[m.id] || 'ab';
+      if (v === 'in') { cur[e.type] = (cur[e.type] || 0) + 1; if (cur[e.type] > best.n) { best.n = cur[e.type]; best.t = typeName(e.type); } }
+      else if (v === 'ab') cur[e.type] = 0;
+    });
+    res[m.id] = best;
+  });
+  return res;
+}
+function rankGain(mid) { const sr = seriesAll()[mid] || []; return sr.length > 1 ? sr[0].rank - sr[sr.length - 1].rank : 0; }
+function shieldSVG(size, c1, c2, txt) {
+  const gid = 'sg' + Math.random().toString(36).slice(2, 8);
+  return '<svg width="' + size + '" height="' + Math.round(size * 1.15) + '" viewBox="0 0 100 115" aria-hidden="true"><defs><linearGradient id="' + gid + '" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="' + c1 + '"/><stop offset="1" stop-color="' + c2 + '"/></linearGradient></defs><path d="M50 3 L96 21 L96 70 L50 112 L4 70 L4 21 Z" fill="url(#' + gid + ')" stroke="#FFE29A" stroke-width="3"/>' + (txt ? '<text x="50" y="74" text-anchor="middle" font-size="' + (String(txt).length > 2 ? 34 : 46) + '" font-weight="900" fill="#1A1200" font-family="Black Han Sans, sans-serif">' + esc(txt) + '</text>' : '') + '</svg>';
+}
+function maybeRecap() {
+  if (!FB || !FB.user || UI.sheet || UI.guide !== null || UI.wiz || STAGE) return;
+  const mid = myMember(); if (!mid) return;
+  const ss = seasonList()[0]; if (!ss || !Array.isArray(ss.rows) || !ss.rows.some(r => r.mid === mid)) return;
+  let seen = ''; try { seen = localStorage.getItem('guild-scoreboard-recap-seen') || ''; } catch (e) {}
+  if (seen === ss.id) return;
+  UI.recap = { sid:ss.id, mid, i:0 }; UI.sheet = 'recap'; render();
+}
+function closeRecap() {
+  if (UI.recap && !UI.recap.manual) { try { localStorage.setItem('guild-scoreboard-recap-seen', UI.recap.sid); } catch (e) {} }
+  UI.sheet = UI.recap && UI.recap.manual ? 'seasons' : null; UI.recap = null; render();
+}
+function recapHTML() {
+  const rc = UI.recap, ss = seasonList().find(x => x.id === rc.sid), r = ss && (ss.rows || []).find(x => x.mid === rc.mid);
+  if (!r) return '';
+  const i = rc.i, n = ss.rows.length, pct = Math.max(1, Math.ceil(r.rank / Math.max(1, n) * 100));
+  const stat = (l, v, good) => '<div class="rc-stat' + (good ? ' good' : '') + '"><small>' + l + '</small><b>' + v + '</b></div>';
+  let body;
+  if (i === 0) body = '<div class="rc-av">' + avatarInner(rc.mid, r.name) + '</div><div class="rc-sub">' + esc(r.name) + '님의</div><div class="rc-big">' + esc(ss.name) + '</div><p class="rc-p">한 시즌 동안의 기록을<br>돌아볼까요?</p>';
+  else if (i === 1) {
+    const diff = (r.rin || 0) - (ss.avgIn || 0);
+    const cmp = diff > 0 ? '연맹 평균보다 ' + diff + '번 더 참여했어요' : diff === 0 ? '연맹 평균만큼 참여했어요' : '다음 시즌엔 ' + (-diff) + '번만 더 나와 봐요';
+    body = stat('참여한 회차', (r.rin || 0) + '번' + (r.opp ? ' / ' + r.opp + '번' : '')) + stat('최장 연속 참여', r.best ? esc(r.bestType) + ' ' + r.best + '연속' : '다음 시즌에 도전!') + stat('무단 불참', r.abN ? r.abN + '번' : '0번, 개근!', !r.abN) + '<p class="rc-p gold">' + cmp + '</p>';
+  } else {
+    const tierTxt = r.ti >= 0 ? r.tier + ' 보상' : (r.out ? '보상 제외' : r.tier === '동점 대기' ? '동점 추첨 대기' : '보상권 밖');
+    const badges = [];
+    if (!r.abN && r.rin) badges.push('개근');
+    if (r.best >= 5) badges.push(r.best + '연속');
+    if (r.up >= 3) badges.push('역전 +' + r.up);
+    if (r.ti === 0) badges.push('최상위 보상');
+    body = shieldSVG(92, r.ti === 0 ? '#FFE29A' : '#EEF2F7', r.ti === 0 ? '#D49A2A' : '#9AA6B6', String(r.rank)) + '<div class="rc-big">최종 ' + r.rank + '위</div><div class="rc-sub gold">상위 ' + pct + '%</div><span class="rc-tier">' + esc(tierTxt) + '</span>' +
+      (badges.length ? '<div class="rc-badges">' + badges.map(bd => '<span class="rc-badge">' + shieldSVG(22, '#FFE29A', '#D49A2A', '') + esc(bd) + '</span>').join('') + '</div>' : '');
+  }
+  return '<div class="overlay recap-ov" role="dialog" aria-modal="true" aria-label="시즌 결산 카드"><div class="recap-wrap"><div class="recap" id="recapCard" data-act="recapNext"><div class="rc-bars">' + [0, 1, 2].map(k => '<i class="' + (k <= i ? 'on' : '') + '"></i>').join('') + '</div><div class="rc-al">' + esc(S.title) + '</div><div class="rc-body">' + body + '</div>' + (i < 2 ? '<div class="rc-hint">화면을 누르면 넘어가요</div>' : '') + '</div>' +
+    '<div class="recap-ctl">' + (i > 0 ? '<button class="btn" data-act="recapPrev">이전</button>' : '') + (i < 2 ? '<button class="btn" data-act="recapClose">건너뛰기</button><button class="btn primary" data-act="recapNext">다음</button>' : '<button class="btn" data-act="recapClose">닫기</button><button class="btn primary" data-act="recapSave">이미지로 저장</button>') + '</div></div></div>';
+}
+async function saveRecapImage() {
+  const el = document.getElementById('recapCard'); if (!el) return;
+  try { await loadH2C(); } catch (e) { UI.msg = '이미지 도구를 불러오지 못했어요.'; render(); return; }
+  try { if (document.fonts && document.fonts.ready) await document.fonts.ready; const canvas = await window.html2canvas(el, { backgroundColor:null, scale:2, logging:false }); UI.capUrl = canvas.toDataURL('image/png'); UI.prevSheet = 'recap'; UI.sheet = 'image'; }
+  catch (e) { UI.msg = '이미지를 만들지 못했어요.'; }
+  render();
+}
+
 // ---------- history (admin change log) ----------
 let HIST = [], APPEALS = [], SEASONS = [];
 function hist(action, detail) {
@@ -1831,6 +2056,7 @@ function histField(f, id, b) {
   const t = id ? typeOf(id) : null, m = id ? memOf(id) : null, tr = id ? S.tiers.find(x => x.id === id) : null, bo = t && b ? t.bonuses.find(x => x.id === b) : null;
   switch (f) {
     case 'title': return ['점수판 이름', S.title];
+    case 'seasonEnd': return ['시즌 마감 예정일', S.seasonEnd || '없음'];
     case 'tName': return t ? ['콘텐츠 이름', t.name] : null;
     case 'tPts': return t ? [t.name + ' 참여 점수', t.pts] : null;
     case 'tPen': return t ? [t.name + ' 무단 불참 감점', t.pen] : null;
@@ -1953,15 +2179,17 @@ function seasonList() { return FB ? SEASONS : (S.seasons || []); }
 async function closeSeason() {
   const name = String((document.getElementById('seasonName') || {}).value || UI.seasonName || '').trim().slice(0, 30) || '이름 없는 시즌';
   const C = compute(), ds = S.events.map(e => e.date).sort();
-  const rows = C.rows.map(x => ({ rank:x.rank, name:x.m.name, pts:x.pts, rate:x.rate, tier:x.tier === 'pending' ? '동점 대기' : (x.tier ? tierName(x.tier) : ''), ti:x.tier && x.tier !== 'pending' ? tierIdx(x.tier) : -1, out:x.reasons.join(', '), below:!!x.below }));
+  const LS = longestStreaks();
+  const rows = C.rows.map(x => ({ rank:x.rank, name:x.m.name, pts:x.pts, rate:x.rate, tier:x.tier === 'pending' ? '동점 대기' : (x.tier ? tierName(x.tier) : ''), ti:x.tier && x.tier !== 'pending' ? tierIdx(x.tier) : -1, out:x.reasons.join(', '), below:!!x.below, mid:x.m.id, rin:x.rin, opp:x.opp, abN:x.abN, best:(LS[x.m.id] || {}).n || 0, bestType:(LS[x.m.id] || {}).t || '', up:rankGain(x.m.id) }));
+  const avgIn = rows.length ? Math.round(rows.reduce((a2, r) => a2 + r.rin, 0) / rows.length) : 0;
   const mx = buildMatrix();
-  const doc = { name, at:Date.now(), from:ds[0] || '', to:ds[ds.length - 1] || '', counts:seasonCounts(), tiers:S.tiers.map(t => ({ name:t.name, slots:t.slots })), demote:{ rate:S.demote.rate, trial:S.demote.trial }, rows, draws:(S.drawLog || []).slice(0, 50).map(d => ({ title:d.title, summary:d.summary, at:d.at })) };
+  const doc = { avgIn, name, at:Date.now(), from:ds[0] || '', to:ds[ds.length - 1] || '', counts:seasonCounts(), tiers:S.tiers.map(t => ({ name:t.name, slots:t.slots })), demote:{ rate:S.demote.rate, trial:S.demote.trial }, rows, draws:(S.drawLog || []).slice(0, 50).map(d => ({ title:d.title, summary:d.summary, at:d.at })) };
   if (FB) {
     try { const ref = await FB.db.collection('seasons').add(doc); try { await FB.db.collection('seasonDetails').doc(ref.id).set({ matrix:mx }); } catch (e2) { UI.msg = '결산표는 저장하지 못했어요. 규칙에 seasonDetails 부분이 있는지 확인해 주세요.'; } }
     catch (e) { UI.msg = '시즌을 저장하지 못해서 기록을 지우지 않았어요. 규칙에 seasons 부분이 있는지 확인해 주세요.'; render(); return; }
   } else S.seasons = [Object.assign({ id:uid(), matrix:mx }, doc)].concat(S.seasons || []).slice(0, 30);
   hist('시즌 마감', name + ' (' + seasonCounts() + ')');
-  S.events = []; S.draws = {}; S.drawLog = []; UI.seasonName = null;
+  S.events = []; S.draws = {}; S.drawLog = []; S.seasonEnd = ''; UI.seasonName = null;
   UI.msg = name + '을 저장하고 새 시즌을 시작했어요. 순위 화면의 지난 시즌에서 볼 수 있어요.';
   changed();
 }
@@ -1993,7 +2221,7 @@ function seasonsSheet() {
   const out = rows.filter(r => r.ti < 0 && r.out); if (out.length) h += '<div class="ss-group"><h3>보상 제외</h3>' + out.map(row).join('') + '</div>';
   const below = rows.filter(r => r.below); if (below.length) h += '<div class="ss-group"><h3 style="color:var(--red)">참여율 ' + (cur.demote ? cur.demote.rate : '') + '% 미만' + (cur.demote && cur.demote.trial ? ' (시범 운영)' : '') + '</h3>' + below.map(r => '<div class="ss-row"><span class="r">' + r.rank + '</span><span>' + esc(r.name) + '</span><span class="p">' + (r.rate == null ? '-' : r.rate + '%') + '</span></div>').join('') + '</div>';
   if ((cur.draws || []).length) h += '<div class="ss-group"><h3>공식 추첨</h3>' + cur.draws.map(d => '<div class="ss-row" style="grid-template-columns:1fr"><span><b>' + esc(d.title) + '</b> ' + esc(d.summary) + '</span></div>').join('') + '</div>';
-  return h + '<div class="sheet-actions">' + (mode !== 'ro' ? '<button class="btn" data-act="seasonMx" data-id="' + esc(cur.id) + '">참여 현황 보기</button>' : '') + (mode !== 'ro' ? '<button class="btn danger" data-act="seasonDel" data-id="' + esc(cur.id) + '">' + (UI.armed === 'ssd:' + cur.id ? '한 번 더 누르면 삭제' : '이 시즌 삭제') + '</button>' : '') + '<button class="btn" data-act="seasonBack">목록</button><button class="btn primary" data-act="closeSheet">닫기</button></div></div></div>';
+  return h + '<div class="sheet-actions">' + (mode !== 'ro' ? '<button class="btn" data-act="seasonMx" data-id="' + esc(cur.id) + '">참여 현황 보기</button>' : '') + (mode !== 'ro' ? '<button class="btn danger" data-act="seasonDel" data-id="' + esc(cur.id) + '">' + (UI.armed === 'ssd:' + cur.id ? '한 번 더 누르면 삭제' : '이 시즌 삭제') + '</button>' : '') + (FB && FB.user && myMember() && (cur.rows || []).some(r => r.mid === myMember()) ? '<button class="btn primary" data-act="recapOpen" data-id="' + esc(cur.id) + '">내 결산 카드</button>' : '') + '<button class="btn" data-act="seasonBack">목록</button><button class="btn primary" data-act="closeSheet">닫기</button></div></div></div>';
 }
 
 // ---------- appeals (member -> admins) ----------
@@ -3136,7 +3364,7 @@ app.addEventListener('click', e => {
   const b = e.target.closest('[data-act]');
   if (!b || b.disabled) return;
   const act = b.dataset.act, id = b.dataset.id, w = UI.wiz;
-  if (mode === 'ro' && !['open','copy','closeCopy','closeMsg','rules','closeSheet','jump','guideOpen','guideNext','guidePrev','guideGo','guideClose','login','doLogin','logout','noticeOk','absence','absSubmit','tab','rTool','rPick','rAll','rNone','rAdd','rDel','rN','rRule','rStart','profile','googleLogin','copyLink','pfLink','pfUnlink','pfPhotoDel','grpToggle','seasons','seasonOpen','seasonBack','myGraph','appeal','apSubmit','schedAbs','appealEv','myJump'].includes(act)) return;
+  if (mode === 'ro' && !['open','copy','closeCopy','closeMsg','rules','closeSheet','jump','guideOpen','guideNext','guidePrev','guideGo','guideClose','login','doLogin','logout','noticeOk','absence','absSubmit','tab','rTool','rPick','rAll','rNone','rAdd','rDel','rN','rRule','rStart','profile','googleLogin','copyLink','pfLink','pfUnlink','pfPhotoDel','grpToggle','theme','recapNext','recapPrev','recapClose','recapSave','recapOpen','seasons','seasonOpen','seasonBack','myGraph','appeal','apSubmit','schedAbs','appealEv','myJump'].includes(act)) return;
   switch (act) {
     case 'tab': case 'goto':
       if (mode === 'ro' && !['rank','random'].includes(b.dataset.v)) return;
@@ -3270,6 +3498,12 @@ app.addEventListener('click', e => {
       w.note = md(prev.date) + ' ' + typeName(prev.type) + ' 참여자 ' + w.in.length + '명을 불러왔어요. 바뀐 사람만 고쳐 주세요.';
       render(); break;
     }
+    case 'theme': { const order = ['auto', 'light', 'dark'], nx = order[(order.indexOf(getTheme()) + 1) % 3]; try { localStorage.setItem(THEME_KEY, nx); } catch (e) {} applyTheme(nx); UI.msg = '화면 모드: ' + THEME_NAMES[nx] + (nx === 'auto' ? ' (휴대폰·PC 설정을 따라가요)' : ''); render(); break; }
+    case 'recapNext': if (UI.recap && UI.recap.i < 2) { UI.recap.i++; render(); } break;
+    case 'recapPrev': if (UI.recap && UI.recap.i > 0) { UI.recap.i--; render(); } break;
+    case 'recapClose': closeRecap(); break;
+    case 'recapSave': saveRecapImage(); break;
+    case 'recapOpen': { const mid = myMember(); if (!mid) return; UI.recap = { sid:id, mid, i:0, manual:true }; UI.sheet = 'recap'; render(); break; }
     case 'tieStart': startTie(UI.tieKey, b.dataset.v); break;
     case 'login': login(); break;
     case 'grpToggle': { const g = b.dataset.v; UI.col = UI.col.includes(g) ? UI.col.filter(x => x !== g) : UI.col.concat(g); try { localStorage.setItem('guild-scoreboard-collapsed', JSON.stringify(UI.col)); } catch (e) {} render(); break; }
@@ -3327,6 +3561,7 @@ app.addEventListener('change', e => {
   if (f === 'rOfficial') { UI.rnd.official = el.checked; render(); if (el.checked) UI.focus = 'rTitle'; return; }
   const t = id ? typeOf(id) : null, m = id ? memOf(id) : null;
   switch (f) {
+    case 'seasonEnd': S.seasonEnd = isDate(v) ? v : ''; break;
     case 'title': S.title = v.trim().slice(0, 40) || '<Z3RO> No Mercy'; el.value = S.title; break;
     case 'tName': if (!t) return; t.name = v.trim().slice(0, 30) || '이름 없음'; el.value = t.name; break;
     case 'tPts': if (!t) return; t.pts = clampInt(v, -9999, 9999, t.pts); el.value = t.pts; break;
@@ -3365,6 +3600,7 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     if (STAGE) { closeStage(); return; }
     if (UI.guide !== null) { closeGuide(); return; }
+    if (UI.sheet === 'recap') { closeRecap(); return; }
     if (UI.sheet === 'noticePop') { closeNoticePop(); return; }
     if (UI.copyText != null) { UI.copyText = null; render(); }
     else if (UI.ladder) { UI.ladder = null; render(); }
