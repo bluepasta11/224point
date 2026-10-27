@@ -549,16 +549,6 @@ details.adv .in{margin-top:8px;width:auto}
 .ltop-box{fill:var(--gold)}
 
 /* schedule, seasons, graph, streak, history, appeals */
-.sched{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin:0 0 14px}
-.sched-h{display:flex;align-items:center;gap:6px;font-weight:700;margin-bottom:4px}
-.sched-h svg.i{width:20px;height:20px;color:var(--blue)}
-.sc-row{display:grid;grid-template-columns:1fr auto;gap:2px 10px;align-items:center;padding:8px 0;border-top:1px solid var(--line)}
-.sc-row:first-of-type{border-top:0}
-.sc-main b{display:block;font-size:1rem}
-.sc-main span{font-size:.85rem;color:var(--muted)}
-.sc-left{font-weight:700;color:var(--blue);font-size:.92rem;text-align:right;white-space:nowrap}
-.sc-row.first .sc-left{color:var(--gold)}
-.sc-abs{grid-column:1 / -1;justify-self:start;min-height:34px;padding:5px 12px;font-size:.82rem}
 .chip.streak{background:var(--gold-soft);color:var(--gold)}
 .mc-acts{display:flex;gap:4px 12px;flex-wrap:wrap;margin-top:4px}
 .mc-acts .textbtn{padding:2px 0;min-height:30px;color:var(--blue);font-size:.85rem}
@@ -822,7 +812,7 @@ table.mx tr.mx-line td{border-bottom:2px dashed var(--red);color:var(--red);font
 :root[data-theme="light"]{color-scheme:light}
 body{background:var(--page-bg)}
 .btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
-.card,.grp,.ncard,.sched,.podium,.my-card{box-shadow:var(--card-shadow)}
+.card,.grp,.ncard,.podium,.my-card{box-shadow:var(--card-shadow)}
 /* header */
 .hero{background:transparent;color:var(--ink);border-bottom:0;padding:22px 16px 8px}
 .hero .title{background:var(--title-bg);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:clamp(1.8rem,7vw,2.4rem);line-height:1.1}
@@ -1271,10 +1261,11 @@ function logout() { if (!FB) return; if (dirty && mode === 'fbadmin') fbSave(); 
 
 // ---------- profile (photo) ----------
 function linkValid(memberId) { const l = PROF.links[memberId]; if (!l || !l.uid) return ''; const pr = PROF.profiles[l.uid]; return pr && pr.memberId === memberId ? l.uid : ''; }
-function photoOf(memberId) { const uid = linkValid(memberId); if (!uid) return ''; const ph = PROF.profiles[uid].photo; return typeof ph === 'string' && ph.indexOf('data:image/') === 0 ? ph : ''; }
+const safePhoto = ph => typeof ph === 'string' && /^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+\/]+=*$/.test(ph) ? ph : ''; // photos go into src="" unescaped, so anything else is dropped
+function photoOf(memberId) { const uid = linkValid(memberId); if (!uid) return ''; return safePhoto(PROF.profiles[uid].photo); }
 const hostName = () => { if (!FB || !FB.user) return ''; const m = myMember(); return m ? nameOf(m) : '운영진'; };
 function myMember() { if (!FB || !FB.user) return ''; const pr = PROF.profiles[FB.user.uid]; if (!pr || !pr.memberId) return ''; return linkValid(pr.memberId) === FB.user.uid ? pr.memberId : ''; }
-function myPhoto() { if (!FB || !FB.user) return ''; const pr = PROF.profiles[FB.user.uid]; return pr && typeof pr.photo === 'string' && pr.photo.indexOf('data:image/') === 0 ? pr.photo : ''; }
+function myPhoto() { if (!FB || !FB.user) return ''; const pr = PROF.profiles[FB.user.uid]; return pr ? safePhoto(pr.photo) : ''; }
 function meBtn() {
   if (!FB) return '';
   const ph = myPhoto();
@@ -1360,11 +1351,10 @@ function adminCardHTML() {
   return h;
 }
 function adminAdd() {
-  { const sel0 = document.getElementById('adminPick'); if (sel0 && sel0.value && memOf(sel0.value)) hist('관리자 지정', memOf(sel0.value).name); }
   const sel = document.getElementById('adminPick'), mid = sel ? sel.value : '', uid = mid ? linkValid(mid) : '';
   if (!uid) { UI.msg = '관리자로 지정할 연맹원을 골라 주세요.'; render(); return; }
   FB.db.collection('admins').doc(uid).set({ memberId:mid, name:memOf(mid).name, at:Date.now() })
-    .then(() => { UI.msg = memOf(mid).name + '님을 관리자로 지정했어요. 그 사람이 다시 열면 관리 메뉴가 보여요.'; render(); })
+    .then(() => { hist('관리자 지정', memOf(mid).name); UI.msg = memOf(mid).name + '님을 관리자로 지정했어요. 그 사람이 다시 열면 관리 메뉴가 보여요.'; render(); })
     .catch(() => { UI.msg = '지정하지 못했어요. 최고 관리자로 로그인했는지 확인해 주세요.'; render(); });
 }
 async function fbSave() {
@@ -1817,7 +1807,7 @@ function wizSave() {
 // ---------- manage page ----------
 function managePage() {
   const segs = [['members', '연맹원 ' + S.members.length + '명'], ['rules', '규칙과 설정'], ['history', '변경 이력']].concat(FB ? [['appeals', '이의 신청' + (openAppeals() ? ' ' + openAppeals() + '건' : '')]] : []);
-  let h = barHTML('관리') + '<div class="seg2 seg4" role="group" aria-label="관리 메뉴">' + segs.map(([k, l]) => '<button data-act="mseg" data-v="' + k + '" aria-pressed="' + (UI.mseg === k) + '">' + l + '</button>').join('') + '</div><div class="body">' + toastHTML();
+  let h = barHTML('관리') + '<div class="seg2 seg4" role="group" aria-label="관리 메뉴"' + (segs.length === 3 ? ' style="grid-template-columns:repeat(3,1fr)"' : '') + '>' + segs.map(([k, l]) => '<button data-act="mseg" data-v="' + k + '" aria-pressed="' + (UI.mseg === k) + '">' + l + '</button>').join('') + '</div><div class="body">' + toastHTML();
   if (FB && mode === 'fbadmin') h += '<div class="card acct-card"><span><b>' + (FB.owner ? '최고 관리자' : '관리자') + '</b>로 로그인 중</span><button class="btn" data-act="logout" style="min-height:40px;padding:8px 14px">로그아웃</button></div>';
   h += UI.mseg === 'rules' ? rulesPage() : UI.mseg === 'history' ? historyPage() : (UI.mseg === 'appeals' && FB) ? appealsPage() : membersPage();
   return h + '</div>';
@@ -1961,9 +1951,7 @@ function avatarInner(id, name) { const ph = photoOf(id); return ph ? '<img src="
 function podiumHTML(C) {
   const top = C.rows.filter(x => x.elig).slice(0, 3);
   if (top.length < 2) return '';
-  const same = (a, b) => a.pts === b.pts && a.prio === b.prio && a.abN === b.abN, pr = [];
-  top.forEach((x, i) => { pr[i] = i > 0 && same(x, top[i - 1]) ? pr[i - 1] : i + 1; });
-  const col = (i, cls) => { const x = top[i]; return x ? '<div class="pd ' + cls + '"><div class="pd-avw"><div class="pd-av">' + avatarInner(x.m.id, x.m.name) + '</div><span class="pd-shield">' + pr[i] + '</span></div><div class="pd-n">' + esc(x.m.name) + '</div><div class="pd-s">' + fmt(x.pts) + '점</div></div>' : '<div></div>'; };
+    const col = (i, cls) => { const x = top[i]; return x ? '<div class="pd ' + cls + '"><div class="pd-avw"><div class="pd-av">' + avatarInner(x.m.id, x.m.name) + '</div><span class="pd-shield">' + x.rank + '</span></div><div class="pd-n">' + esc(x.m.name) + '</div><div class="pd-s">' + fmt(x.pts) + '점</div></div>' : '<div></div>'; };
   return '<div class="podium" aria-label="보상 순위 상위 3명">' + col(1, 'p2') + col(0, 'p1') + col(2, 'p3') + '</div>';
 }
 function myCardHTML(C) {
@@ -2433,13 +2421,6 @@ function leftText(t) {
   return h + '시간 ' + (m % 60) + '분 남음';
 }
 function whenSched(t) { const d = new Date(t); return (d.getMonth() + 1) + '/' + d.getDate() + '(' + WD[d.getDay()] + ') ' + String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0'); }
-function scheduleCardHTML() {
-  const up = upcoming(3);
-  if (!up.length) return '';
-  return '<div class="sched"><div class="sched-h">' + ICON.cal + '다음 일정</div>' + up.map((x, i) =>
-    '<div class="sc-row' + (i ? '' : ' first') + '"><div class="sc-main"><b>' + esc(x.sc.title || typeName(x.sc.type)) + '</b><span>' + whenSched(x.t) + (x.sc.every ? ', ' + everyText(x.sc.every) : '') + '</span></div><div class="sc-left">' + leftText(x.t) + '</div>' +
-    (x.sc.type && typeOf(x.sc.type) && canReport() ? '<button class="pill-btn sc-abs" data-act="schedAbs" data-id="' + esc(x.sc.id) + '" data-t="' + x.t + '">이 일정 불참 신고</button>' : '') + '</div>').join('') + '</div>';
-}
 function scheduleSettingsHTML() {
   const f = UI.sf || {};
   const rep = f.rep || '0', date = f.date || today(), time = f.time || '21:00';
@@ -2613,8 +2594,7 @@ function absenceSheet() {
   if (!mem.length) h += '<p class="abs-info err" style="margin-top:12px">아직 연맹원 명단이 없어서 신고할 수 없어요.</p>';
   else if (selfOnly && !me) h += '<p class="abs-info err" style="margin-top:12px">' + (FB.user ? '내 프로필에서 닉네임을 먼저 연결해 주세요. 연결한 본인만 신고할 수 있어요.' : '로그인하고 내 프로필에서 닉네임을 연결하면 신고할 수 있어요. 본인 것만 신고할 수 있어요.') + '</p>';
   else {
-    const opts = selfOnly ? [memOf(me)] : mem;
-    h += '<div class="abs-form"><label class="field">닉네임<select class="in" data-af="member"' + (selfOnly ? ' disabled' : '') + '>' + (selfOnly ? '' : '<option value="">닉네임을 골라 주세요</option>') + opts.map(m => '<option value="' + esc(m.id) + '"' + (f.member === m.id || selfOnly ? ' selected' : '') + '>' + esc(m.name) + '</option>').join('') + '</select></label>' +
+    h += '<div class="abs-form"><label class="field">닉네임' + (selfOnly ? '<input class="in" value="' + esc(memOf(me).name) + ' (나)" readonly>' : '<select class="in" data-af="member"><option value="">닉네임을 골라 주세요</option>' + mem.map(m => '<option value="' + esc(m.id) + '"' + (f.member === m.id ? ' selected' : '') + '>' + esc(m.name) + '</option>').join('') + '</select>') + '</label>' +
       '<div class="fgrid"><label class="field">콘텐츠<select class="in" data-af="type">' + S.types.map(t => '<option value="' + esc(t.id) + '"' + (f.type === t.id ? ' selected' : '') + '>' + esc(t.name) + '</option>').join('') + '</select></label>' +
       '<label class="field">날짜<input class="in" type="date" data-af="date" value="' + esc(f.date) + '"></label></div>' +
       '<label class="field">사유 (선택)<input class="in" data-af="note" maxlength="100" value="' + esc(f.note) + '" placeholder="예: 출장, 야근"></label>' +
@@ -3470,7 +3450,7 @@ function guideSteps() {
     { ro:true, stage:stageRank, title:'순위는 한눈에 보여요',
       text: ro ? '로그인하고 닉네임을 연결하면 맨 위에 내 순위와 다음 보상까지 남은 점수가 보여요. 아래 순위는 보상 등급별로 묶여 있고, ▲▼는 지난 기록보다 오르내린 칸 수, 참여율 막대가 빨간색이면 기준 미달이에요.' : '맨 위에 시즌 남은 날짜, 공지와 다음 일정, 상위 3명이 보이고 아래 순위는 보상 등급별로 묶여 있어요. ▲▼는 지난 기록 대비 순위 변화, "메인전쟁 5연속"은 연속 참여 표시예요.' },
     { ro:true, stage:stageAbsence, title:'불참은 미리 신고해요',
-      text: ro ? '못 나가는 날은 불참 신고하기를 누르거나, 다음 일정 줄의 불참 버튼으로 미리 남겨 주세요. 신고 시각이 그대로 남아서 무단 불참이 아니라 사전 불참으로 처리돼요.' : '연맹원이 불참 신고를 남기면, 기록할 때 그 사람이 사전 불참으로 미리 골라져 있어요. 다음 일정 줄에서도 바로 신고할 수 있어요.' },
+      text: ro ? '로그인하고 내 닉네임을 연결한 뒤, 못 나가는 날은 불참 신고하기를 누르거나 다음 일정 줄의 불참 버튼으로 미리 남겨 주세요. 본인 것만 신고할 수 있어요. 신고 시각이 그대로 남아서 무단 불참이 아니라 사전 불참으로 처리돼요.' : '연맹원이 불참 신고를 남기면, 기록할 때 그 사람이 사전 불참으로 미리 골라져 있어요. 다음 일정 줄에서도 바로 신고할 수 있어요.' },
     { stage:stagePick, title:'기록은 누르기만 하면 끝', text:'기록하기에서 콘텐츠를 고르고 참여한 사람을 누르세요. "지난 메인전쟁 참여자"를 누르면 지난 명단을 불러와서 바뀐 사람만 고치면 돼요. 인원이 많으면 닉네임 검색칸도 나와요.' },
     { stage:stageSave, title:'불참 구분하고 저장', text:'빠진 사람 중 미리 불참을 알린 사람을 누르면 사전 불참으로 따로 기록돼요. 보너스 항목이 있으면 해당하는 사람도 고르고, 명단을 확인해 저장하면 끝이에요.' },
     { ro:true, roOnly:true, stage:stageProfile, title:'로그인하고 닉네임 연결',
@@ -3674,7 +3654,7 @@ app.addEventListener('click', e => {
   const b = e.target.closest('[data-act]');
   if (!b || b.disabled) return;
   const act = b.dataset.act, id = b.dataset.id, w = UI.wiz;
-  if (mode === 'ro' && !['open','copy','closeCopy','closeMsg','rules','closeSheet','jump','guideOpen','guideNext','guidePrev','guideGo','guideClose','login','doLogin','logout','noticeOk','absence','absSubmit','tab','rTool','rPick','rAll','rNone','rAdd','rDel','rN','rRule','rStart','profile','googleLogin','copyLink','pfLink','pfUnlink','pfPhotoDel','grpToggle','noticeToggle','schedAll','theme','recapNext','recapPrev','recapClose','recapSave','recapOpen','seasons','seasonOpen','seasonBack','myGraph','appeal','apSubmit','schedAbs','appealEv','myJump'].includes(act)) return;
+  if (mode === 'ro' && !['open','copy','closeCopy','closeMsg','rules','closeSheet','jump','guideOpen','guideNext','guidePrev','guideGo','guideClose','login','logout','noticeOk','absence','absSubmit','tab','rTool','rPick','rAll','rNone','rAdd','rDel','rN','rRule','rStart','profile','googleLogin','copyLink','pfLink','pfUnlink','pfPhotoDel','grpToggle','noticeToggle','schedAll','theme','recapNext','recapPrev','recapClose','recapSave','recapOpen','seasons','seasonOpen','seasonBack','myGraph','appeal','apSubmit','schedAbs','appealEv','myJump'].includes(act)) return;
   switch (act) {
     case 'tab': case 'goto':
       if (mode === 'ro' && !['rank','random'].includes(b.dataset.v)) return;
@@ -3833,10 +3813,9 @@ app.addEventListener('click', e => {
     case 'pfUnlink': if (!arm('unlink')) return; pfUnlink(); break;
     case 'pfPhotoDel': savePhoto(''); break;
     case 'adminAdd': adminAdd(); break;
-    case 'adminDel': if (UI.armed === 'adm:' + id) { const ad = ADMINS.find(a => a.uid === id); hist('관리자 해제', ad ? (ad.name || '') : ''); } if (!FB || !FB.owner) return; if (!arm('adm:' + id)) return; FB.db.collection('admins').doc(id).delete().then(() => { UI.msg = '관리자를 해제했어요.'; render(); }).catch(() => { UI.msg = '해제하지 못했어요.'; render(); }); break;
-    case 'mUnlink': if (UI.armed === 'mul:' + id) hist('계정 연결 해제', nameOf(id)); if (!FB || mode !== 'fbadmin') return; if (!arm('mul:' + id)) return; FB.db.collection('links').doc(id).delete().then(() => { UI.msg = nameOf(id) + ' 닉네임의 계정 연결을 풀었어요. 진짜 주인이 다시 연결하면 돼요.'; render(); }).catch(() => { UI.msg = '연결을 풀지 못했어요.'; render(); }); break;
-    case 'mPhotoDel': if (UI.armed === 'mph:' + id) hist('사진 삭제', nameOf(id)); { if (!FB || mode !== 'fbadmin') return; const lu = PROF.links[id] && PROF.links[id].uid; if (!lu) return; if (!arm('mph:' + id)) return; FB.db.collection('profiles').doc(lu).update({ photo:'', updatedAt:Date.now() }).then(() => { UI.msg = nameOf(id) + '님의 사진을 지웠어요.'; render(); }).catch(() => { UI.msg = '사진을 지우지 못했어요.'; render(); }); break; }
-    case 'doLogin': doLogin(); break;
+    case 'adminDel': { if (!FB || !FB.owner) return; if (!arm('adm:' + id)) return; const ad = ADMINS.find(a => a.uid === id); FB.db.collection('admins').doc(id).delete().then(() => { hist('관리자 해제', ad ? (ad.name || '') : ''); UI.msg = '관리자를 해제했어요.'; render(); }).catch(() => { UI.msg = '해제하지 못했어요.'; render(); }); break; }
+    case 'mUnlink': if (!FB || mode !== 'fbadmin') return; if (!arm('mul:' + id)) return; FB.db.collection('links').doc(id).delete().then(() => { hist('계정 연결 해제', nameOf(id)); UI.msg = nameOf(id) + ' 닉네임의 계정 연결을 풀었어요. 진짜 주인이 다시 연결하면 돼요.'; render(); }).catch(() => { UI.msg = '연결을 풀지 못했어요.'; render(); }); break;
+    case 'mPhotoDel': { if (!FB || mode !== 'fbadmin') return; const lu = PROF.links[id] && PROF.links[id].uid; if (!lu) return; if (!arm('mph:' + id)) return; FB.db.collection('profiles').doc(lu).update({ photo:'', updatedAt:Date.now() }).then(() => { hist('사진 삭제', nameOf(id)); UI.msg = nameOf(id) + '님의 사진을 지웠어요.'; render(); }).catch(() => { UI.msg = '사진을 지우지 못했어요.'; render(); }); break; }
     case 'logout': logout(); break;
     case 'editNotice': UI.sheet = 'notice'; UI.focus = 'noticeText'; render(); break;
     case 'saveNotice': hist('공지 수정', ((document.getElementById('noticeText') || {}).value || '공지 내림').slice(0, 60)); { const ta = document.getElementById('noticeText'), nv = ta ? ta.value.trim().slice(0, 1000) : S.notice; if (nv !== S.notice) { S.notice = nv; S.noticeAt = Date.now(); try { localStorage.setItem(NOTICE_KEY, String(S.noticeAt)); } catch (e) {} } UI.sheet = null; UI.msg = S.notice ? '공지를 저장했어요. 연맹원이 다음에 열 때 팝업으로 한 번 보여요.' : '공지를 내렸어요.'; changed(); break; }
@@ -3913,7 +3892,6 @@ app.addEventListener('input', e => {
   if (e.target.dataset && e.target.dataset.ap) { UI.ap = UI.ap || {}; UI.ap[e.target.dataset.ap] = e.target.value; return; } if (e.target.id === 'rq') { UI.rq = e.target.value; const g = document.getElementById('rankGroups'); if (g) { const C = compute(); RD = rankDeltas(C); g.innerHTML = groupsHTML(C, mode === 'ro'); } return; } if (e.target.id === 'pfSearch') { UI.pfq = e.target.value; const ul = document.querySelector('.pick-list'); if (ul) ul.outerHTML = pickListHTML(); return; } if (e.target.id === 'rTitle') UI.rnd.title = e.target.value; if (e.target.id === 'rAddIn') UI.rnd.draft = e.target.value; if (e.target.id === 'addNames') UI.draft = e.target.value; if (e.target.dataset && e.target.dataset.af && UI.af) UI.af[e.target.dataset.af] = e.target.value; });
 app.addEventListener('focusin', e => { if (e.target.id === 'copyBox') e.target.select(); });
 document.addEventListener('keydown', e => {
-  if (e.key === 'Enter' && (e.target.id === 'lgPw' || e.target.id === 'lgEmail')) { e.preventDefault(); doLogin(); return; }
   if ((e.key === 'Enter' || e.key === ' ') && e.target.id === 'pfFileLbl') { e.preventDefault(); const f = document.getElementById('pfFile'); if (f) f.click(); return; }
   if ((e.key === 'Enter' || e.key === ' ') && e.target.id === 'importLbl') { e.preventDefault(); const f = document.getElementById('importFile'); if (f) f.click(); return; }
   if (e.key === 'Enter' && e.target.id === 'rAddIn') { e.preventDefault(); rndAdd(); return; }
