@@ -2475,13 +2475,14 @@ async function closeSeason() {
   const avgIn = rows.length ? Math.round(rows.reduce((a2, r) => a2 + r.rin, 0) / rows.length) : 0;
   const mx = buildMatrix();
   const doc = { avgIn, name, at:Date.now(), from:ds[0] || '', to:ds[ds.length - 1] || '', counts:seasonCounts(), tiers:S.tiers.map(t => ({ name:t.name, slots:t.slots })), demote:{ rate:S.demote.rate, trial:S.demote.trial }, rows, draws:(S.drawLog || []).slice(0, 50).map(d => ({ title:d.title, summary:d.summary, at:d.at })) };
+  let mxFail = false;
   if (FB) {
-    try { const ref = await FB.db.collection('seasons').add(doc); try { await FB.db.collection('seasonDetails').doc(ref.id).set({ matrix:mx }); } catch (e2) { UI.msg = '결산표는 저장하지 못했어요. 규칙에 seasonDetails 부분이 있는지 확인해 주세요.'; } }
+    try { const ref = await FB.db.collection('seasons').add(doc); try { await FB.db.collection('seasonDetails').doc(ref.id).set({ matrix:mx }); } catch (e2) { mxFail = true; } }
     catch (e) { UI.msg = '시즌을 저장하지 못해서 기록을 지우지 않았어요. 규칙에 seasons 부분이 있는지 확인해 주세요.'; render(); return; }
   } else S.seasons = [Object.assign({ id:uid(), matrix:mx }, doc)].concat(S.seasons || []).slice(0, 30);
   hist('시즌 마감', name + ' (' + seasonCounts() + ')');
-  S.events = []; S.draws = {}; S.drawLog = []; S.seasonEnd = ''; UI.seasonName = null;
-  UI.msg = name + '을 저장하고 새 시즌을 시작했어요. 순위 화면의 지난 시즌에서 볼 수 있어요.';
+  S.events = []; S.draws = {}; S.drawLog = []; S.seasonEnd = ''; S.trash = null; UI.seasonName = null; // old undo would pour last season back in
+  UI.msg = name + '을 저장하고 새 시즌을 시작했어요. 순위 화면의 지난 시즌에서 볼 수 있어요.' + (mxFail ? ' 다만 결산표(참여 현황)는 저장하지 못했어요. 규칙에 seasonDetails 부분이 있는지 확인해 주세요.' : '');
   changed();
 }
 function deleteSeason(id) {
@@ -2608,9 +2609,12 @@ function absenceSheet() {
   const recent = absList().filter(a => a.date >= addDays(today(), -14)).sort((a, b) => a.date < b.date ? 1 : a.date > b.date ? -1 : b.at - a.at).slice(0, 40);
   let h = '<div class="overlay" role="dialog" aria-modal="true" aria-labelledby="abT"><div class="sheet" style="max-width:480px"><h2 class="sheet-title" id="abT">불참 신고</h2>' +
     '<p style="color:var(--muted)">전쟁이나 콘텐츠에 못 나가면 미리 남겨 주세요. 운영진이 기록할 때 무단 불참이 아니라 사전 불참으로 처리돼요. 신고한 시각이 그대로 남아요.</p>';
+  const selfOnly = !!FB && mode === 'ro', me = selfOnly ? myMember() : '';
   if (!mem.length) h += '<p class="abs-info err" style="margin-top:12px">아직 연맹원 명단이 없어서 신고할 수 없어요.</p>';
+  else if (selfOnly && !me) h += '<p class="abs-info err" style="margin-top:12px">' + (FB.user ? '내 프로필에서 닉네임을 먼저 연결해 주세요. 연결한 본인만 신고할 수 있어요.' : '로그인하고 내 프로필에서 닉네임을 연결하면 신고할 수 있어요. 본인 것만 신고할 수 있어요.') + '</p>';
   else {
-    h += '<div class="abs-form"><label class="field">닉네임<select class="in" data-af="member"><option value="">닉네임을 골라 주세요</option>' + mem.map(m => '<option value="' + esc(m.id) + '"' + (f.member === m.id ? ' selected' : '') + '>' + esc(m.name) + '</option>').join('') + '</select></label>' +
+    const opts = selfOnly ? [memOf(me)] : mem;
+    h += '<div class="abs-form"><label class="field">닉네임<select class="in" data-af="member"' + (selfOnly ? ' disabled' : '') + '>' + (selfOnly ? '' : '<option value="">닉네임을 골라 주세요</option>') + opts.map(m => '<option value="' + esc(m.id) + '"' + (f.member === m.id || selfOnly ? ' selected' : '') + '>' + esc(m.name) + '</option>').join('') + '</select></label>' +
       '<div class="fgrid"><label class="field">콘텐츠<select class="in" data-af="type">' + S.types.map(t => '<option value="' + esc(t.id) + '"' + (f.type === t.id ? ' selected' : '') + '>' + esc(t.name) + '</option>').join('') + '</select></label>' +
       '<label class="field">날짜<input class="in" type="date" data-af="date" value="' + esc(f.date) + '"></label></div>' +
       '<label class="field">사유 (선택)<input class="in" data-af="note" maxlength="100" value="' + esc(f.note) + '" placeholder="예: 출장, 야근"></label>' +
@@ -2625,6 +2629,7 @@ function absenceSheet() {
 function addDays(ds, n) { const d = new Date(ds + 'T00:00:00'); d.setDate(d.getDate() + n); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
 function submitAbsence() {
   const f = UI.af || {};
+  if (FB && mode === 'ro') f.member = myMember(); // rules only accept your own linked nickname
   const m = memOf(f.member), t = typeOf(f.type);
   if (!m) { UI.afInfo = { kind:'err', text:'닉네임을 골라 주세요.' }; render(); return; }
   if (!t) { UI.afInfo = { kind:'err', text:'콘텐츠를 골라 주세요.' }; render(); return; }
@@ -3738,8 +3743,6 @@ app.addEventListener('click', e => {
       S.types = S.types.filter(t => t.id !== id); S.events = S.events.filter(x => x.type !== id);
       if (S.priority === id) S.priority = S.types[0].id;
       changed(); break;
-    case 'newSeason': if (!arm('season')) return; S.events = []; S.draws = {}; S.drawLog = []; UI.msg = '새 시즌을 시작했어요.'; changed(); break;
-    case 'resetAll': if (UI.armed === 'reset') hist('전체 삭제', '연맹원과 기록 모두 지우기'); if (!arm('reset')) return; wipeData(); S.drawLog = []; S.demo = false; UI.msg = '연맹원과 기록을 모두 지웠어요.'; changed(); break;
     case 'clearDemo': if (!arm('demo')) return; wipeData(); S.demo = false; UI.tab = 'manage'; UI.mseg = 'members'; UI.msg = '예시를 지웠어요. 연맹원부터 추가하고, 보상 등급 인원은 규칙과 설정에서 실제에 맞게 바꿔 주세요.'; changed(); break;
     case 'openLadder': openLadder(b.dataset.key); break;
     case 'runLadder': runLadder(); break;
